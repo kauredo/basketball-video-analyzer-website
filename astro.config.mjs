@@ -1,22 +1,22 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
-import react from '@astrojs/react';
-import sitemap from '@astrojs/sitemap';
+import { defineConfig } from "astro/config";
+import tailwind from "@astrojs/tailwind";
+import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://basketballvideoanalyzer.com',
+  site: "https://basketballvideoanalyzer.com",
   integrations: [
     tailwind({
-      config: { path: './tailwind.config.cjs' }
+      configFile: "./tailwind.config.cjs",
     }),
     react(),
-    sitemap()
+    sitemap(),
   ],
   vite: {
     define: {
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    }
-  }
+      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+    },
+  },
 });

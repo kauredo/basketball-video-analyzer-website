@@ -3,12 +3,14 @@
 ## Prerequisites
 
 ### Required Software
+
 - **Node.js**: Version 18.0 or higher
 - **npm**: Version 8.0 or higher (comes with Node.js)
 - **Git**: For version control
 - **VS Code**: Recommended editor with Astro extension
 
 ### Recommended VS Code Extensions
+
 ```json
 {
   "recommendations": [
@@ -24,6 +26,7 @@
 ## Project Setup
 
 ### 1. Initialize Astro Project
+
 ```bash
 # Create new Astro project
 npm create astro@latest basketball-video-analyzer-website
@@ -35,6 +38,7 @@ npm create astro@latest basketball-video-analyzer-website
 ```
 
 ### 2. Install Dependencies
+
 ```bash
 cd basketball-video-analyzer-website
 npm install
@@ -47,84 +51,85 @@ npm install @octokit/rest  # For GitHub API integration
 ```
 
 ### 3. Configure Astro
+
 ```javascript
 // astro.config.mjs
-import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
-import react from '@astrojs/react';
-import sitemap from '@astrojs/sitemap';
+import { defineConfig } from "astro/config";
+import tailwind from "@astrojs/tailwind";
+import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: 'https://basketballvideoanalyzer.com',
+  site: "https://basketballvideoanalyzer.com",
   integrations: [
     tailwind({
-      config: { path: './tailwind.config.cjs' }
+      config: { path: "./tailwind.config.cjs" },
     }),
     react(),
-    sitemap()
+    sitemap(),
   ],
   vite: {
     define: {
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    }
-  }
+      "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+    },
+  },
 });
 ```
 
 ### 4. Configure Tailwind CSS
+
 ```javascript
 // tailwind.config.cjs
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
       colors: {
         // Basketball-themed color palette
         primary: {
-          50: '#FFF4ED',
-          100: '#FFE6D5',
-          200: '#FFD0AA',
-          300: '#FFB274',
-          400: '#FF8A5C',
-          500: '#FF6B35', // Main brand color
-          600: '#E55A2B',
-          700: '#CC4A1F',
-          800: '#B33E17',
-          900: '#99340F',
+          50: "#FFF4ED",
+          100: "#FFE6D5",
+          200: "#FFD0AA",
+          300: "#FFB274",
+          400: "#FF8A5C",
+          500: "#FF6B35", // Main brand color
+          600: "#E55A2B",
+          700: "#CC4A1F",
+          800: "#B33E17",
+          900: "#99340F",
         },
         court: {
-          wood: '#D4A574',
-          line: '#FFFFFF',
-          net: '#E8E8E8',
+          wood: "#D4A574",
+          line: "#FFFFFF",
+          net: "#E8E8E8",
         },
         neutral: {
-          950: '#0A0A0A',
-        }
+          950: "#0A0A0A",
+        },
       },
       fontFamily: {
-        display: ['Inter', 'SF Pro Display', 'system-ui', 'sans-serif'],
-        body: ['Inter', 'SF Pro Text', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'SF Mono', 'Consolas', 'monospace'],
+        display: ["Inter", "SF Pro Display", "system-ui", "sans-serif"],
+        body: ["Inter", "SF Pro Text", "system-ui", "sans-serif"],
+        mono: ["JetBrains Mono", "SF Mono", "Consolas", "monospace"],
       },
       animation: {
-        'pulse-slow': 'pulse 3s infinite',
-        'bounce-gentle': 'bounce 2s infinite',
+        "pulse-slow": "pulse 3s infinite",
+        "bounce-gentle": "bounce 2s infinite",
       },
       spacing: {
-        '18': '4.5rem',
-        '88': '22rem',
-        '128': '32rem',
-      }
+        18: "4.5rem",
+        88: "22rem",
+        128: "32rem",
+      },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
-}
+  plugins: [require("@tailwindcss/typography")],
+};
 ```
 
 ### 5. TypeScript Configuration
+
 ```json
 // tsconfig.json
 {
@@ -145,7 +150,9 @@ module.exports = {
 ## Development Environment
 
 ### Environment Variables
+
 Create `.env` file in project root:
+
 ```bash
 # GitHub API Configuration
 GITHUB_OWNER=kauredo
@@ -160,7 +167,9 @@ CONTACT_FORM_ENDPOINT=your_form_endpoint_here
 ```
 
 ### Development Scripts
+
 Add to `package.json`:
+
 ```json
 {
   "scripts": {
@@ -178,7 +187,9 @@ Add to `package.json`:
 ```
 
 ### VS Code Workspace Settings
+
 Create `.vscode/settings.json`:
+
 ```json
 {
   "typescript.preferences.importModuleSpecifier": "relative",
@@ -197,6 +208,7 @@ Create `.vscode/settings.json`:
 ## Project Structure
 
 ### Directory Organization
+
 ```
 basketball-video-analyzer-website/
 ├── docs/                      # Documentation (current)
@@ -238,11 +250,13 @@ basketball-video-analyzer-website/
 ## GitHub Integration Setup
 
 ### Personal Access Token
+
 1. Go to GitHub Settings > Developer settings > Personal access tokens
 2. Generate new token with `public_repo` scope
 3. Add to `.env` file as `GITHUB_TOKEN`
 
 ### API Rate Limits
+
 - **Unauthenticated**: 60 requests per hour
 - **Authenticated**: 5,000 requests per hour
 - **Caching**: Implement caching to reduce API calls
@@ -250,24 +264,28 @@ basketball-video-analyzer-website/
 ## Development Workflow
 
 ### 1. Start Development Server
+
 ```bash
 npm run dev
 # Server starts at http://localhost:3000
 ```
 
 ### 2. Build for Production
+
 ```bash
 npm run build
 # Outputs to dist/ directory
 ```
 
 ### 3. Preview Production Build
+
 ```bash
 npm run preview
 # Serves the built site locally
 ```
 
 ### 4. Type Checking
+
 ```bash
 npm run type-check
 # Validates TypeScript and Astro files
@@ -276,12 +294,14 @@ npm run type-check
 ## Content Management
 
 ### Screenshots and Assets
+
 - Store all app screenshots in `/public/images/screenshots/`
 - Use WebP format with PNG fallbacks
 - Optimize images with tools like Squoosh or ImageOptim
 - Create responsive image variants
 
 ### Documentation
+
 - Write docs in Markdown with frontmatter
 - Use consistent headings and structure
 - Include code examples with syntax highlighting
@@ -290,25 +310,28 @@ npm run type-check
 ## Performance Optimization
 
 ### Image Optimization
+
 ```javascript
 // Use Astro's built-in image optimization
-import { Picture } from '@astrojs/image/components';
+import { Picture } from "@astrojs/image/components";
 
 <Picture
   src="/images/hero-screenshot.png"
   alt="Basketball Video Analyzer interface"
   widths={[320, 640, 1280]}
-  formats={['webp', 'png']}
+  formats={["webp", "png"]}
   sizes="(max-width: 768px) 100vw, 50vw"
-/>
+/>;
 ```
 
 ### Bundle Optimization
+
 - Use Astro's partial hydration for interactive components
 - Code-split large dependencies
 - Implement lazy loading for below-the-fold content
 
 ### SEO Setup
+
 - Configure meta tags in layout components
 - Generate sitemap with `@astrojs/sitemap`
 - Add structured data for better search results
@@ -317,11 +340,13 @@ import { Picture } from '@astrojs/image/components';
 ## Deployment
 
 ### Recommended Platforms
+
 1. **Vercel**: Optimal for Astro, automatic deployments
 2. **Netlify**: Great for static sites, form handling
 3. **GitHub Pages**: Free option with GitHub integration
 
 ### Environment Setup
+
 - Production environment variables
 - Custom domain configuration
 - SSL certificate setup
@@ -330,6 +355,7 @@ import { Picture } from '@astrojs/image/components';
 ## Next Steps
 
 After completing this setup:
+
 1. Complete the documentation phase (current)
 2. Implement the design system
 3. Build core components and layouts

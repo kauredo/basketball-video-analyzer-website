@@ -5,6 +5,7 @@
 ### Recommended: Vercel (Primary Choice)
 
 **Why Vercel:**
+
 - Optimized for Astro applications
 - Automatic deployments from Git
 - Edge functions for API routes
@@ -12,12 +13,14 @@
 - Simple environment variable management
 
 **Setup Steps:**
+
 1. Connect GitHub repository to Vercel
 2. Configure build settings (auto-detected for Astro)
 3. Add environment variables
 4. Deploy
 
 **Build Configuration:**
+
 ```json
 {
   "buildCommand": "npm run build",
@@ -30,12 +33,14 @@
 ### Alternative: Netlify
 
 **Why Netlify:**
+
 - Great for static sites
 - Built-in form handling
 - Edge functions available
 - Generous free tier
 
 **Setup with `netlify.toml`:**
+
 ```toml
 [build]
   publish = "dist"
@@ -60,6 +65,7 @@
 ### GitHub Pages (Budget Option)
 
 **Setup with GitHub Actions:**
+
 ```yaml
 # .github/workflows/deploy.yml
 name: Deploy to GitHub Pages
@@ -155,6 +161,7 @@ NODE_ENV=production
 ### Custom Domain Configuration
 
 **DNS Records for `basketballvideoanalyzer.com`:**
+
 ```
 Type    Name    Value                       TTL
 A       @       76.76.19.61                300
@@ -163,6 +170,7 @@ CNAME   www     basketballvideoanalyzer.com.        300
 ```
 
 **SSL Certificate:**
+
 - Automatically provisioned by hosting platform
 - Let's Encrypt or platform-managed certificates
 - Ensure HTTPS redirect is enabled
@@ -182,29 +190,29 @@ blog.basketballvideoanalyzer.com    → Blog/news (future)
 
 ```javascript
 // astro.config.mjs - Production optimizations
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
 export default defineConfig({
   build: {
-    inlineStylesheets: 'auto',
+    inlineStylesheets: "auto",
     minify: true,
     rollupOptions: {
       output: {
-        entryFileNames: '[name].[hash].js',
-        chunkFileNames: '[name].[hash].js',
-        assetFileNames: '[name].[hash].[ext]'
-      }
-    }
+        entryFileNames: "[name].[hash].js",
+        chunkFileNames: "[name].[hash].js",
+        assetFileNames: "[name].[hash].[ext]",
+      },
+    },
   },
   compressHTML: true,
   vite: {
     build: {
-      cssMinify: 'lightningcss',
+      cssMinify: "lightningcss",
       rollupOptions: {
-        external: ['sharp'] // Exclude from bundle if not needed
-      }
-    }
-  }
+        external: ["sharp"], // Exclude from bundle if not needed
+      },
+    },
+  },
 });
 ```
 
@@ -212,34 +220,35 @@ export default defineConfig({
 
 ```javascript
 // astro.config.mjs
-import { defineConfig } from 'astro/config';
-import image from '@astrojs/image';
+import { defineConfig } from "astro/config";
+import image from "@astrojs/image";
 
 export default defineConfig({
   integrations: [
     image({
-      serviceEntryPoint: '@astrojs/image/sharp',
-      logLevel: 'info'
-    })
-  ]
+      serviceEntryPoint: "@astrojs/image/sharp",
+      logLevel: "info",
+    }),
+  ],
 });
 ```
 
 ### CDN Configuration
 
 **Vercel Edge Functions:**
+
 ```javascript
 // middleware.ts
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 export function middleware(request: NextRequest) {
   // Add security headers
   const response = NextResponse.next();
 
-  response.headers.set('X-Content-Type-Options', 'nosniff');
-  response.headers.set('X-Frame-Options', 'DENY');
-  response.headers.set('X-XSS-Protection', '1; mode=block');
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("X-Frame-Options", "DENY");
+  response.headers.set("X-XSS-Protection", "1; mode=block");
 
   return response;
 }
@@ -251,19 +260,19 @@ export function middleware(request: NextRequest) {
 
 ```javascript
 // astro.config.mjs
-import sitemap from '@astrojs/sitemap';
+import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: 'https://basketballvideoanalyzer.com',
+  site: "https://basketballvideoanalyzer.com",
   integrations: [
     sitemap({
       customPages: [
-        'https://basketballvideoanalyzer.com/download',
-        'https://basketballvideoanalyzer.com/features',
-        'https://basketballvideoanalyzer.com/docs'
-      ]
-    })
-  ]
+        "https://basketballvideoanalyzer.com/download",
+        "https://basketballvideoanalyzer.com/features",
+        "https://basketballvideoanalyzer.com/docs",
+      ],
+    }),
+  ],
 });
 ```
 
@@ -346,31 +355,33 @@ declare global {
 }
 
 export function initAnalytics(measurementId: string) {
-  if (typeof window === 'undefined') return;
+  if (typeof window === "undefined") return;
 
   // Load gtag script
-  const script = document.createElement('script');
+  const script = document.createElement("script");
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
   document.head.appendChild(script);
 
   // Initialize gtag
-  window.gtag = window.gtag || function() {
-    (window.gtag as any).q = (window.gtag as any).q || [];
-    (window.gtag as any).q.push(arguments);
-  };
+  window.gtag =
+    window.gtag ||
+    function () {
+      (window.gtag as any).q = (window.gtag as any).q || [];
+      (window.gtag as any).q.push(arguments);
+    };
 
-  window.gtag('js', new Date());
-  window.gtag('config', measurementId, {
+  window.gtag("js", new Date());
+  window.gtag("config", measurementId, {
     page_title: document.title,
     page_location: window.location.href,
   });
 }
 
 export function trackDownload(platform: string, version: string) {
-  if (typeof window.gtag === 'function') {
-    window.gtag('event', 'download', {
-      event_category: 'engagement',
+  if (typeof window.gtag === "function") {
+    window.gtag("event", "download", {
+      event_category: "engagement",
       event_label: `${platform}-${version}`,
       value: 1,
     });
@@ -383,10 +394,10 @@ export function trackDownload(platform: string, version: string) {
 ```typescript
 // src/utils/performance.ts
 export function initPerformanceMonitoring() {
-  if (typeof window === 'undefined') return;
+  if (typeof window === "undefined") return;
 
   // Core Web Vitals
-  import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
+  import("web-vitals").then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
     getCLS(console.log);
     getFID(console.log);
     getFCP(console.log);
@@ -395,15 +406,15 @@ export function initPerformanceMonitoring() {
   });
 
   // GitHub API performance
-  const observer = new PerformanceObserver((list) => {
+  const observer = new PerformanceObserver(list => {
     for (const entry of list.getEntries()) {
-      if (entry.name.includes('api.github.com')) {
-        console.log('GitHub API timing:', entry.duration);
+      if (entry.name.includes("api.github.com")) {
+        console.log("GitHub API timing:", entry.duration);
       }
     }
   });
 
-  observer.observe({ entryTypes: ['resource'] });
+  observer.observe({ entryTypes: ["resource"] });
 }
 ```
 
@@ -457,12 +468,14 @@ const csp = `
 ## Backup and Recovery
 
 ### Automated Backups
+
 - Git repository serves as primary backup
 - Deploy from multiple branches for testing
 - Database not required (static site)
 - Asset backup through Git LFS if needed
 
 ### Disaster Recovery
+
 1. **DNS Failover**: Point domain to backup hosting
 2. **Static Fallback**: Serve cached version during API outages
 3. **Rollback Strategy**: Deploy previous Git commit
@@ -471,22 +484,26 @@ const csp = `
 ## Maintenance Schedule
 
 ### Daily
+
 - Monitor site uptime and performance
 - Check GitHub API rate limits
 - Review error logs
 
 ### Weekly
+
 - Update dependencies with security patches
 - Review analytics and download metrics
 - Test download links functionality
 
 ### Monthly
+
 - Performance audit and optimization
 - SEO analysis and improvements
 - Content updates and screenshots
 - Security dependency updates
 
 ### Quarterly
+
 - Full security audit
 - Infrastructure cost review
 - User feedback analysis
@@ -495,6 +512,7 @@ const csp = `
 ## Launch Checklist
 
 ### Pre-Launch
+
 - [ ] Domain configured and SSL active
 - [ ] All environment variables set
 - [ ] Analytics and monitoring configured
@@ -505,6 +523,7 @@ const csp = `
 - [ ] Download links tested on all platforms
 
 ### Post-Launch
+
 - [ ] Monitor initial traffic and downloads
 - [ ] Set up alerts for downtime
 - [ ] Submit sitemap to search engines
@@ -513,6 +532,7 @@ const csp = `
 - [ ] Gather initial user feedback
 
 ### Ongoing
+
 - [ ] Weekly performance reviews
 - [ ] Monthly content updates
 - [ ] Quarterly feature enhancements

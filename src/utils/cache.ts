@@ -58,11 +58,11 @@ class APICache {
 export const apiCache = new APICache();
 
 // Cache-aware GitHub API wrapper
-import { getLatestRelease } from './github';
-import type { ReleaseInfo } from '@/types/github';
+import { getLatestRelease } from "./github";
+import type { ReleaseInfo } from "@/types/github";
 
 export async function getCachedLatestRelease(): Promise<ReleaseInfo | null> {
-  const cacheKey = 'latest-release';
+  const cacheKey = "latest-release";
 
   // Try cache first
   let release = apiCache.get<ReleaseInfo>(cacheKey);

@@ -3,19 +3,24 @@
 @tailwind utilities;
 
 /* Import Inter font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap");
 
 @layer base {
   html {
-    font-family: 'Inter', 'SF Pro Text', system-ui, sans-serif;
+    font-family: "Inter", "SF Pro Text", system-ui, sans-serif;
   }
 
   body {
     @apply text-neutral-800 bg-neutral-50;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', 'SF Pro Display', system-ui, sans-serif;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Inter", "SF Pro Display", system-ui, sans-serif;
     @apply text-neutral-900;
   }
 }
@@ -61,9 +66,8 @@
 
   /* Court Pattern Background */
   .court-bg {
-    background-color: #D4A574;
-    background-image:
-      linear-gradient(90deg, white 1px, transparent 1px),
+    background-color: #d4a574;
+    background-image: linear-gradient(90deg, white 1px, transparent 1px),
       linear-gradient(white 1px, transparent 1px);
     background-size: 50px 50px;
     opacity: 0.1;
@@ -75,7 +79,8 @@
   }
 
   @keyframes basketball-bounce {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0) rotate(0deg);
     }
     50% {
@@ -95,13 +100,18 @@
   }
 
   .download-btn::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
     transition: left 0.5s;
   }
 
@@ -111,12 +121,13 @@
 
   /* Hero Section Gradient */
   .hero-gradient {
-    background: linear-gradient(135deg,
-      theme('colors.primary.50') 0%,
-      theme('colors.primary.100') 25%,
-      theme('colors.court.wood') 50%,
-      theme('colors.primary.100') 75%,
-      theme('colors.primary.50') 100%
+    background: linear-gradient(
+      135deg,
+      theme("colors.primary.50") 0%,
+      theme("colors.primary.100") 25%,
+      theme("colors.court.wood") 50%,
+      theme("colors.primary.100") 75%,
+      theme("colors.primary.50") 100%
     );
   }
 
@@ -186,7 +197,8 @@
   }
 
   @keyframes netSwish {
-    0%, 100% {
+    0%,
+    100% {
       transform: rotate(0deg);
     }
     25% {

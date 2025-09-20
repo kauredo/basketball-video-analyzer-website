@@ -7,6 +7,7 @@ The Basketball Video Analyzer website integrates with GitHub's REST API to autom
 ## API Endpoints Used
 
 ### 1. Latest Release
+
 ```
 GET /repos/kauredo/basketball-video-analyzer/releases/latest
 ```
@@ -14,29 +15,31 @@ GET /repos/kauredo/basketball-video-analyzer/releases/latest
 **Purpose**: Fetch the most recent release for download buttons and version display.
 
 **Response Structure**:
+
 ```typescript
 interface GitHubRelease {
   id: number;
-  tag_name: string;        // e.g., "v1.0.0"
-  name: string;            // Release title
-  body: string;            // Release notes (Markdown)
-  published_at: string;    // ISO date string
-  assets: GitHubAsset[];   // Download files
-  prerelease: boolean;     // Is this a pre-release?
-  draft: boolean;          // Is this a draft?
+  tag_name: string; // e.g., "v1.0.0"
+  name: string; // Release title
+  body: string; // Release notes (Markdown)
+  published_at: string; // ISO date string
+  assets: GitHubAsset[]; // Download files
+  prerelease: boolean; // Is this a pre-release?
+  draft: boolean; // Is this a draft?
 }
 
 interface GitHubAsset {
   id: number;
-  name: string;                    // e.g., "basketball-video-analyzer-1.0.0.dmg"
-  browser_download_url: string;    // Direct download URL
-  size: number;                    // File size in bytes
-  download_count: number;          // Number of downloads
-  content_type: string;            // MIME type
+  name: string; // e.g., "basketball-video-analyzer-1.0.0.dmg"
+  browser_download_url: string; // Direct download URL
+  size: number; // File size in bytes
+  download_count: number; // Number of downloads
+  content_type: string; // MIME type
 }
 ```
 
 ### 2. All Releases
+
 ```
 GET /repos/kauredo/basketball-video-analyzer/releases
 ```
@@ -44,6 +47,7 @@ GET /repos/kauredo/basketball-video-analyzer/releases
 **Purpose**: Show release history, changelog, and version comparison.
 
 ### 3. Repository Information
+
 ```
 GET /repos/kauredo/basketball-video-analyzer
 ```
@@ -56,16 +60,16 @@ GET /repos/kauredo/basketball-video-analyzer
 
 ```typescript
 // src/utils/github.ts
-import { Octokit } from '@octokit/rest';
+import { Octokit } from "@octokit/rest";
 
 const octokit = new Octokit({
   auth: import.meta.env.GITHUB_TOKEN, // Optional for higher rate limits
 });
 
 export interface PlatformAsset {
-  platform: 'windows' | 'macos' | 'linux';
-  architecture: 'x64' | 'arm64' | 'universal';
-  fileType: 'exe' | 'dmg' | 'deb' | 'rpm' | 'zip';
+  platform: "windows" | "macos" | "linux";
+  architecture: "x64" | "arm64" | "universal";
+  fileType: "exe" | "dmg" | "deb" | "rpm" | "zip";
   url: string;
   size: number;
   filename: string;
@@ -87,20 +91,23 @@ export interface ReleaseInfo {
 export async function getLatestRelease(): Promise<ReleaseInfo | null> {
   try {
     const { data: release } = await octokit.rest.repos.getLatestRelease({
-      owner: 'kauredo',
-      repo: 'basketball-video-analyzer',
+      owner: "kauredo",
+      repo: "basketball-video-analyzer",
     });
 
     return {
       version: release.tag_name,
       releaseDate: new Date(release.published_at),
-      releaseNotes: release.body || '',
+      releaseNotes: release.body || "",
       platforms: parseAssets(release.assets),
       isPrerelease: release.prerelease,
-      downloadCount: release.assets.reduce((sum, asset) => sum + asset.download_count, 0),
+      downloadCount: release.assets.reduce(
+        (sum, asset) => sum + asset.download_count,
+        0
+      ),
     };
   } catch (error) {
-    console.error('Failed to fetch latest release:', error);
+    console.error("Failed to fetch latest release:", error);
     return null;
   }
 }
@@ -114,38 +121,46 @@ function parseAssets(assets: GitHubAsset[]): PlatformAsset[] {
 
   for (const asset of assets) {
     const filename = asset.name.toLowerCase();
-    let platform: PlatformAsset['platform'];
-    let fileType: PlatformAsset['fileType'];
-    let architecture: PlatformAsset['architecture'] = 'x64'; // Default
+    let platform: PlatformAsset["platform"];
+    let fileType: PlatformAsset["fileType"];
+    let architecture: PlatformAsset["architecture"] = "x64"; // Default
 
     // Determine platform and file type
-    if (filename.includes('.exe') || filename.includes('windows') || filename.includes('win32')) {
-      platform = 'windows';
-      fileType = 'exe';
-    } else if (filename.includes('.dmg') || filename.includes('darwin') || filename.includes('macos')) {
-      platform = 'macos';
-      fileType = 'dmg';
+    if (
+      filename.includes(".exe") ||
+      filename.includes("windows") ||
+      filename.includes("win32")
+    ) {
+      platform = "windows";
+      fileType = "exe";
+    } else if (
+      filename.includes(".dmg") ||
+      filename.includes("darwin") ||
+      filename.includes("macos")
+    ) {
+      platform = "macos";
+      fileType = "dmg";
       // Check for Apple Silicon
-      if (filename.includes('arm64') || filename.includes('apple-silicon')) {
-        architecture = 'arm64';
+      if (filename.includes("arm64") || filename.includes("apple-silicon")) {
+        architecture = "arm64";
       }
-    } else if (filename.includes('.deb')) {
-      platform = 'linux';
-      fileType = 'deb';
-    } else if (filename.includes('.rpm')) {
-      platform = 'linux';
-      fileType = 'rpm';
-    } else if (filename.includes('.zip')) {
+    } else if (filename.includes(".deb")) {
+      platform = "linux";
+      fileType = "deb";
+    } else if (filename.includes(".rpm")) {
+      platform = "linux";
+      fileType = "rpm";
+    } else if (filename.includes(".zip")) {
       // Determine platform for zip files
-      if (filename.includes('win')) {
-        platform = 'windows';
-        fileType = 'zip';
-      } else if (filename.includes('mac') || filename.includes('darwin')) {
-        platform = 'macos';
-        fileType = 'zip';
+      if (filename.includes("win")) {
+        platform = "windows";
+        fileType = "zip";
+      } else if (filename.includes("mac") || filename.includes("darwin")) {
+        platform = "macos";
+        fileType = "zip";
       } else {
-        platform = 'linux';
-        fileType = 'zip';
+        platform = "linux";
+        fileType = "zip";
       }
     } else {
       continue; // Skip unknown file types
@@ -171,48 +186,48 @@ function parseAssets(assets: GitHubAsset[]): PlatformAsset[] {
 
 ```typescript
 // src/utils/platform.ts
-export type Platform = 'windows' | 'macos' | 'linux' | 'unknown';
+export type Platform = "windows" | "macos" | "linux" | "unknown";
 
 export function detectPlatform(): Platform {
-  if (typeof window === 'undefined') {
-    return 'unknown'; // Server-side rendering
+  if (typeof window === "undefined") {
+    return "unknown"; // Server-side rendering
   }
 
   const userAgent = window.navigator.userAgent.toLowerCase();
   const platform = window.navigator.platform.toLowerCase();
 
   // macOS detection
-  if (platform.includes('mac') || userAgent.includes('mac os')) {
-    return 'macos';
+  if (platform.includes("mac") || userAgent.includes("mac os")) {
+    return "macos";
   }
 
   // Windows detection
-  if (platform.includes('win') || userAgent.includes('windows')) {
-    return 'windows';
+  if (platform.includes("win") || userAgent.includes("windows")) {
+    return "windows";
   }
 
   // Linux detection
-  if (platform.includes('linux') || userAgent.includes('linux')) {
-    return 'linux';
+  if (platform.includes("linux") || userAgent.includes("linux")) {
+    return "linux";
   }
 
-  return 'unknown';
+  return "unknown";
 }
 
-export function getArchitecture(): 'x64' | 'arm64' | 'unknown' {
-  if (typeof window === 'undefined') {
-    return 'unknown';
+export function getArchitecture(): "x64" | "arm64" | "unknown" {
+  if (typeof window === "undefined") {
+    return "unknown";
   }
 
   const userAgent = window.navigator.userAgent.toLowerCase();
 
   // Apple Silicon detection
-  if (userAgent.includes('mac') && userAgent.includes('arm64')) {
-    return 'arm64';
+  if (userAgent.includes("mac") && userAgent.includes("arm64")) {
+    return "arm64";
   }
 
   // Default to x64 for most platforms
-  return 'x64';
+  return "x64";
 }
 ```
 
@@ -226,14 +241,18 @@ export function getRecommendedDownload(
   const userArch = getArchitecture();
 
   // Filter by platform
-  const platformOptions = platformAssets.filter(asset => asset.platform === userPlatform);
+  const platformOptions = platformAssets.filter(
+    asset => asset.platform === userPlatform
+  );
 
   if (platformOptions.length === 0) {
     return null;
   }
 
   // Prefer exact architecture match
-  const archMatch = platformOptions.find(asset => asset.architecture === userArch);
+  const archMatch = platformOptions.find(
+    asset => asset.architecture === userArch
+  );
   if (archMatch) {
     return archMatch;
   }
@@ -293,7 +312,7 @@ export const apiCache = new APICache();
 
 ```typescript
 export async function getCachedLatestRelease(): Promise<ReleaseInfo | null> {
-  const cacheKey = 'latest-release';
+  const cacheKey = "latest-release";
 
   // Try cache first
   let release = apiCache.get<ReleaseInfo>(cacheKey);
@@ -324,7 +343,7 @@ export class GitHubAPIError extends Error {
     public rateLimitReset?: Date
   ) {
     super(message);
-    this.name = 'GitHubAPIError';
+    this.name = "GitHubAPIError";
   }
 }
 
@@ -334,19 +353,22 @@ export async function handleAPICall<T>(
   try {
     return await apiCall();
   } catch (error: any) {
-    if (error.status === 403 && error.response?.headers?.['x-ratelimit-remaining'] === '0') {
+    if (
+      error.status === 403 &&
+      error.response?.headers?.["x-ratelimit-remaining"] === "0"
+    ) {
       const resetTime = new Date(
-        parseInt(error.response.headers['x-ratelimit-reset']) * 1000
+        parseInt(error.response.headers["x-ratelimit-reset"]) * 1000
       );
 
       throw new GitHubAPIError(
-        'GitHub API rate limit exceeded',
+        "GitHub API rate limit exceeded",
         403,
         resetTime
       );
     }
 
-    console.error('GitHub API error:', error);
+    console.error("GitHub API error:", error);
     return null;
   }
 }
@@ -357,33 +379,34 @@ export async function handleAPICall<T>(
 ```typescript
 // src/data/fallback.ts
 export const fallbackReleaseData: ReleaseInfo = {
-  version: 'v1.0.0',
-  releaseDate: new Date('2024-01-01'),
-  releaseNotes: 'Latest stable release with video cutting and organization features.',
+  version: "v1.0.0",
+  releaseDate: new Date("2024-01-01"),
+  releaseNotes:
+    "Latest stable release with video cutting and organization features.",
   platforms: [
     {
-      platform: 'windows',
-      architecture: 'x64',
-      fileType: 'exe',
-      url: '#',
+      platform: "windows",
+      architecture: "x64",
+      fileType: "exe",
+      url: "#",
       size: 85000000, // ~85MB
-      filename: 'basketball-video-analyzer-setup.exe',
+      filename: "basketball-video-analyzer-setup.exe",
     },
     {
-      platform: 'macos',
-      architecture: 'x64',
-      fileType: 'dmg',
-      url: '#',
+      platform: "macos",
+      architecture: "x64",
+      fileType: "dmg",
+      url: "#",
       size: 95000000, // ~95MB
-      filename: 'basketball-video-analyzer.dmg',
+      filename: "basketball-video-analyzer.dmg",
     },
     {
-      platform: 'linux',
-      architecture: 'x64',
-      fileType: 'deb',
-      url: '#',
+      platform: "linux",
+      architecture: "x64",
+      fileType: "deb",
+      url: "#",
       size: 80000000, // ~80MB
-      filename: 'basketball-video-analyzer.deb',
+      filename: "basketball-video-analyzer.deb",
     },
   ],
   isPrerelease: false,
@@ -397,9 +420,13 @@ export const fallbackReleaseData: ReleaseInfo = {
 
 ```tsx
 // src/components/DownloadButton.tsx
-import { useEffect, useState } from 'react';
-import { getCachedLatestRelease, detectPlatform, getRecommendedDownload } from '@/utils';
-import type { ReleaseInfo, PlatformAsset } from '@/utils/github';
+import { useEffect, useState } from "react";
+import {
+  getCachedLatestRelease,
+  detectPlatform,
+  getRecommendedDownload,
+} from "@/utils";
+import type { ReleaseInfo, PlatformAsset } from "@/utils/github";
 
 export function DownloadButton() {
   const [release, setRelease] = useState<ReleaseInfo | null>(null);
@@ -420,7 +447,10 @@ export function DownloadButton() {
     return <div>Download information unavailable</div>;
   }
 
-  const recommendedDownload = getRecommendedDownload(release.platforms, userPlatform);
+  const recommendedDownload = getRecommendedDownload(
+    release.platforms,
+    userPlatform
+  );
 
   if (!recommendedDownload) {
     return <div>No download available for your platform</div>;
@@ -433,8 +463,11 @@ export function DownloadButton() {
       download
     >
       <DownloadIcon />
-      Download for {userPlatform === 'macos' ? 'macOS' :
-                   userPlatform === 'windows' ? 'Windows' : 'Linux'}
+      Download for {userPlatform === "macos"
+        ? "macOS"
+        : userPlatform === "windows"
+        ? "Windows"
+        : "Linux"}
       <span className="text-sm opacity-80">
         {release.version} • {formatFileSize(recommendedDownload.size)}
       </span>
@@ -468,12 +501,14 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
 ## Security Considerations
 
 ### API Token Security
+
 - Store GitHub token in environment variables only
 - Use minimal required permissions (`public_repo` scope)
 - Implement rate limiting on the client side
 - Never expose tokens in client-side code
 
 ### Content Security
+
 - Sanitize release notes content (Markdown)
 - Validate download URLs before redirecting
 - Implement HTTPS-only download links
@@ -482,11 +517,13 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
 ## Performance Optimization
 
 ### Bundle Size
+
 - Import only needed parts of Octokit
 - Use dynamic imports for GitHub functionality
 - Implement code splitting for release pages
 
 ### API Efficiency
+
 - Cache responses aggressively
 - Use conditional requests with ETags
 - Implement pagination for release lists
@@ -495,11 +532,16 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
 ## Monitoring and Analytics
 
 ### Track Download Events
+
 ```typescript
-export function trackDownload(platform: string, version: string, fileType: string) {
+export function trackDownload(
+  platform: string,
+  version: string,
+  fileType: string
+) {
   // Google Analytics 4
-  if (typeof gtag !== 'undefined') {
-    gtag('event', 'download', {
+  if (typeof gtag !== "undefined") {
+    gtag("event", "download", {
       platform,
       version,
       file_type: fileType,
@@ -509,6 +551,7 @@ export function trackDownload(platform: string, version: string, fileType: strin
 ```
 
 ### Monitor API Health
+
 - Track API response times
 - Monitor rate limit usage
 - Alert on API failures
