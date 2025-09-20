@@ -61,7 +61,7 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
         </div>
 
         <!-- Download Button -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div class="flex flex-col sm:flex-row gap-4 items-center">
           <DownloadButton client:load className="shadow-basketball" />
           <Button variant="secondary" size="lg" href="#features">
             See Features
@@ -73,7 +73,7 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
 
         <!-- Version & Download Stats -->
         <div class="mt-8 text-sm text-neutral-600">
-          <span class="inline-flex items-center gap-2">
+          <span class="inline-flex items-center gap-2 bg-white/80 rounded-full px-4 py-2 text-neutral-700">
             Latest version: <span class="font-semibold text-primary-600">{release.version}</span>
             •
             <span class="font-semibold">{release.downloadCount.toLocaleString()}</span> downloads
