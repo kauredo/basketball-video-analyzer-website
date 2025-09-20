@@ -3,6 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Button from '@/components/ui/Button.astro';
 import Card from '@/components/ui/Card.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
+import { FullScreenBasketball3D } from '@/components/3d/FullScreenBasketball3D';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
 
@@ -11,15 +12,20 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
 ---
 
 <BaseLayout title="Professional Basketball Video Analysis Tool">
+  <!-- Full Screen 3D Basketball Scene -->
+  <FullScreenBasketball3D
+    client:load
+    enableOnMobile={false}
+  />
+
   <!-- Hero Section -->
-  <section class="hero-gradient min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-    <!-- Basketball Court Pattern Background -->
-    <div class="absolute inset-0 court-bg"></div>
-
+  <section class="min-h-screen flex items-center justify-start px-4 sm:px-6 lg:px-8 relative">
     <!-- Hero Content -->
-    <div class="relative z-10 max-w-7xl mx-auto text-center">
+    <div class="relative z-10 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <!-- Text Content - Left Side -->
+        <div class="text-left">
       <div class="mb-8">
-
         <!-- Main Heading -->
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-neutral-900 mb-6 leading-tight">
           Professional <span class="text-gradient-primary">Basketball</span><br>
@@ -73,15 +79,6 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
             <span class="font-semibold">{release.downloadCount.toLocaleString()}</span> downloads
           </span>
         </div>
-      </div>
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-      <div class="animate-bounce">
-        <svg class="w-6 h-6 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-        </svg>
       </div>
     </div>
   </section>
