@@ -1,0 +1,134 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  type?: 'website' | 'article';
+}
+
+const {
+  title,
+  description = 'Professional video analysis tool for basketball coaches. Cut, organize, and export game footage for team scouting and player development.',
+  image = '/images/og-image.png',
+  type = 'website'
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const socialImage = new URL(image, Astro.site);
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta Tags -->
+    <title>{title} | Basketball Video Analyzer</title>
+    <meta name="title" content={`${title} | Basketball Video Analyzer`} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={`${title} | Basketball Video Analyzer`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:site_name" content="Basketball Video Analyzer" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={`${title} | Basketball Video Analyzer`} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={socialImage} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Critical CSS -->
+    <style>
+      /* Critical above-the-fold styles */
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.6;
+        color: #2d2d2d;
+        background-color: #fafafa;
+      }
+
+      /* Loading state for hero section */
+      .hero-loading {
+        min-height: 60vh;
+        background: linear-gradient(135deg, #fff4ed 0%, #ffe6d5 100%);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navigation will be inserted here -->
+    <nav id="navigation" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-neutral-200/50">
+      <!-- Navigation content will be loaded -->
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer will be inserted here -->
+    <footer id="footer" class="bg-neutral-900 text-white">
+      <!-- Footer content will be loaded -->
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+      // Initialize performance monitoring
+      if ('performance' in window && 'mark' in performance) {
+        performance.mark('page-start');
+      }
+
+      // Add smooth scrolling for anchor links
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          });
+        });
+      });
+
+      // Track page performance
+      window.addEventListener('load', () => {
+        if ('performance' in window && 'mark' in performance) {
+          performance.mark('page-end');
+          performance.measure('page-load', 'page-start', 'page-end');
+
+          // Log performance metrics
+          const perfData = performance.getEntriesByType('measure');
+          console.log('Page load time:', perfData[0]?.duration + 'ms');
+        }
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  /* Import global styles */
+  @import '../styles/global.css';
+</style>
