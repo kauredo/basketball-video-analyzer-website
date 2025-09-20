@@ -1,9 +1,9 @@
+/* Import Inter font */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Import Inter font */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap");
 
 @layer base {
   html {
@@ -53,11 +53,11 @@
 
   /* Card Components */
   .card {
-    @apply bg-white rounded-xl shadow-lg border border-neutral-200/50 transition-all duration-200;
+    @apply bg-white rounded-xl shadow-lg border border-neutral-200 transition-all duration-200;
   }
 
   .card-hover {
-    @apply card hover:shadow-xl hover:-translate-y-1;
+    @apply card hover:shadow-xl hover:-translate-y-2 hover:border-primary-200;
   }
 
   .card-hero {
@@ -71,21 +71,6 @@
       linear-gradient(white 1px, transparent 1px);
     background-size: 50px 50px;
     opacity: 0.1;
-  }
-
-  /* Basketball Animation */
-  .basketball-bounce {
-    animation: basketball-bounce 2s ease-in-out infinite;
-  }
-
-  @keyframes basketball-bounce {
-    0%,
-    100% {
-      transform: translateY(0) rotate(0deg);
-    }
-    50% {
-      transform: translateY(-20px) rotate(180deg);
-    }
   }
 
   /* Download Button Special Effects */
@@ -256,13 +241,11 @@
   }
 }
 
-/* Dark Mode Support (Future Enhancement) */
-@media (prefers-color-scheme: dark) {
-  .card {
-    @apply bg-neutral-800 border-neutral-700;
-  }
+/* Force light mode for better basketball theme */
+body {
+  @apply bg-neutral-50 text-neutral-800;
+}
 
-  body {
-    @apply bg-neutral-900 text-neutral-200;
-  }
+.card {
+  @apply bg-white border-neutral-200;
 }
