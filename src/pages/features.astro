@@ -1,0 +1,172 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Card from '@/components/ui/Card.astro';
+import Button from '@/components/ui/Button.astro';
+import AppScreenshot from '@/components/ui/AppScreenshot.astro';
+---
+
+<BaseLayout title="Features" currentPage="features">
+  <!-- Features Hero -->
+  <section class="py-20 bg-gradient-to-br from-neutral-50 to-neutral-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold text-neutral-900 mb-6">
+        Powerful Features for <span class="text-gradient-primary">Basketball Analysis</span>
+      </h1>
+      <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
+        Everything you need to analyze, organize, and share basketball footage with your team.
+      </p>
+    </div>
+  </section>
+
+  <!-- Screenshots Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl font-bold text-neutral-900 mb-4">
+          App Interface Preview
+        </h2>
+        <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
+          See how Basketball Video Analyzer makes video analysis simple and intuitive.
+        </p>
+      </div>
+
+      <!-- Main Features Screenshots -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+        <!-- Video Cutting Interface -->
+        <div class="space-y-6">
+          <AppScreenshot
+            src="/images/screenshots/video-cutting-interface.jpg"
+            alt="Video cutting interface with timeline"
+            title="Video Cutting Interface"
+            description="Mark in/out points with I and O keys, precise frame control"
+            icon="video"
+          />
+          <div class="text-center lg:text-left">
+            <h3 class="text-2xl font-bold text-neutral-900 mb-3">Precision Video Cutting</h3>
+            <p class="text-neutral-600 mb-4">
+              Cut clips with frame-by-frame precision using intuitive keyboard shortcuts.
+              Jump to specific times using HH:MM:SS format for quick navigation.
+            </p>
+            <ul class="text-sm text-neutral-600 space-y-2">
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-primary-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Mark in/out with I and O keys
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-primary-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Time search (HH:MM:SS format)
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-primary-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Real MP4 files (not just timestamps)
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Project Organization -->
+        <div class="space-y-6">
+          <AppScreenshot
+            src="/images/screenshots/project-organization.jpg"
+            alt="Project organization with categories"
+            title="Project Organization"
+            description="Hierarchical categories and reusable presets"
+            icon="organize"
+          />
+          <div class="text-center lg:text-left">
+            <h3 class="text-2xl font-bold text-neutral-900 mb-3">Smart Organization</h3>
+            <p class="text-neutral-600 mb-4">
+              Build hierarchical category systems with unlimited depth.
+              Save category structures as reusable presets across projects.
+            </p>
+            <ul class="text-sm text-neutral-600 space-y-2">
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-primary-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Parent-child category hierarchies
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-primary-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Reusable preset templates
+              </li>
+              <li class="flex items-center">
+                <svg class="w-4 h-4 text-primary-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Project-specific libraries
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Features Screenshots -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <AppScreenshot
+          src="/images/screenshots/clip-library-browser.jpg"
+          alt="Clip library browser"
+          title="Clip Library"
+          description="Visual browser with filtering and statistics"
+          icon="categories"
+          className="aspect-square"
+        />
+        <AppScreenshot
+          src="/images/screenshots/category-management.jpg"
+          alt="Category management interface"
+          title="Category Management"
+          description="Create and organize hierarchical categories"
+          icon="organize"
+          className="aspect-square"
+        />
+        <AppScreenshot
+          src="/images/screenshots/batch-export.jpg"
+          alt="Export options and batch processing"
+          title="Batch Export"
+          description="Export organized clip libraries with folder structure"
+          icon="export"
+          className="aspect-square"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Get Started Section -->
+  <section class="py-20 bg-gradient-to-br from-primary-50 to-primary-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
+        Ready to Start Analyzing?
+      </h2>
+      <p class="text-xl text-neutral-600 mb-8 max-w-2xl mx-auto">
+        Basketball Video Analyzer is completely free and open source.
+        Download it now and see how it can transform your video analysis workflow.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+        <Button href="/download" size="lg" class="bg-primary-600 text-white hover:bg-primary-700">
+          Download Now
+        </Button>
+        <Button href="/support" variant="secondary" size="lg">
+          Get Support
+        </Button>
+      </div>
+
+      <div class="text-sm text-neutral-600">
+        <p class="flex items-center justify-center gap-2">
+          <svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+          Free Forever • No Registration Required • Cross-Platform
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

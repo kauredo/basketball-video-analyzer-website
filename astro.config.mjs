@@ -14,9 +14,27 @@ export default defineConfig({
     react(),
     sitemap(),
   ],
+  build: {
+    // Enable CSS and JS minification
+    inlineStylesheets: "auto",
+  },
+  compressHTML: true,
   vite: {
     define: {
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
+    },
+    build: {
+      // Enable CSS code splitting
+      cssCodeSplit: true,
+      // Rollup options for better tree shaking
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // Separate vendor chunks for better caching
+            vendor: ['react', 'react-dom'],
+          },
+        },
+      },
     },
   },
 });

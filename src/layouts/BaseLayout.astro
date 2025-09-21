@@ -1,18 +1,22 @@
 ---
 import '../styles/global.css';
+import Navbar from '../components/ui/Navbar.astro';
+import Footer from '../components/ui/Footer.astro';
 
 export interface Props {
   title: string;
   description?: string;
   image?: string;
   type?: 'website' | 'article';
+  currentPage?: string;
 }
 
 const {
   title,
   description = 'Professional video analysis tool for basketball coaches. Cut, organize, and export game footage for team scouting and player development.',
   image = '/images/og-image.png',
-  type = 'website'
+  type = 'website',
+  currentPage = 'home'
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -30,6 +34,11 @@ const socialImage = new URL(image, Astro.site);
     <title>{title} | Basketball Video Analyzer</title>
     <meta name="title" content={`${title} | Basketball Video Analyzer`} />
     <meta name="description" content={description} />
+    <meta name="keywords" content="basketball, video analysis, sports analysis, coaching software, basketball clips, video editing, sports coaching, free software, open source" />
+    <meta name="author" content="Basketball Video Analyzer Team" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="en" />
+    <meta name="revisit-after" content="7 days" />
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph / Facebook -->
@@ -54,9 +63,43 @@ const socialImage = new URL(image, Astro.site);
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Basketball Video Analyzer",
+        "description": "Professional video analysis tool for basketball coaches. Cut, organize, and export game footage for team scouting and player development.",
+        "url": "https://basketball-video-analyzer.com",
+        "applicationCategory": "SportsApplication",
+        "operatingSystem": "Windows, macOS, Linux",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "creator": {
+          "@type": "Organization",
+          "name": "Basketball Video Analyzer Team",
+          "url": "https://github.com/kauredo/basketball-video-analyzer"
+        },
+        "downloadUrl": "https://github.com/kauredo/basketball-video-analyzer/releases",
+        "screenshot": "https://basketball-video-analyzer.com/images/og-image.png",
+        "featureList": [
+          "Video cutting with frame precision",
+          "Hierarchical category organization",
+          "Batch export functionality",
+          "Keyboard shortcuts for efficiency",
+          "Cross-platform compatibility"
+        ]
+      }
+    </script>
+
     <!-- Preload Critical Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" /></noscript>
 
     <!-- Critical CSS -->
     <style>
@@ -77,20 +120,27 @@ const socialImage = new URL(image, Astro.site);
   </head>
 
   <body>
-    <!-- Navigation will be inserted here -->
-    <nav id="navigation" class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-neutral-200/50">
-      <!-- Navigation content will be loaded -->
-    </nav>
+    <!-- Navigation -->
+    <Navbar currentPage={currentPage} />
 
     <!-- Main Content -->
     <main>
       <slot />
     </main>
 
-    <!-- Footer will be inserted here -->
-    <footer id="footer" class="bg-neutral-900 text-white">
-      <!-- Footer content will be loaded -->
-    </footer>
+    <Footer />
+
+    <!-- Analytics -->
+    <!-- Google Analytics (uncomment and add your GA_MEASUREMENT_ID to use) -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    -->
 
     <!-- Scripts -->
     <script>
@@ -128,6 +178,51 @@ const socialImage = new URL(image, Astro.site);
           const perfData = performance.getEntriesByType('measure');
           console.log('Page load time:', perfData[0]?.duration + 'ms');
         }
+      });
+
+      // Track important user interactions
+      document.addEventListener('DOMContentLoaded', () => {
+        // Track download button clicks
+        document.querySelectorAll('a[href*="download"], a[href*="github.com"]').forEach(link => {
+          link.addEventListener('click', function(e) {
+            const href = this.href;
+            const text = this.textContent.trim();
+
+            // Log to console (replace with actual analytics when available)
+            console.log('User interaction:', {
+              action: 'click',
+              element: text,
+              destination: href,
+              page: window.location.pathname
+            });
+
+            // If analytics is available, track the event
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'click', {
+                event_category: 'outbound_link',
+                event_label: text,
+                value: href
+              });
+            }
+          });
+        });
+
+        // Track donation button clicks
+        document.querySelectorAll('a[href*="paypal.com"], a[href*="ko-fi.com"]').forEach(link => {
+          link.addEventListener('click', function(e) {
+            console.log('Donation click:', {
+              type: this.href.includes('paypal') ? 'paypal' : 'kofi',
+              page: window.location.pathname
+            });
+
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'donation_click', {
+                event_category: 'engagement',
+                event_label: this.href.includes('paypal') ? 'paypal' : 'kofi'
+              });
+            }
+          });
+        });
       });
     </script>
   </body>

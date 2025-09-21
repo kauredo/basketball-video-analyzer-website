@@ -1,0 +1,128 @@
+---
+import GitHubStar from '@/components/ui/GitHubStar.astro';
+
+interface Props {
+  currentPage?: string;
+}
+
+const { currentPage = "home" } = Astro.props;
+
+const navItems = [
+  { href: "/", label: "Home", key: "home" },
+  { href: "/features", label: "Features", key: "features" },
+  { href: "/pricing", label: "Donate", key: "pricing" },
+  { href: "/download", label: "Download", key: "download" },
+  { href: "/support", label: "Support", key: "support" },
+];
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-neutral-200">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="/" class="flex items-center gap-2">
+          <div class="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none">
+              <path d="M3.33946 16.9997C6.10089 21.7826 12.2168 23.4214 16.9997 20.66C18.9493 19.5344 20.3765 17.8514 21.1962 15.9286C22.3875 13.1341 22.2958 9.83304 20.66 6.99972C19.0242 4.1664 16.2112 2.43642 13.1955 2.07088C11.1204 1.81935 8.94932 2.21386 6.99972 3.33946C2.21679 6.10089 0.578039 12.2168 3.33946 16.9997Z" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M16.9498 20.5732C16.9498 20.5732 16.0108 13.982 14.0005 10.5C11.9901 7.01798 7.05029 3.42676 7.05029 3.42676" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M21.8638 12.5803C16.4528 11.3933 9.05903 16.348 7.57739 20.8177" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M16.4141 3.20884C14.9262 7.6299 7.67443 12.5122 2.28877 11.4515" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <span class="font-bold text-xl text-neutral-900">Basketball Analyzer</span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:block">
+        <div class="flex items-center space-x-8">
+          {navItems.map((item) => (
+            <a
+              href={item.href}
+              class={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                currentPage === item.key
+                  ? "text-primary-600 bg-primary-50"
+                  : "text-neutral-600 hover:text-primary-600 hover:bg-neutral-50"
+              }`}
+            >
+              {item.label}
+            </a>
+          ))}
+          <GitHubStar variant="compact" className="ml-4" />
+        </div>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button
+          id="mobile-menu-button"
+          type="button"
+          class="inline-flex items-center justify-center p-2 rounded-md text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <!-- Hamburger icon -->
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="md:hidden hidden" id="mobile-menu">
+    <div class="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-neutral-200">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class={`block px-3 py-2 text-base font-medium rounded-md transition-colors ${
+            currentPage === item.key
+              ? "text-primary-600 bg-primary-50"
+              : "text-neutral-600 hover:text-primary-600 hover:bg-neutral-50"
+          }`}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.contains('hidden');
+
+      if (isOpen) {
+        mobileMenu.classList.remove('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'true');
+      } else {
+        mobileMenu.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (event) => {
+      if (!mobileMenuButton.contains(event.target as Node) &&
+          !mobileMenu.contains(event.target as Node)) {
+        mobileMenu.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
+</script>
+
+<style>
+  /* Add padding to body to account for fixed navbar */
+  body {
+    padding-top: 4rem;
+  }
+</style>

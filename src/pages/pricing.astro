@@ -1,0 +1,134 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Card from '@/components/ui/Card.astro';
+import Button from '@/components/ui/Button.astro';
+---
+
+<BaseLayout title="Support the Project" currentPage="pricing">
+  <!-- Support Hero -->
+  <section class="py-20 bg-gradient-to-br from-neutral-50 to-neutral-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl sm:text-5xl font-bold text-neutral-900 mb-6">
+        <span class="text-gradient-primary">Free</span> Forever
+      </h1>
+      <div class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+        </svg>
+        No Cost, No Subscriptions, No Limits
+      </div>
+      <p class="text-xl text-neutral-600 mb-8">
+        Basketball Video Analyzer is completely free to use. Built by coaches, for coaches.
+        If you find it helpful, consider supporting its development.
+      </p>
+    </div>
+  </section>
+
+  <!-- Support Options -->
+  <section class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-neutral-900 mb-4">Support Development</h2>
+        <p class="text-xl text-neutral-600">Help us keep improving Basketball Video Analyzer</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Donation Card -->
+        <Card class="text-center relative border-2 border-primary-200">
+          <div class="p-8">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-neutral-900 mb-4">Make a Donation</h3>
+            <p class="text-neutral-600 mb-8">
+              Support ongoing development and help us add new features.
+              Every contribution helps us maintain and improve the app.
+            </p>
+
+            <Button href="https://www.paypal.com/donate/?business=vasco.kf%40gmail.com&no_recurring=0&currency_code=USD" class="w-full mb-4">Donate via PayPal</Button>
+            <Button href="https://ko-fi.com/kauredo" variant="secondary" class="w-full">Buy Me a Coffee</Button>
+          </div>
+        </Card>
+
+        <!-- Contribute Card -->
+        <Card class="text-center relative">
+          <div class="p-8">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-neutral-900 mb-4">Contribute Code</h3>
+            <p class="text-neutral-600 mb-8">
+              Help improve the app by contributing code, reporting bugs,
+              or suggesting new features on GitHub.
+            </p>
+
+            <ul class="space-y-3 mb-8 text-left">
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-neutral-700">Report bugs and issues</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-neutral-700">Suggest new features</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-neutral-700">Submit pull requests</span>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <span class="text-neutral-700">Improve documentation</span>
+              </li>
+            </ul>
+
+            <Button href="https://github.com/kauredo/basketball-video-analyzer" variant="secondary" class="w-full">View on GitHub</Button>
+          </div>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-neutral-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-neutral-900 mb-4">Frequently Asked Questions</h2>
+        <p class="text-xl text-neutral-600">Got questions? We've got answers.</p>
+      </div>
+
+      <div class="space-y-8">
+        <div class="bg-white rounded-lg p-6 shadow-sm">
+          <h3 class="text-lg font-semibold text-neutral-900 mb-3">Is this a one-time purchase or subscription?</h3>
+          <p class="text-neutral-600">All our plans are one-time purchases with lifetime access. No recurring fees or hidden costs.</p>
+        </div>
+
+        <div class="bg-white rounded-lg p-6 shadow-sm">
+          <h3 class="text-lg font-semibold text-neutral-900 mb-3">Can I upgrade my plan later?</h3>
+          <p class="text-neutral-600">Yes! You can upgrade at any time and only pay the difference between your current plan and the new one.</p>
+        </div>
+
+        <div class="bg-white rounded-lg p-6 shadow-sm">
+          <h3 class="text-lg font-semibold text-neutral-900 mb-3">What platforms are supported?</h3>
+          <p class="text-neutral-600">Basketball Analyzer works on Windows 10+, macOS 10.14+, and most Linux distributions.</p>
+        </div>
+
+        <div class="bg-white rounded-lg p-6 shadow-sm">
+          <h3 class="text-lg font-semibold text-neutral-900 mb-3">Is there a money-back guarantee?</h3>
+          <p class="text-neutral-600">Yes, we offer a 30-day money-back guarantee. If you're not satisfied, we'll refund your purchase.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
