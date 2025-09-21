@@ -112,34 +112,38 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
 
       <!-- Screenshot Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-        <!-- Main Interface Screenshot -->
-        <div class="relative">
-          <div class="bg-gradient-to-br from-neutral-100 to-neutral-200 rounded-lg shadow-lg overflow-hidden aspect-video flex items-center justify-center">
-            <!-- Placeholder for main app screenshot -->
-            <div class="text-center">
-              <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- Video Cutting Interface Screenshot -->
+        <div class="relative rounded-lg shadow-lg overflow-hidden aspect-video bg-cover bg-center" style="background-image: url('/images/screenshots/video-cutting-interface.png');">
+          <!-- Overlay for readability -->
+          <div class="absolute inset-0 bg-black/40"></div>
+          <!-- Content overlay -->
+          <div class="relative z-10 h-full flex items-center justify-center">
+            <div class="text-center text-white">
+              <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
                 </svg>
               </div>
-              <h3 class="text-lg font-semibold text-neutral-700 mb-2">Main Video Interface</h3>
-              <p class="text-sm text-neutral-500">Cut clips with precision using keyboard shortcuts</p>
+              <h3 class="text-lg font-semibold text-white mb-2 drop-shadow-lg">Precision Video Cutting</h3>
+              <p class="text-sm text-white/90 drop-shadow-lg">Mark in/out points with I and O keys, precise frame control</p>
             </div>
           </div>
         </div>
 
-        <!-- Project Management Screenshot -->
-        <div class="relative">
-          <div class="bg-gradient-to-br from-neutral-100 to-neutral-200 rounded-lg shadow-lg overflow-hidden aspect-video flex items-center justify-center">
-            <!-- Placeholder for project management screenshot -->
-            <div class="text-center">
-              <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- Project Organization Screenshot -->
+        <div class="relative rounded-lg shadow-lg overflow-hidden aspect-video bg-cover bg-center" style="background-image: url('/images/screenshots/project-organization.png');">
+          <!-- Overlay for readability -->
+          <div class="absolute inset-0 bg-black/40"></div>
+          <!-- Content overlay -->
+          <div class="relative z-10 h-full flex items-center justify-center">
+            <div class="text-center text-white">
+              <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14-7H5m14 14H5"/>
                 </svg>
               </div>
-              <h3 class="text-lg font-semibold text-neutral-700 mb-2">Project Organization</h3>
-              <p class="text-sm text-neutral-500">Organize clips with hierarchical categories</p>
+              <h3 class="text-lg font-semibold text-white mb-2 drop-shadow-lg">Smart Organization</h3>
+              <p class="text-sm text-white/90 drop-shadow-lg">Hierarchical categories and reusable presets</p>
             </div>
           </div>
         </div>
