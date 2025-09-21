@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Environment, ContactShadows } from "@react-three/drei";
 import { ScrollBasketball } from "./ScrollBasketball";
@@ -7,13 +7,16 @@ import { WoodFloor } from "./WoodFloor";
 
 interface ScrollBasketballProps {
   onLoaded?: () => void;
+  isMobile?: boolean;
 }
 
-function Scene({ onLoaded }: ScrollBasketballProps) {
+function Scene({ onLoaded, isMobile }: ScrollBasketballProps) {
   return (
     <>
       {/* Wooden court floor - render first */}
       <WoodFloor />
+      {/* Court circle arcs - no rotation needed, handles mobile internally */}
+      <CourtCircle isMobile={isMobile} />
 
       {/* Lighting setup for full scene */}
       <ambientLight intensity={0.8} />
@@ -24,11 +27,8 @@ function Scene({ onLoaded }: ScrollBasketballProps) {
       />
       <pointLight position={[0, 0, 5]} intensity={0.6} />
 
-      {/* Court circle arcs */}
-      <CourtCircle />
-
-      {/* Basketball with scroll animations */}
-      <ScrollBasketball onLoaded={onLoaded} />
+      {/* Basketball with scroll animations - centered on mobile, right side on desktop */}
+      <ScrollBasketball onLoaded={onLoaded} isMobile={isMobile} />
 
       {/* Environment and atmosphere */}
       <Environment preset="dawn" />
@@ -49,18 +49,35 @@ export function FullScreenBasketballScene({
   onLoaded,
 }: FullScreenBasketballSceneProps) {
   const [isReady, setIsReady] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile =
+        window.innerWidth < 1024 || window.innerHeight > window.innerWidth;
+      setIsMobile(mobile);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const handleLoaded = () => {
     setIsReady(true);
     if (onLoaded) onLoaded();
   };
 
+  // Adjust camera for mobile (closer, more centered)
+  const cameraConfig = isMobile
+    ? { position: [0, 0, 4], fov: 75 }
+    : { position: [0, 0, 5], fov: 70 };
+
   return (
     <div className={`fixed inset-0 -z-10 ${className}`}>
       <Canvas
         camera={{
-          position: [0, 0, 5],
-          fov: 70,
+          ...cameraConfig,
           near: 0.2,
           far: 100,
         }}
@@ -78,7 +95,7 @@ export function FullScreenBasketballScene({
           pointerEvents: "none",
         }}
       >
-        <Scene onLoaded={handleLoaded} />
+        <Scene onLoaded={handleLoaded} isMobile={isMobile} />
       </Canvas>
 
       {/* Loading overlay */}

@@ -5,16 +5,20 @@ import * as THREE from "three";
 
 interface ScrollBasketballProps {
   onLoaded?: () => void;
+  isMobile?: boolean;
 }
 
-export function ScrollBasketball({ onLoaded }: ScrollBasketballProps) {
+export function ScrollBasketball({
+  onLoaded,
+  isMobile = false,
+}: ScrollBasketballProps) {
   const meshRef = useRef<THREE.Group>(null);
   const [scrollY, setScrollY] = useState(0);
   const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
 
-  // Fixed position with random rotation only
+  // Position based on device type
   const [randomOffset] = useState(() => ({
-    x: 2.5, // Fixed position on right side
+    x: isMobile ? 1.5 : 2.5,
     y: 0, // Fixed at center height
     rotationX: Math.random() * Math.PI * 2,
     rotationY: Math.random() * Math.PI * 2,
@@ -79,9 +83,12 @@ export function ScrollBasketball({ onLoaded }: ScrollBasketballProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Scale based on device type
+  const scale = isMobile ? 0.012 : 0.016; // smaller on mobile
+
   return (
     <group ref={meshRef} position={[0, 0, 0]}>
-      <Basketball interactive={false} autoRotate={false} scale={0.016} />
+      <Basketball interactive={false} autoRotate={false} scale={scale} />
     </group>
   );
 }
