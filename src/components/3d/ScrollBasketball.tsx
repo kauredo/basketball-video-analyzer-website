@@ -87,7 +87,7 @@ export function ScrollBasketball({
   const scale = isMobile ? 0.012 : 0.016; // smaller on mobile
 
   return (
-    <group ref={meshRef} position={[0, 0, 0]}>
+    <group ref={meshRef} position={[randomOffset.x, randomOffset.y, 0]}>
       <Basketball interactive={false} autoRotate={false} scale={scale} />
     </group>
   );
