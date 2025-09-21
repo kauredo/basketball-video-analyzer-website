@@ -84,7 +84,7 @@ Add an embedded video demonstration of the app in action:
 ## Current Status
 - ✅ Website structure complete
 - ✅ All pages functional
-- ✅ Donation links working
+- ✅ Tip links working
 - ✅ SEO optimized
 - ✅ Analytics ready
 - ⏳ Needs visual content (screenshots, images, video)
