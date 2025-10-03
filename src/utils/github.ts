@@ -97,7 +97,7 @@ export async function getLatestRelease(): Promise<ReleaseInfo | null> {
     });
 
     return {
-      version: release.tag_name,
+      version: release.tag_name.replace(/^v/, ""),
       releaseDate: new Date(release.published_at ?? 0),
       releaseNotes: release.body || "",
       platforms: parseAssets(release.assets),
@@ -164,7 +164,7 @@ export async function getAllReleases(): Promise<ReleaseInfo[]> {
     });
 
     return releases.map(release => ({
-      version: release.tag_name,
+      version: release.tag_name.replace(/^v/, ""), // Strip leading 'v'
       releaseDate: new Date(release.published_at ?? 0),
       releaseNotes: release.body || "",
       platforms: parseAssets(release.assets),
