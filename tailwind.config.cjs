@@ -4,14 +4,13 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Basketball-themed color palette
         primary: {
           50: "#FFF4ED",
           100: "#FFE6D5",
           200: "#FFD0AA",
           300: "#FFB274",
           400: "#FF8A5C",
-          500: "#FF6B35", // Main brand color
+          500: "#FF6B35",
           600: "#E55A2B",
           700: "#CC4A1F",
           800: "#B33E17",
@@ -22,25 +21,29 @@ module.exports = {
           line: "#FFFFFF",
           net: "#E8E8E8",
         },
-        neutral: {
-          950: "#0A0A0A",
+        warm: {
+          50: "#FDFBF7",
+          100: "#F9F5ED",
+          200: "#F0E8D8",
+          300: "#E3D5BD",
+          400: "#C9B494",
+          500: "#A8906A",
+          600: "#8B7355",
+          700: "#6E5A42",
+          800: "#4A3C2C",
+          900: "#2C2418",
+          950: "#1A1510",
         },
       },
       fontFamily: {
-        display: ["Inter", "SF Pro Display", "system-ui", "sans-serif"],
-        body: ["Inter", "SF Pro Text", "system-ui", "sans-serif"],
+        display: [
+          "Space Grotesk",
+          "SF Pro Display",
+          "system-ui",
+          "sans-serif",
+        ],
+        body: ["DM Sans", "SF Pro Text", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "SF Mono", "Consolas", "monospace"],
-      },
-      animation: {
-        "pulse-slow": "pulse 3s infinite",
-        "bounce-gentle": "bounce 2s infinite",
-        "hover-lift": "hover-lift 0.2s ease-out",
-      },
-      keyframes: {
-        "hover-lift": {
-          "0%": { transform: "translateY(0px)" },
-          "100%": { transform: "translateY(-4px)" },
-        },
       },
       spacing: {
         18: "4.5rem",
@@ -49,15 +52,6 @@ module.exports = {
       },
       maxWidth: {
         "8xl": "88rem",
-        "9xl": "96rem",
-      },
-      backgroundImage: {
-        "court-pattern": `linear-gradient(90deg, #FFFFFF 1px, transparent 1px),
-                         linear-gradient(#FFFFFF 1px, transparent 1px)`,
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-      },
-      backgroundSize: {
-        court: "50px 50px",
       },
     },
   },

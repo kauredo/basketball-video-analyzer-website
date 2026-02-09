@@ -8,15 +8,13 @@ export interface Props {
   description?: string;
   image?: string;
   type?: 'website' | 'article';
-  currentPage?: string;
 }
 
 const {
   title,
-  description = 'Professional video analysis tool for basketball coaches. Cut, organize, and export game footage for team scouting and player development.',
+  description = 'Free basketball video analysis tool. Cut, organize, and export game footage. Built by a coach, for coaches.',
   image = '/images/og-image.png',
   type = 'website',
-  currentPage = 'home'
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -35,10 +33,9 @@ const socialImage = new URL(image, Astro.site);
     <meta name="title" content={`${title} | Basketball Video Analyzer`} />
     <meta name="description" content={description} />
     <meta name="keywords" content="basketball, video analysis, sports analysis, coaching software, basketball clips, video editing, sports coaching, free software, open source" />
-    <meta name="author" content="Basketball Video Analyzer Team" />
+    <meta name="author" content="kauredo" />
     <meta name="robots" content="index, follow" />
     <meta name="language" content="en" />
-    <meta name="revisit-after" content="7 days" />
     <link rel="canonical" href={canonicalURL} />
 
     <!-- Open Graph / Facebook -->
@@ -69,7 +66,7 @@ const socialImage = new URL(image, Astro.site);
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "Basketball Video Analyzer",
-        "description": "Professional video analysis tool for basketball coaches. Cut, organize, and export game footage for team scouting and player development.",
+        "description": "Free basketball video analysis tool. Cut, organize, and export game footage. Built by a coach, for coaches.",
         "url": "https://basketball-video-analyzer.com",
         "applicationCategory": "SportsApplication",
         "operatingSystem": "Windows, macOS, Linux",
@@ -79,77 +76,53 @@ const socialImage = new URL(image, Astro.site);
           "priceCurrency": "USD"
         },
         "creator": {
-          "@type": "Organization",
-          "name": "Basketball Video Analyzer Team",
-          "url": "https://github.com/kauredo/basketball-video-analyzer"
+          "@type": "Person",
+          "name": "kauredo",
+          "url": "https://github.com/kauredo"
         },
         "downloadUrl": "https://github.com/kauredo/basketball-video-analyzer/releases",
         "screenshot": "https://basketball-video-analyzer.com/images/og-image.png",
         "featureList": [
-          "Video cutting with frame precision",
+          "Video cutting with keyboard shortcuts",
           "Hierarchical category organization",
-          "Batch export functionality",
-          "Keyboard shortcuts for efficiency",
+          "Batch export with folder structure",
           "Cross-platform compatibility"
         ]
       }
     </script>
 
-    <!-- Preload Critical Resources -->
+    <!-- Fonts: Space Grotesk (headings) + DM Sans (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" /></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500&display=swap" /></noscript>
 
     <!-- Critical CSS -->
     <style>
-      /* Critical above-the-fold styles */
       body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
         line-height: 1.6;
-        color: #2d2d2d;
-        background-color: #fafafa;
+        color: #2C2418;
+        background-color: #FDFBF7;
       }
 
-      /* Loading state for hero section */
-      .hero-loading {
-        min-height: 60vh;
-        background: linear-gradient(135deg, #fff4ed 0%, #ffe6d5 100%);
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
       }
     </style>
   </head>
 
   <body>
-    <!-- Navigation -->
-    <Navbar currentPage={currentPage} />
+    <Navbar />
 
-    <!-- Main Content -->
     <main>
       <slot />
     </main>
 
     <Footer />
 
-    <!-- Analytics -->
-    <!-- Google Analytics (uncomment and add your GA_MEASUREMENT_ID to use) -->
-    <!--
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'GA_MEASUREMENT_ID');
-    </script>
-    -->
-
-    <!-- Scripts -->
-    <script>
-      // Initialize performance monitoring
-      if ('performance' in window && 'mark' in performance) {
-        performance.mark('page-start');
-      }
-
-      // Add smooth scrolling for anchor links
+      // Smooth scrolling for anchor links
       document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
           anchor.addEventListener('click', function (e) {
@@ -163,63 +136,6 @@ const socialImage = new URL(image, Astro.site);
                   block: 'start'
                 });
               }
-            }
-          });
-        });
-      });
-
-      // Track page performance
-      window.addEventListener('load', () => {
-        if ('performance' in window && 'mark' in performance) {
-          performance.mark('page-end');
-          performance.measure('page-load', 'page-start', 'page-end');
-
-          // Log performance metrics
-          const perfData = performance.getEntriesByType('measure');
-          console.log('Page load time:', perfData[0]?.duration + 'ms');
-        }
-      });
-
-      // Track important user interactions
-      document.addEventListener('DOMContentLoaded', () => {
-        // Track download button clicks
-        document.querySelectorAll('a[href*="download"], a[href*="github.com"]').forEach(link => {
-          link.addEventListener('click', function(e) {
-            const href = this.href;
-            const text = this.textContent.trim();
-
-            // Log to console (replace with actual analytics when available)
-            console.log('User interaction:', {
-              action: 'click',
-              element: text,
-              destination: href,
-              page: window.location.pathname
-            });
-
-            // If analytics is available, track the event
-            if (typeof gtag !== 'undefined') {
-              gtag('event', 'click', {
-                event_category: 'outbound_link',
-                event_label: text,
-                value: href
-              });
-            }
-          });
-        });
-
-        // Track tip button clicks
-        document.querySelectorAll('a[href*="paypal.com"], a[href*="ko-fi.com"]').forEach(link => {
-          link.addEventListener('click', function(e) {
-            console.log('Tip click:', {
-              type: this.href.includes('paypal') ? 'paypal' : 'kofi',
-              page: window.location.pathname
-            });
-
-            if (typeof gtag !== 'undefined') {
-              gtag('event', 'tip_click', {
-                event_category: 'engagement',
-                event_label: this.href.includes('paypal') ? 'paypal' : 'kofi'
-              });
             }
           });
         });

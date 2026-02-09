@@ -1,348 +1,214 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import Button from '@/components/ui/Button.astro';
-import Card from '@/components/ui/Card.astro';
-import GitHubStar from '@/components/ui/GitHubStar.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import { FullScreenBasketball3D } from '@/components/3d/FullScreenBasketball3D';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
 
-// Fetch release data at build time
 const release = await getCachedLatestRelease() ?? fallbackReleaseData;
 ---
 
-<BaseLayout title="Professional Basketball Video Analysis Tool">
-  <!-- Full Screen 3D Basketball Scene -->
-  <FullScreenBasketball3D
-    client:load
-    enableOnMobile={true}
-  />
+<BaseLayout title="Free Basketball Video Analysis Tool">
 
-  <!-- Hero Section -->
-  <section class="min-h-screen flex items-center justify-start px-4 sm:px-6 lg:px-8 relative">
-    <!-- Hero Content -->
-    <div class="relative z-10 max-w-7xl mx-auto">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-        <!-- Text Content - Left Side -->
-        <div class="text-left">
-      <div class="mb-8">
-        <!-- Main Heading -->
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-neutral-900 mb-6 leading-tight">
-          Free <span class="text-gradient-primary">Basketball</span><br>
-          Video Analysis Tool
+  <!-- ============================== -->
+  <!-- HERO: Full viewport, 3D ball   -->
+  <!-- ============================== -->
+  <section aria-label="Hero" class="relative min-h-screen flex items-center">
+    <!-- 3D Basketball Background -->
+    <FullScreenBasketball3D
+      client:load
+      enableOnMobile={true}
+    />
+
+    <!-- Hero Content — left-aligned -->
+    <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="max-w-2xl">
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-warm-900 leading-[1.1] mb-6">
+          I got tired of scrubbing through game tapes in VLC.
         </h1>
-
-        <!-- Beta Badge -->
-        <div class="inline-flex items-center gap-2 bg-primary-100 text-primary-700 px-4 py-2 rounded-full text-sm font-medium mb-6">
-          BETA
-          <span class="font-normal text-xs ml-1">Version {release.version} - Free & Open Source</span>
-        </div>
-
-        <!-- Subtitle -->
-        <p class="text-xl sm:text-2xl text-neutral-700 mb-8 max-w-3xl mx-auto leading-relaxed">
-          Cut, categorize, and organize basketball video clips with precision.
-          Built by coaches, for coaches - completely free to use.
+        <p class="text-lg sm:text-xl text-warm-600 mb-8 max-w-lg">
+          So I built a free tool for cutting basketball video. Mark plays, organize clips, export folders. That's it.
         </p>
 
-        <!-- Feature Highlights -->
-        <div class="flex flex-wrap gap-4 mb-12 text-sm font-medium">
-          <span class="inline-flex items-center gap-2 bg-white/80 rounded-full px-4 py-2 text-neutral-700">
-            <svg class="w-4 h-4 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-            </svg>
-            Hierarchical Categories
-          </span>
-          <span class="inline-flex items-center gap-2 bg-white/80 rounded-full px-4 py-2 text-neutral-700">
-            <svg class="w-4 h-4 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-            </svg>
-            Reusable Presets
-          </span>
-          <span class="inline-flex items-center gap-2 bg-white/80 rounded-full px-4 py-2 text-neutral-700">
-            <svg class="w-4 h-4 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-            </svg>
-            Project-Based
-          </span>
-          <span class="inline-flex items-center gap-2 bg-white/80 rounded-full px-4 py-2 text-neutral-700">
-            <svg class="w-4 h-4 text-primary-500" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-            </svg>
-            Cross-Platform
-          </span>
-        </div>
-
-        <!-- Download Button -->
-        <div class="flex flex-col sm:flex-row gap-4 items-center">
-          <DownloadButton client:load className="shadow-basketball" />
-          <Button variant="secondary" size="lg" href="#features">
-            See Features
-            <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-            </svg>
-          </Button>
-        </div>
+        <DownloadButton client:load />
+        <p class="text-sm text-warm-600 mt-4">
+          Windows, macOS, and Linux &middot; Free &amp; open source
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- App Screenshots Section -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl sm:text-4xl font-bold text-neutral-900 mb-4">
-          See the App in Action
-        </h2>
-        <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
-          Professional video analysis made simple with an intuitive interface designed for coaches.
-        </p>
+
+  <!-- ============================== -->
+  <!-- THE APP: Product showcase      -->
+  <!-- ============================== -->
+  <section aria-label="Product showcase" class="py-16 sm:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Screenshot — clean, no overlay -->
+      <div class="rounded-xl overflow-hidden shadow-2xl">
+        <img
+          src="/images/screenshots/video-cutting-interface.png"
+          alt="Basketball Video Analyzer — video cutting interface showing the video player, timeline, and clip creator"
+          class="w-full h-auto block"
+          loading="lazy"
+        />
       </div>
 
-      <!-- Screenshot Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-        <!-- Video Cutting Interface Screenshot -->
-        <div class="relative rounded-lg shadow-lg overflow-hidden aspect-video bg-cover bg-center" style="background-image: url('/images/screenshots/video-cutting-interface.png');">
-          <!-- Overlay for readability -->
-          <div class="absolute inset-0 bg-black/40"></div>
-          <!-- Content overlay -->
-          <div class="relative z-10 h-full flex items-center justify-center">
-            <div class="text-center text-white">
-              <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold text-white mb-2 drop-shadow-lg">Precision Video Cutting</h3>
-              <p class="text-sm text-white/90 drop-shadow-lg">Mark in/out points with I and O keys, precise frame control</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project Organization Screenshot -->
-        <div class="relative rounded-lg shadow-lg overflow-hidden aspect-video bg-cover bg-center" style="background-image: url('/images/screenshots/project-organization.png');">
-          <!-- Overlay for readability -->
-          <div class="absolute inset-0 bg-black/40"></div>
-          <!-- Content overlay -->
-          <div class="relative z-10 h-full flex items-center justify-center">
-            <div class="text-center text-white">
-              <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14-7H5m14 14H5"/>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold text-white mb-2 drop-shadow-lg">Smart Organization</h3>
-              <p class="text-sm text-white/90 drop-shadow-lg">Hierarchical categories and reusable presets</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature Callouts -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="text-center">
-          <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      <!-- 3 callouts — not cards, just text -->
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <svg class="w-5 h-5 text-primary-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
             </svg>
+            <h3 class="font-display font-semibold text-warm-900">Mark clips with keyboard shortcuts</h3>
           </div>
-          <h3 class="text-lg font-semibold text-neutral-900 mb-2">Time Search</h3>
-          <p class="text-neutral-600">Jump to specific moments using HH:MM:SS format</p>
+          <p class="text-warm-600 text-sm leading-relaxed">
+            Press I for in-point, O for out-point, Space to play/pause. Frame-by-frame with arrow keys.
+          </p>
         </div>
 
-        <div class="text-center">
-          <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <svg class="w-5 h-5 text-primary-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
             </svg>
+            <h3 class="font-display font-semibold text-warm-900">Organize with hierarchical categories</h3>
           </div>
-          <h3 class="text-lg font-semibold text-neutral-900 mb-2">Smart Tagging</h3>
-          <p class="text-neutral-600">Create reusable category presets for consistent organization</p>
+          <p class="text-warm-600 text-sm leading-relaxed">
+            Create category trees for offense, defense, transitions — whatever your coaching system needs.
+          </p>
         </div>
 
-        <div class="text-center">
-          <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-            <svg class="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <svg class="w-5 h-5 text-primary-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
             </svg>
+            <h3 class="font-display font-semibold text-warm-900">Export organized clip folders</h3>
           </div>
-          <h3 class="text-lg font-semibold text-neutral-900 mb-2">Batch Export</h3>
-          <p class="text-neutral-600">Export organized clip libraries with folder structure</p>
+          <p class="text-warm-600 text-sm leading-relaxed">
+            One click exports all your clips into category-based folders. Ready to share with staff or players.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section id="features" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
-      <div class="text-center mb-16">
-        <h2 class="text-3xl sm:text-4xl font-bold text-neutral-900 mb-4">
-          Everything You Need for
-          <span class="text-gradient-primary">Video Analysis</span>
+
+  <!-- ============================== -->
+  <!-- HOW IT WORKS: 3 steps          -->
+  <!-- ============================== -->
+  <section aria-label="How it works" class="py-20 sm:py-28 bg-warm-100/50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-warm-900 mb-16">
+        How it works
+      </h2>
+
+      <div class="space-y-16 sm:space-y-24">
+        <!-- Step 1 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          <div>
+            <div class="flex items-baseline gap-4 mb-4">
+              <span class="font-display text-5xl font-bold text-warm-200">1</span>
+              <h3 class="font-display text-xl font-semibold text-warm-900">Load your game tape</h3>
+            </div>
+            <p class="text-warm-600 leading-relaxed max-w-md">
+              Drag in any video file. Create a project for each game, opponent, or practice session so everything stays organized from the start.
+            </p>
+          </div>
+          <div class="rounded-lg overflow-hidden shadow-lg">
+            <img
+              src="/images/screenshots/project-organization.png"
+              alt="Project organization view showing multiple games organized by opponent"
+              class="w-full h-auto block"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          <div class="lg:order-2">
+            <div class="flex items-baseline gap-4 mb-4">
+              <span class="font-display text-5xl font-bold text-warm-200">2</span>
+              <h3 class="font-display text-xl font-semibold text-warm-900">Mark the plays that matter</h3>
+            </div>
+            <p class="text-warm-600 leading-relaxed max-w-md">
+              Use keyboard shortcuts to set in/out points as you watch. Tag each clip with categories — pick-and-roll, fast break, zone defense, whatever fits your system.
+            </p>
+          </div>
+          <div class="lg:order-1 rounded-lg overflow-hidden shadow-lg">
+            <img
+              src="/images/screenshots/category-management.png"
+              alt="Category management showing hierarchical organization of play types"
+              class="w-full h-auto block"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+          <div>
+            <div class="flex items-baseline gap-4 mb-4">
+              <span class="font-display text-5xl font-bold text-warm-200">3</span>
+              <h3 class="font-display text-xl font-semibold text-warm-900">Export and share with your team</h3>
+            </div>
+            <p class="text-warm-600 leading-relaxed max-w-md">
+              Export your clip library as organized folders — one folder per category, clips named clearly. Drop them in Google Drive, hand them to an assistant, or play them in the film room.
+            </p>
+          </div>
+          <div class="rounded-lg overflow-hidden shadow-lg">
+            <img
+              src="/images/screenshots/clip-library-browser.png"
+              alt="Clip library showing all marked clips organized by category"
+              class="w-full h-auto block"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================== -->
+  <!-- CTA: Open source + download    -->
+  <!-- ============================== -->
+  <section id="download" aria-label="Download" class="py-24 sm:py-32 bg-warm-100/30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl">
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-warm-900 mb-6">
+          Free forever. Open source.<br>
+          Built because coaches deserve better tools.
         </h2>
-        <p class="text-xl text-neutral-600 max-w-2xl mx-auto">
-          Professional-grade tools designed specifically for basketball coaches and analysts
+        <p class="text-warm-600 mb-8 max-w-lg">
+          No subscriptions, no feature gates, no data collection. Just a tool that does what it says. If you find a bug or want a feature, open an issue on GitHub.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-start justify-center gap-4 mb-8">
+          <DownloadButton client:load />
+          <a
+            href="https://github.com/kauredo/basketball-video-analyzer"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-3 text-warm-700 font-medium
+              border border-warm-300 rounded-lg
+              hover:border-warm-400 hover:bg-warm-100 transition-all"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            View on GitHub
+          </a>
+        </div>
+
+        <p class="text-sm text-warm-600">
+          Windows, macOS, and Linux &middot; {release.version}
         </p>
       </div>
-
-      <!-- Features Grid -->
-      <div class="feature-grid">
-        <!-- Time Search Feature -->
-        <Card variant="hover" class="text-center">
-          <div class="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-lg flex items-center justify-center mx-auto mb-4 shadow-md">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-neutral-900 mb-2">Precision Time Search</h3>
-          <p class="text-neutral-600 mb-4">
-            Jump to specific moments instantly using HH:MM:SS format. Find exactly what you're looking for in seconds.
-          </p>
-          <span class="inline-block bg-primary-50 text-primary-700 text-sm font-medium px-3 py-1 rounded-full">
-            1:23:45 → Instant Navigation
-          </span>
-        </Card>
-
-        <!-- Multiple Presets -->
-        <Card variant="hover" class="text-center">
-          <div class="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-lg flex items-center justify-center mx-auto mb-4 shadow-md">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-neutral-900 mb-2">Smart Preset System</h3>
-          <p class="text-neutral-600 mb-4">
-            Create multiple category templates for different scenarios. Save time with pre-configured setups for offense, defense, and special situations.
-          </p>
-          <span class="inline-block bg-primary-50 text-primary-700 text-sm font-medium px-3 py-1 rounded-full">
-            Offense • Defense • Special Teams
-          </span>
-        </Card>
-
-        <!-- Project Organization -->
-        <Card variant="hover" class="text-center">
-          <div class="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-lg flex items-center justify-center mx-auto mb-4 shadow-md">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-neutral-900 mb-2">Project-Based Organization</h3>
-          <p class="text-neutral-600 mb-4">
-            Separate projects for different games, opponents, or analysis types. Keep your work organized and easily accessible.
-          </p>
-          <span class="inline-block bg-primary-50 text-primary-700 text-sm font-medium px-3 py-1 rounded-full">
-            Game 1 • Playoffs • Practice
-          </span>
-        </Card>
-
-        <!-- Video Cutting -->
-        <Card variant="hover" class="text-center">
-          <div class="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-lg flex items-center justify-center mx-auto mb-4 shadow-md">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-neutral-900 mb-2">Advanced Video Cutting</h3>
-          <p class="text-neutral-600 mb-4">
-            Mark in/out points with keyboard shortcuts. Frame-by-frame navigation ensures you capture exactly what you need.
-          </p>
-          <span class="inline-block bg-primary-50 text-primary-700 text-sm font-medium px-3 py-1 rounded-full">
-            I • O • Space • ←→
-          </span>
-        </Card>
-
-        <!-- Export System -->
-        <Card variant="hover" class="text-center">
-          <div class="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-lg flex items-center justify-center mx-auto mb-4 shadow-md">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-neutral-900 mb-2">Organized Export System</h3>
-          <p class="text-neutral-600 mb-4">
-            Export clip libraries by category with automatic folder structure. Perfect for sharing with assistants and players.
-          </p>
-          <span class="inline-block bg-primary-50 text-primary-700 text-sm font-medium px-3 py-1 rounded-full">
-            MP4 • Organized Folders
-          </span>
-        </Card>
-
-        <!-- Cross-Platform -->
-        <Card variant="hover" class="text-center">
-          <div class="w-12 h-12 bg-gradient-to-br from-primary-400 to-primary-600 rounded-lg flex items-center justify-center mx-auto mb-4 shadow-md">
-            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-neutral-900 mb-2">Cross-Platform Support</h3>
-          <p class="text-neutral-600 mb-4">
-            Works seamlessly on Windows, macOS, and Linux. Use the same workflow regardless of your preferred platform.
-          </p>
-          <div class="flex justify-center gap-2">
-            <span class="inline-block bg-primary-50 text-primary-700 text-sm font-medium px-2 py-1 rounded">Windows</span>
-            <span class="inline-block bg-primary-50 text-primary-700 text-sm font-medium px-2 py-1 rounded">macOS</span>
-            <span class="inline-block bg-primary-50 text-primary-700 text-sm font-medium px-2 py-1 rounded">Linux</span>
-          </div>
-        </Card>
-      </div>
     </div>
   </section>
 
-  <!-- GitHub Star Section -->
-  <section class="py-20 bg-neutral-50">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <GitHubStar />
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-20 bg-gradient-to-br from-primary-500 to-primary-700 text-white">
-    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl sm:text-4xl font-bold mb-4">
-        Ready to Elevate Your Analysis?
-      </h2>
-      <p class="text-xl text-primary-100 mb-8 max-w-2xl mx-auto">
-        Join other basketball coaches who use Basketball Video Analyzer to gain competitive advantages and develop winning strategies.
-      </p>
-
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <DownloadButton client:load className="bg-white text-primary-600 hover:bg-neutral-50" />
-        <Button variant="ghost" size="lg" href="/features" class="text-white border-white hover:bg-white/10">
-          Learn More
-        </Button>
-      </div>
-
-      <!-- Trust Indicators -->
-      <div class="mt-12 pt-8 border-t border-primary-400">
-        <p class="text-primary-100 mb-4">Trusted by coaches at every level</p>
-        <div class="flex flex-wrap justify-center gap-8 text-sm text-primary-200">
-          <span>High School Teams</span>
-          <span>College Programs</span>
-          <span>Professional Scouts</span>
-          <span>Youth Organizations</span>
-        </div>
-      </div>
-    </div>
-  </section>
 </BaseLayout>
-
-<style>
-  /* Additional component-specific styles */
-  .hero-gradient {
-    background: linear-gradient(135deg,
-      theme('colors.primary.50') 0%,
-      theme('colors.primary.100') 25%,
-      theme('colors.court.wood') 50%,
-      theme('colors.primary.100') 75%,
-      theme('colors.primary.50') 100%
-    );
-  }
-
-  @media (max-width: 640px) {
-    .feature-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
