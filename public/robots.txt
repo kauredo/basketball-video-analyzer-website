@@ -1,11 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /CLAUDE/
 
-# Sitemap
-Sitemap: https://basketball-video-analyzer.com/sitemap.xml
-
-# Allow all robots
-Disallow:
-
-# Crawl-delay for polite crawling
-Crawl-delay: 1
+Sitemap: https://basketballvideoanalyzer.com/sitemap-index.xml

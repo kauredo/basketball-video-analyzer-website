@@ -24,10 +24,10 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
     <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       <div class="max-w-2xl">
         <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-warm-900 leading-[1.1] mb-6">
-          I got tired of scrubbing through game tapes in VLC.
+          Free basketball video analysis tool, built by a coach.
         </h1>
         <p class="text-lg sm:text-xl text-warm-600 mb-8 max-w-lg">
-          So I built a free tool for cutting basketball video. Mark plays, organize clips, export folders. That's it.
+          I got tired of scrubbing through game tapes in VLC, so I built this. Mark plays, organize clips, export folders. That's it.
         </p>
 
         <DownloadButton client:load />
@@ -44,6 +44,7 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
   <!-- ============================== -->
   <section aria-label="Product showcase" class="py-16 sm:py-24">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="sr-only">The app</h2>
       <!-- Screenshot — clean, no overlay -->
       <div class="rounded-xl overflow-hidden shadow-2xl">
         <img
