@@ -13,7 +13,7 @@ export interface Props {
 const {
   title,
   description = 'Free basketball video analysis tool. Cut, organize, and export game footage. Built by a coach, for coaches.',
-  image = '/images/og-image.png',
+  image = '/images/og-image.jpg',
   type = 'website',
 } = Astro.props;
 
@@ -32,7 +32,7 @@ const socialImage = new URL(image, Astro.site);
     <title>{title} | Basketball Video Analyzer</title>
     <meta name="title" content={`${title} | Basketball Video Analyzer`} />
     <meta name="description" content={description} />
-    <meta name="keywords" content="basketball, video analysis, sports analysis, coaching software, basketball clips, video editing, sports coaching, free software, open source" />
+    <meta name="keywords" content="basketball video analysis, basketball film breakdown, basketball coaching software, basketball clip organizer, game film editor, basketball scouting tool, free video analysis, open source sports software, basketball play categorizer, basketball video cutter" />
     <meta name="author" content="kauredo" />
     <meta name="robots" content="index, follow" />
     <meta name="language" content="en" />
@@ -81,7 +81,7 @@ const socialImage = new URL(image, Astro.site);
           "url": "https://github.com/kauredo"
         },
         "downloadUrl": "https://github.com/kauredo/basketball-video-analyzer/releases",
-        "screenshot": "https://basketballvideoanalyzer.com/images/og-image.png",
+        "screenshot": "https://basketballvideoanalyzer.com/images/og-image.jpg",
         "featureList": [
           "Video cutting with keyboard shortcuts",
           "Hierarchical category organization",

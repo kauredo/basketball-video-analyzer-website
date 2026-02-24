@@ -1,9 +1,15 @@
 ---
+import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import { FullScreenBasketball3D } from '@/components/3d/FullScreenBasketball3D';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
+
+import videoCuttingImg from '@/assets/screenshots/video-cutting-interface.png';
+import projectOrgImg from '@/assets/screenshots/project-organization.png';
+import categoryMgmtImg from '@/assets/screenshots/category-management.png';
+import clipLibraryImg from '@/assets/screenshots/clip-library-browser.png';
 
 const release = await getCachedLatestRelease() ?? fallbackReleaseData;
 ---
@@ -47,10 +53,14 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
       <h2 class="sr-only">The app</h2>
       <!-- Screenshot — clean, no overlay -->
       <div class="rounded-xl overflow-hidden shadow-2xl">
-        <img
-          src="/images/screenshots/video-cutting-interface.png"
+        <Image
+          src={videoCuttingImg}
           alt="Basketball Video Analyzer — video cutting interface showing the video player, timeline, and clip creator"
           class="w-full h-auto block"
+          widths={[640, 960, 1280, 1920]}
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1152px"
+          format="webp"
+          quality={80}
           loading="lazy"
         />
       </div>
@@ -119,10 +129,14 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
             </p>
           </div>
           <div class="rounded-lg overflow-hidden shadow-lg">
-            <img
-              src="/images/screenshots/project-organization.png"
+            <Image
+              src={projectOrgImg}
               alt="Project organization view showing multiple games organized by opponent"
               class="w-full h-auto block"
+              widths={[480, 720, 960]}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              format="webp"
+              quality={80}
               loading="lazy"
             />
           </div>
@@ -140,10 +154,14 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
             </p>
           </div>
           <div class="lg:order-1 rounded-lg overflow-hidden shadow-lg">
-            <img
-              src="/images/screenshots/category-management.png"
+            <Image
+              src={categoryMgmtImg}
               alt="Category management showing hierarchical organization of play types"
               class="w-full h-auto block"
+              widths={[480, 720, 960]}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              format="webp"
+              quality={80}
               loading="lazy"
             />
           </div>
@@ -161,10 +179,14 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
             </p>
           </div>
           <div class="rounded-lg overflow-hidden shadow-lg">
-            <img
-              src="/images/screenshots/clip-library-browser.png"
+            <Image
+              src={clipLibraryImg}
               alt="Clip library showing all marked clips organized by category"
               class="w-full h-auto block"
+              widths={[480, 720, 960]}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              format="webp"
+              quality={80}
               loading="lazy"
             />
           </div>
