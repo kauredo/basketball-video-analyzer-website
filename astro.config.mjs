@@ -7,6 +7,10 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: "https://basketballvideoanalyzer.com",
+  redirects: {
+    "/download": "/",
+    "/pricing": "/",
+  },
   integrations: [
     tailwind({
       configFile: "./tailwind.config.cjs",
