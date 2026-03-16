@@ -2,4 +2,26 @@ User-agent: *
 Allow: /
 Disallow: /CLAUDE/
 
+# AI crawlers — explicitly allowed for AI search visibility
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
 Sitemap: https://basketballvideoanalyzer.com/sitemap-index.xml

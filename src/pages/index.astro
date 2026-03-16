@@ -12,9 +12,15 @@ import categoryMgmtImg from '@/assets/screenshots/category-management.png';
 import clipLibraryImg from '@/assets/screenshots/clip-library-browser.png';
 
 const release = await getCachedLatestRelease() ?? fallbackReleaseData;
+
+// Set to a YouTube video ID (e.g. 'dQw4w9WgXcQ') to enable the demo video section
+const DEMO_VIDEO_ID = '';
 ---
 
-<BaseLayout title="Free Basketball Video Analysis Tool">
+<BaseLayout
+  title="Free Basketball Video Analysis Tool"
+  fullTitle="Basketball Video Analyzer — Free Game Film Analysis for Coaches"
+>
 
   <!-- ============================== -->
   <!-- HERO: Full viewport, 3D ball   -->
@@ -108,6 +114,33 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
 
 
   <!-- ============================== -->
+  <!-- VIDEO DEMO (shows when ID set) -->
+  <!-- ============================== -->
+  {DEMO_VIDEO_ID && (
+    <section aria-label="Demo video" class="py-16 sm:py-24 bg-warm-100/30">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-display text-3xl sm:text-4xl font-bold text-warm-900 mb-4">
+          See it in action
+        </h2>
+        <p class="text-warm-600 mb-10 max-w-lg mx-auto">
+          Watch a quick walkthrough of the full workflow — from importing game tape to exporting organized clips.
+        </p>
+        <div class="relative w-full rounded-xl overflow-hidden shadow-2xl" style="padding-bottom: 56.25%">
+          <iframe
+            class="absolute inset-0 w-full h-full"
+            src={`https://www.youtube.com/embed/${DEMO_VIDEO_ID}`}
+            title="Basketball Video Analyzer Demo"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+  )}
+
+
+  <!-- ============================== -->
   <!-- HOW IT WORKS: 3 steps          -->
   <!-- ============================== -->
   <section aria-label="How it works" class="py-20 sm:py-28 bg-warm-100/50">
@@ -196,6 +229,7 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
   </section>
 
 
+
   <!-- ============================== -->
   <!-- CTA: Open source + download    -->
   <!-- ============================== -->
@@ -233,5 +267,42 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
       </div>
     </div>
   </section>
+
+  <!-- HowTo Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to analyze basketball game footage",
+      "description": "Three steps to cut, organize, and export basketball game clips using Basketball Video Analyzer.",
+      "totalTime": "PT30M",
+      "tool": {
+        "@type": "SoftwareApplication",
+        "name": "Basketball Video Analyzer",
+        "url": "https://basketballvideoanalyzer.com"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Load your game tape",
+          "text": "Drag in any video file. Create a project for each game, opponent, or practice session so everything stays organized from the start.",
+          "image": "https://basketballvideoanalyzer.com/images/og-image.jpg"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Mark the plays that matter",
+          "text": "Use keyboard shortcuts to set in/out points as you watch. Tag each clip with categories — pick-and-roll, fast break, zone defense, whatever fits your system."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Export and share with your team",
+          "text": "Export your clip library as organized folders — one folder per category, clips named clearly. Drop them in Google Drive, hand them to an assistant, or play them in the film room."
+        }
+      ]
+    }
+  </script>
 
 </BaseLayout>

@@ -1,0 +1,28 @@
+# Basketball Video Analyzer
+
+> Free, open-source basketball video analysis tool built by a coach, for coaches.
+
+Basketball Video Analyzer is a desktop application for cutting, organizing, and exporting basketball game footage. It runs on Windows, macOS, and Linux.
+
+## Key Features
+
+- **Video Cutting**: Mark in/out points with keyboard shortcuts (I, O, Space, arrow keys for frame-by-frame)
+- **Hierarchical Categories**: Create category trees for offense, defense, transitions, or any coaching system
+- **Clip Library**: Browse and filter all marked clips with visual thumbnails
+- **Batch Export**: Export clips organized into category-based folders with one click
+- **Project Organization**: Organize footage by game, opponent, or practice session
+
+## Links
+
+- Website: https://basketballvideoanalyzer.com
+- GitHub: https://github.com/kauredo/basketball-video-analyzer
+- Download: https://github.com/kauredo/basketball-video-analyzer/releases
+- Issues: https://github.com/kauredo/basketball-video-analyzer/issues
+
+## Technical Details
+
+- Built with Electron and web technologies
+- Cross-platform: Windows, macOS, Linux
+- Free and open source (MIT license)
+- No subscriptions, no data collection
+- Created by kauredo (https://github.com/kauredo)
