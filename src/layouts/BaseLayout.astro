@@ -165,5 +165,10 @@ const socialImage = new URL(image, Astro.site);
         });
       });
     </script>
+
+    <script>
+      import { inject } from "@vercel/analytics";
+      inject();
+    </script>
   </body>
 </html>
