@@ -1,4 +1,4 @@
-import type { Platform, Architecture } from "@/types/github";
+import type { Platform, Architecture, PlatformAsset } from "@/types/github";
 
 export function detectPlatform(): Platform {
   if (typeof window === "undefined") {
@@ -63,4 +63,28 @@ export function formatFileSize(bytes: number): string {
   const size = (bytes / Math.pow(1024, i)).toFixed(1);
 
   return `${size} ${sizes[i]}`;
+}
+
+export function getRecommendedDownload(
+  platformAssets: PlatformAsset[],
+  userPlatform: Platform
+): PlatformAsset | null {
+  const userArch = getArchitecture();
+
+  const platformOptions = platformAssets.filter(
+    asset => asset.platform === userPlatform
+  );
+
+  if (platformOptions.length === 0) {
+    return null;
+  }
+
+  const archMatch = platformOptions.find(
+    asset => asset.architecture === userArch
+  );
+  if (archMatch) {
+    return archMatch;
+  }
+
+  return platformOptions[0];
 }

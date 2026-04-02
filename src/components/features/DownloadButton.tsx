@@ -3,13 +3,12 @@ import {
   detectPlatform,
   getPlatformDisplayName,
   formatFileSize,
+  getRecommendedDownload,
 } from "@/utils/platform";
-import { getRecommendedDownload } from "@/utils/github";
-import { getCachedLatestRelease } from "@/utils/cache";
-import { fallbackReleaseData } from "@/utils/fallback";
 import type { ReleaseInfo, PlatformAsset, Platform } from "@/types/github";
 
 interface DownloadButtonProps {
+  release: ReleaseInfo;
   className?: string;
   size?: "md" | "lg";
   showVersion?: boolean;
@@ -17,47 +16,22 @@ interface DownloadButtonProps {
 }
 
 export function DownloadButton({
+  release,
   className = "",
   size = "lg",
   showVersion = true,
   showSize = true,
 }: DownloadButtonProps) {
-  const [release, setRelease] = useState<ReleaseInfo>(fallbackReleaseData);
-  const [loading, setLoading] = useState(true);
   const [userPlatform, setUserPlatform] = useState<Platform>("unknown");
   const [recommendedDownload, setRecommendedDownload] =
     useState<PlatformAsset | null>(null);
 
   useEffect(() => {
-    // Detect user platform
     const platform = detectPlatform();
     setUserPlatform(platform);
-
-    // Fetch latest release data
-    getCachedLatestRelease()
-      .then(latestRelease => {
-        if (latestRelease) {
-          setRelease(latestRelease);
-        }
-      })
-      .catch(error => {
-        console.error("Failed to fetch release data:", error);
-        // Fallback data is already set
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
-
-  useEffect(() => {
-    if (release && userPlatform !== "unknown") {
-      const recommended = getRecommendedDownload(
-        release.platforms,
-        userPlatform
-      );
-      setRecommendedDownload(recommended);
-    }
-  }, [release, userPlatform]);
+    const recommended = getRecommendedDownload(release.platforms, platform);
+    setRecommendedDownload(recommended);
+  }, [release.platforms]);
 
   const handleDownload = () => {
     if (recommendedDownload) {
@@ -106,19 +80,6 @@ export function DownloadButton({
         );
     }
   };
-
-  if (loading) {
-    return (
-      <div
-        className={`download-btn ${size === "lg" ? "btn-lg" : ""} ${className}`}
-      >
-        <div className="animate-pulse flex items-center gap-3">
-          <div className="w-5 h-5 bg-white/30 rounded"></div>
-          <div className="w-32 h-4 bg-white/30 rounded"></div>
-        </div>
-      </div>
-    );
-  }
 
   if (!recommendedDownload) {
     return (

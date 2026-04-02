@@ -42,7 +42,7 @@ const DEMO_VIDEO_ID = '';
           I got tired of scrubbing through game tapes in VLC, so I built this. Mark plays, organize clips, export folders. That's it.
         </p>
 
-        <DownloadButton client:idle />
+        <DownloadButton release={release} client:idle />
         <p class="text-sm text-warm-600 mt-4">
           Windows, macOS, and Linux &middot; Free &amp; open source
         </p>
@@ -245,7 +245,7 @@ const DEMO_VIDEO_ID = '';
         </p>
 
         <div class="flex flex-col sm:flex-row items-start justify-center gap-4 mb-8">
-          <DownloadButton client:idle />
+          <DownloadButton release={release} client:idle />
           <a
             href="https://github.com/kauredo/basketball-video-analyzer"
             target="_blank"
