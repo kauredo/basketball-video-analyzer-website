@@ -63,4 +63,3 @@ export function Basketball({
   );
 }
 
-useGLTF.preload("/models/basketball.glb");

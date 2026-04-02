@@ -13,7 +13,7 @@ export function ScrollBasketball({
   isMobile = false,
 }: ScrollBasketballProps) {
   const meshRef = useRef<THREE.Group>(null);
-  const [scrollY, setScrollY] = useState(0);
+  const scrollYRef = useRef(0);
   const [hasAnimatedIn, setHasAnimatedIn] = useState(false);
 
   // Position based on device type
@@ -59,7 +59,7 @@ export function ScrollBasketball({
 
     if (hasAnimatedIn) {
       // Only scroll-based rolling animation (no random rotation changes)
-      const scrollRotation = scrollY * 0.01;
+      const scrollRotation = scrollYRef.current * 0.01;
       meshRef.current.rotation.x = randomOffset.rotationX + scrollRotation;
 
       // Keep Y and Z rotations stable at their random values
@@ -76,7 +76,7 @@ export function ScrollBasketball({
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      scrollYRef.current = window.scrollY;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });

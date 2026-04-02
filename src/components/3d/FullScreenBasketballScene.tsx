@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Environment, ContactShadows } from "@react-three/drei";
 import { ScrollBasketball } from "./ScrollBasketball";
 import { CourtCircle } from "./CourtCircle";
 import { WoodFloor } from "./WoodFloor";
@@ -19,7 +18,7 @@ function Scene({ onLoaded, isMobile }: ScrollBasketballProps) {
       <CourtCircle isMobile={isMobile} />
 
       {/* Lighting setup for full scene */}
-      <ambientLight intensity={0.8} />
+      <ambientLight intensity={1.2} />
       <directionalLight
         position={[5, 5, 5]}
         intensity={1.2}
@@ -29,9 +28,6 @@ function Scene({ onLoaded, isMobile }: ScrollBasketballProps) {
 
       {/* Basketball with scroll animations - centered on mobile, right side on desktop */}
       <ScrollBasketball onLoaded={onLoaded} isMobile={isMobile} />
-
-      {/* Environment and atmosphere */}
-      <Environment preset="dawn" />
 
       {/* Fog for depth */}
       <fog attach="fog" args={["#FDFBF7", 10, 50]} />
@@ -81,8 +77,7 @@ export function FullScreenBasketballScene({
           near: 0.2,
           far: 100,
         }}
-        dpr={[1, 1.5]}
-        shadows
+        dpr={[1, isMobile ? 1 : 1.5]}
         gl={{
           antialias: true,
           alpha: true,
