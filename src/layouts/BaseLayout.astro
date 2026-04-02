@@ -3,6 +3,9 @@ import '../styles/global.css';
 import Navbar from '../components/ui/Navbar.astro';
 import Footer from '../components/ui/Footer.astro';
 
+import dmSansLatin from '@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url';
+import spaceGroteskLatin from '@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url';
+
 export interface Props {
   title: string;
   fullTitle?: string;
@@ -114,6 +117,10 @@ const socialImage = new URL(image, Astro.site);
         ]
       }
     </script>
+
+    <!-- Preload critical fonts to avoid CSS→font waterfall -->
+    <link rel="preload" href={dmSansLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={spaceGroteskLatin} as="font" type="font/woff2" crossorigin />
 
     <!-- Google Analytics (deferred to reduce TBT) -->
     <script is:inline define:vars={{ gaId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID }}>
