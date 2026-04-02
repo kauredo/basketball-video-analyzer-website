@@ -1,10 +1,13 @@
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/dm-sans";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    font-family: "DM Sans", "SF Pro Text", system-ui, sans-serif;
+    font-family: "DM Sans Variable", "DM Sans", "SF Pro Text", system-ui, sans-serif;
   }
 
   body {
@@ -17,7 +20,7 @@
   h4,
   h5,
   h6 {
-    font-family: "Space Grotesk", "SF Pro Display", system-ui, sans-serif;
+    font-family: "Space Grotesk Variable", "Space Grotesk", "SF Pro Display", system-ui, sans-serif;
     @apply text-warm-900;
   }
 }

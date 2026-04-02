@@ -37,12 +37,13 @@ module.exports = {
       },
       fontFamily: {
         display: [
+          "Space Grotesk Variable",
           "Space Grotesk",
           "SF Pro Display",
           "system-ui",
           "sans-serif",
         ],
-        body: ["DM Sans", "SF Pro Text", "system-ui", "sans-serif"],
+        body: ["DM Sans Variable", "DM Sans", "SF Pro Text", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "SF Mono", "Consolas", "monospace"],
       },
       spacing: {

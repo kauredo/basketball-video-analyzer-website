@@ -115,12 +115,6 @@ const socialImage = new URL(image, Astro.site);
       }
     </script>
 
-    <!-- Fonts: Space Grotesk (headings) + DM Sans (body) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500&display=swap" /></noscript>
-
     <!-- Google Analytics (deferred to reduce TBT) -->
     <script is:inline define:vars={{ gaId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID }}>
       window.dataLayer = window.dataLayer || [];
@@ -142,14 +136,14 @@ const socialImage = new URL(image, Astro.site);
     <!-- Critical CSS -->
     <style>
       body {
-        font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-family: 'DM Sans Variable', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
         line-height: 1.6;
         color: #2C2418;
         background-color: #FDFBF7;
       }
 
       h1, h2, h3, h4, h5, h6 {
-        font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-family: 'Space Grotesk Variable', 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
       }
     </style>
   </head>
