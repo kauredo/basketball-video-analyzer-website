@@ -1,0 +1,125 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { DownloadButton } from '@/components/features/DownloadButton';
+import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import { getCachedLatestRelease } from '@/utils/cache';
+import { fallbackReleaseData } from '@/utils/fallback';
+
+const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
+---
+
+<BaseLayout
+  title="How to Break Down Game Film Fast"
+  fullTitle="How to Break Down Basketball Game Film Fast | Basketball Video Analyzer"
+  description="A simple workflow for cutting, tagging, and exporting basketball clips from game tape, with the full keyboard-shortcut list. Free and open source."
+  type="article"
+>
+  <article class="py-20 sm:py-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-medium text-primary-600 mb-4">Guide</p>
+      <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
+        How to break down game film fast
+      </h1>
+      <p class="text-lg sm:text-xl text-warm-600 mb-12">
+        I used to do this in VLC: scrub to a play, write down the timestamp, scrub
+        to the next one. By the end you have a page of timestamps and no good way
+        to show any of it to a player. This is what I do now. It takes about the
+        length of the game plus a few minutes.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Pass 1 — Load the game, set up a project
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Drag the game file in and make a project for it. I keep one project per
+        game or opponent so clips from different nights don't pile up together. It
+        reads the common video formats, so there's nothing to convert first.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Pass 2 — Mark the plays that matter
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Watch the game through and grab the plays you want to keep. For each one
+        you set an in-point and an out-point, then tag it. The shortcuts are there
+        so you can do all of it without taking your hands off the keyboard:
+      </p>
+      <ul class="space-y-2 mb-5 text-warm-700">
+        <li class="flex gap-3"><kbd class="font-mono text-sm bg-warm-100 border border-warm-300 rounded px-2 py-0.5 text-warm-900">Space</kbd> play / pause</li>
+        <li class="flex gap-3"><kbd class="font-mono text-sm bg-warm-100 border border-warm-300 rounded px-2 py-0.5 text-warm-900">I</kbd> set the clip's in-point</li>
+        <li class="flex gap-3"><kbd class="font-mono text-sm bg-warm-100 border border-warm-300 rounded px-2 py-0.5 text-warm-900">O</kbd> set the clip's out-point</li>
+        <li class="flex gap-3"><kbd class="font-mono text-sm bg-warm-100 border border-warm-300 rounded px-2 py-0.5 text-warm-900">&larr; &rarr;</kbd> step frame by frame to trim the edges</li>
+      </ul>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Tag clips as you cut them. A clip can have more than one tag, so a
+        possession that's both a pick-and-roll and a missed rotation can go under
+        both. Do it while you're watching rather than going back over the game a
+        second time.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Set up categories that match how you talk about the game
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Categories nest, so build them out the way you already describe things in
+        practice. This is enough to start:
+      </p>
+      <ul class="space-y-1 mb-5 text-warm-700 font-mono text-sm">
+        <li>Offense → Pick &amp; Roll, Transition, Post-ups, ATOs</li>
+        <li>Defense → Zone, Switching, Closeouts, Rebounding</li>
+        <li>Teaching → Great possessions, Turnovers, Effort plays</li>
+      </ul>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Keep the list short to begin with. Five or six categories you reach for
+        every game will serve you better than a deep tree you stop maintaining by
+        November. You can rename and move things around as the season goes.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Pass 3 — Export the folders
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        When you're done, export. You get one folder per category with the clips
+        inside, named so you can tell them apart. Put them on a shared drive, copy
+        them to a stick for the film room, or pull them into whatever you present
+        with. They're ordinary video files, and nothing uploads anywhere, so you
+        can hand them to a player who's never heard of this app.
+      </p>
+
+      <div class="mt-12 pt-8 border-t border-warm-200">
+        <h2 class="font-display text-2xl font-bold text-warm-900 mb-4">Try the workflow</h2>
+        <p class="text-warm-600 mb-6 max-w-lg">
+          Basketball Video Analyzer is free and open source, on Windows, macOS,
+          and Linux. Your film stays on your computer.
+        </p>
+        <DownloadButton release={release} client:idle />
+      </div>
+    </div>
+  </article>
+
+  <RelatedGuides current="/film-breakdown" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "headline": "How to break down basketball game film fast",
+          "description": "A simple three-pass workflow for cutting, tagging, and exporting basketball clips from game tape, with the full keyboard-shortcut reference.",
+          "url": "https://basketballvideoanalyzer.com/film-breakdown",
+          "datePublished": "2026-06-01",
+          "author": { "@type": "Person", "name": "kauredo", "url": "https://github.com/kauredo" },
+          "about": { "@type": "SoftwareApplication", "name": "Basketball Video Analyzer", "url": "https://basketballvideoanalyzer.com" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://basketballvideoanalyzer.com/" },
+            { "@type": "ListItem", "position": 2, "name": "How to break down game film", "item": "https://basketballvideoanalyzer.com/film-breakdown" }
+          ]
+        }
+      ]
+    }
+  </script>
+</BaseLayout>

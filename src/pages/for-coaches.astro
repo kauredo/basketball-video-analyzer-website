@@ -1,0 +1,107 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { DownloadButton } from '@/components/features/DownloadButton';
+import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import { getCachedLatestRelease } from '@/utils/cache';
+import { fallbackReleaseData } from '@/utils/fallback';
+
+const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
+---
+
+<BaseLayout
+  title="Film Review for Basketball Coaches"
+  fullTitle="Film Review for Basketball Coaches | Basketball Video Analyzer"
+  description="Run weekly film review without paying for a platform: clip the teaching moments, group them by theme, and hand players a folder they'll actually watch."
+  type="article"
+>
+  <article class="py-20 sm:py-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-medium text-primary-600 mb-4">For coaches</p>
+      <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
+        Film review that players actually watch
+      </h1>
+      <p class="text-lg sm:text-xl text-warm-600 mb-12">
+        A full game is too long for anyone to sit through a second time. Most of
+        film review is cutting it down to the ten or fifteen possessions worth
+        talking about. Here's a weekly rhythm that keeps that to one sitting.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Clip while the game is fresh
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Sit down with the tape the day after the game and make one pass through
+        it. Mark the possessions you'll want to bring up, like a good closeout or
+        a rotation you want to fix, and tag each one as you go. You're not building
+        the lesson yet, just collecting the clips you'll use for it.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Group clips by the lesson
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Categories let you pull from more than one game at a time. A "transition
+        defense" folder with clips from your last three games shows a player the
+        recurring problem better than sitting through three game files would. Five
+        examples of the same mistake, back to back, usually makes the point on its
+        own.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Hand it to players in a form they'll open
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Export the folders and drop them wherever your team already is, like a
+        shared drive, a group chat, or a stick for the film room. A handful of
+        short, labeled clips is easy to open and quick to watch, which is most of
+        what gets players to look at them at all. The clips are plain video, so
+        there's nothing for them to install and no login to deal with.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Keep individual reels for development
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Tag clips by player as well as by theme, and you can give each kid a short
+        reel of just their own possessions, the good reads and the couple of
+        things to clean up. It's the same library viewed a different way, and it's
+        where a lot of the individual development work happens.
+      </p>
+
+      <div class="mt-12 pt-8 border-t border-warm-200">
+        <h2 class="font-display text-2xl font-bold text-warm-900 mb-4">Free for any program</h2>
+        <p class="text-warm-600 mb-6 max-w-lg">
+          There's no subscription and no per-seat pricing. Put it on the staff
+          laptop and start clipping. Windows, macOS, and Linux.
+        </p>
+        <DownloadButton release={release} client:idle />
+      </div>
+    </div>
+  </article>
+
+  <RelatedGuides current="/for-coaches" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "headline": "Film review for basketball coaches",
+          "description": "A weekly film-review workflow for basketball coaches: clip the teaching moments, group them by theme across games, and share short folders players will watch.",
+          "url": "https://basketballvideoanalyzer.com/for-coaches",
+          "datePublished": "2026-06-01",
+          "author": { "@type": "Person", "name": "kauredo", "url": "https://github.com/kauredo" },
+          "about": { "@type": "SoftwareApplication", "name": "Basketball Video Analyzer", "url": "https://basketballvideoanalyzer.com" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://basketballvideoanalyzer.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Film review for coaches", "item": "https://basketballvideoanalyzer.com/for-coaches" }
+          ]
+        }
+      ]
+    }
+  </script>
+</BaseLayout>

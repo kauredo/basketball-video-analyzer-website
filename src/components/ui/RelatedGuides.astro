@@ -1,0 +1,34 @@
+---
+// Cross-links between the guide pages so they aren't orphaned and share
+// internal link equity. Pass the current page's path to omit it from the list.
+import { guides } from '../../data/guides';
+
+interface Props {
+  current?: string;
+}
+
+const { current } = Astro.props;
+
+const others = guides.filter((g) => g.href !== current);
+---
+
+<nav aria-label="Related guides" class="py-16 sm:py-20 bg-warm-100/50">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 class="font-display text-2xl font-bold text-warm-900 mb-8">More guides</h2>
+    <ul class="space-y-3">
+      {
+        others.map((g) => (
+          <li>
+            <a
+              href={g.href}
+              class="group inline-flex items-center gap-2 text-lg text-warm-700 hover:text-primary-600 transition-colors"
+            >
+              <span class="text-primary-500 group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+              {g.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</nav>

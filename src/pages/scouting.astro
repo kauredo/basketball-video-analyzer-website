@@ -1,0 +1,107 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { DownloadButton } from '@/components/features/DownloadButton';
+import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import { getCachedLatestRelease } from '@/utils/cache';
+import { fallbackReleaseData } from '@/utils/fallback';
+
+const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
+---
+
+<BaseLayout
+  title="Scouting Opponents From Game Film"
+  fullTitle="Scouting Opponents From Game Film | Basketball Video Analyzer"
+  description="Turn an opponent's game tape into a scouting report: clip their sets, tag tendencies, and export a folder your staff and players can study before tip-off."
+  type="article"
+>
+  <article class="py-20 sm:py-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-medium text-primary-600 mb-4">For scouts</p>
+      <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
+        Scout an opponent from their own film
+      </h1>
+      <p class="text-lg sm:text-xl text-warm-600 mb-12">
+        A scout is easier for a team to take in when you can show it. "They run a
+        lot of horns" means more once they've watched five possessions of it. You
+        can put that together straight from an opponent's game tape.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Set up the categories first
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Before you watch, turn the questions you need answered into categories:
+        their go-to sets, after-timeout plays, out-of-bounds plays, how they break
+        a press, what they do on the last shot of a quarter. Once those exist,
+        watching the tape is mostly dropping each possession into the right one.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Clip their tendencies
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        A lot of what's useful is in the things they repeat. Tag their best
+        scorer's go-to move, which way a particular guard drives, who they go after
+        in switches, when they crash the offensive glass and when they get back. A
+        single clip doesn't show much, but once you've tagged ten possessions of
+        the same tendency you have something concrete to plan around.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Pull from more than one game
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        One game can be misleading. A team gets hot, or a set works once and you
+        never see it again. If you can get two or three of their games, clip all of
+        them into the same categories. The tendencies that show up across every
+        game are the ones worth preparing for.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Export a scout folder for the staff
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Export the categories as folders and you have a scouting package you can
+        share: "Horns", "Their press", "ATOs", ready to walk through with the staff
+        or show players the day before. It pairs with a written report, since the
+        clips back up what you wrote. Everything stays on your machine, so you're
+        not uploading an opponent's film anywhere.
+      </p>
+
+      <div class="mt-12 pt-8 border-t border-warm-200">
+        <h2 class="font-display text-2xl font-bold text-warm-900 mb-4">Build your next scout</h2>
+        <p class="text-warm-600 mb-6 max-w-lg">
+          Free and open source, on Windows, macOS, and Linux. No account, and no
+          limit on how much you clip.
+        </p>
+        <DownloadButton release={release} client:idle />
+      </div>
+    </div>
+  </article>
+
+  <RelatedGuides current="/scouting" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "headline": "Scouting opponents from game film",
+          "description": "How to build a basketball scouting report from an opponent's game tape: set up categories, clip tendencies across multiple games, and export a scout folder for your staff.",
+          "url": "https://basketballvideoanalyzer.com/scouting",
+          "datePublished": "2026-06-01",
+          "author": { "@type": "Person", "name": "kauredo", "url": "https://github.com/kauredo" },
+          "about": { "@type": "SoftwareApplication", "name": "Basketball Video Analyzer", "url": "https://basketballvideoanalyzer.com" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://basketballvideoanalyzer.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Scouting opponents from film", "item": "https://basketballvideoanalyzer.com/scouting" }
+          ]
+        }
+      ]
+    }
+  </script>
+</BaseLayout>

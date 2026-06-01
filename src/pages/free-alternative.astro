@@ -1,0 +1,173 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { DownloadButton } from '@/components/features/DownloadButton';
+import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import { getCachedLatestRelease } from '@/utils/cache';
+import { fallbackReleaseData } from '@/utils/fallback';
+
+const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
+---
+
+<BaseLayout
+  title="A Free Alternative to Hudl for Film Breakdown"
+  fullTitle="A Free Alternative to Hudl for Film Breakdown | Basketball Video Analyzer"
+  description="If all you need is to cut, organize, and export clips from your own game film, this free open-source tool covers it. An honest comparison with Hudl, Premiere, and VLC."
+  type="article"
+>
+  <article class="py-20 sm:py-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-medium text-primary-600 mb-4">Comparison</p>
+      <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
+        A free alternative to Hudl for film breakdown
+      </h1>
+      <p class="text-lg sm:text-xl text-warm-600 mb-12">
+        This isn't a Hudl replacement, and I won't pretend it is. Hudl is a whole
+        platform. But plenty of coaches pay for that platform and only ever use it
+        to cut clips out of their own film and share them. If that's most of what
+        you do, this covers it for free.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        What Hudl does that this doesn't
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        It's worth being clear about what you'd be giving up. Hudl hosts your video
+        in the cloud, captures live games, syncs box-score stats to the film, runs
+        a sharing platform with player accounts and messaging, and supports a whole
+        athletic department. Those are real features. If you need them, pay for
+        them. This tool doesn't try to do any of it.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        What this does
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        It does the breakdown loop and not much else. You load your own game file,
+        mark clips with keyboard shortcuts, tag them into categories, and export
+        the folders. It runs on your computer, the film never leaves it, there's no
+        account, and it's free and open source.
+      </p>
+
+      <div class="overflow-x-auto my-8">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-warm-300">
+              <th class="py-3 pr-4 font-display font-semibold text-warm-900"></th>
+              <th class="py-3 px-4 font-display font-semibold text-warm-900">This tool</th>
+              <th class="py-3 px-4 font-display font-semibold text-warm-900">Hudl</th>
+              <th class="py-3 px-4 font-display font-semibold text-warm-900">Premiere / VLC</th>
+            </tr>
+          </thead>
+          <tbody class="text-warm-700">
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Price</td>
+              <td class="py-3 px-4">Free</td>
+              <td class="py-3 px-4">Paid subscription</td>
+              <td class="py-3 px-4">Paid / free</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Cut &amp; tag clips by category</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Manual</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Export organized folders</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Manual</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Cloud hosting &amp; sharing platform</td>
+              <td class="py-3 px-4">No</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">No</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Live capture &amp; synced stats</td>
+              <td class="py-3 px-4">No</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">No</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Works offline, film stays local</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">No</td>
+              <td class="py-3 px-4">Yes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Compared to doing it by hand
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Most coaches who'd use this aren't choosing between it and Premiere.
+        They're choosing between it and doing the whole thing by hand in VLC,
+        scrubbing to each play and renaming files. You can break a game down that
+        way. You just lose the tagging and the category export, and most of your
+        time goes to managing files. That's the part this is meant to take off
+        your plate.
+      </p>
+
+      <div class="mt-12 pt-8 border-t border-warm-200">
+        <h2 class="font-display text-2xl font-bold text-warm-900 mb-4">Try it free</h2>
+        <p class="text-warm-600 mb-6 max-w-lg">
+          Free and open source, on Windows, macOS, and Linux. Worth a download to
+          see if it covers what you need.
+        </p>
+        <DownloadButton release={release} client:idle />
+      </div>
+    </div>
+  </article>
+
+  <RelatedGuides current="/free-alternative" />
+
+  <!-- FAQPage (not Article) — this page is Q&A, deliberately different from the
+       guide pages, to be eligible for FAQ rich results. -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "FAQPage",
+          "url": "https://basketballvideoanalyzer.com/free-alternative",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is Basketball Video Analyzer really free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. It's free and open source, with no subscription, no per-seat pricing, and no paid tier. You download it and use it."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does it replace Hudl?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Hudl is a full platform with cloud hosting, live capture, synced stats, and team management. This tool only does the film-breakdown loop: cut, tag, and export clips from your own game file. If that's all you use Hudl for, it can replace that part for free."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does my game film get uploaded anywhere?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. It runs on your computer and your video files never leave it. There's no account and no cloud."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://basketballvideoanalyzer.com/" },
+            { "@type": "ListItem", "position": 2, "name": "A free alternative to Hudl", "item": "https://basketballvideoanalyzer.com/free-alternative" }
+          ]
+        }
+      ]
+    }
+  </script>
+</BaseLayout>

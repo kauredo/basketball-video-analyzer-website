@@ -1,8 +1,17 @@
 ---
+import { guides } from '../../data/guides';
 ---
 
 <footer class="border-t border-warm-200 py-8">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav aria-label="Guides" class="flex flex-wrap gap-x-6 gap-y-2 mb-6 pb-6 border-b border-warm-200 text-sm text-warm-600">
+      {
+        guides.map((g) => (
+          <a href={g.href} class="hover:text-warm-900 transition-colors">{g.label}</a>
+        ))
+      }
+    </nav>
+
     <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-warm-600">
       <span>
         Made by <a
