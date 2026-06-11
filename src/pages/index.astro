@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
+import RelatedGuides from '@/components/ui/RelatedGuides.astro';
 import { FullScreenBasketball3D } from '@/components/3d/FullScreenBasketball3D';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
@@ -19,7 +20,7 @@ const DEMO_VIDEO_ID = '';
 
 <BaseLayout
   title="Free Basketball Video Analysis Tool"
-  fullTitle="Basketball Video Analyzer — Free Game Film Analysis for Coaches"
+  fullTitle="Basketball Video Analyzer — Free Video Analysis Software for Coaches"
 >
 
   <!-- ============================== -->
@@ -280,6 +281,12 @@ const DEMO_VIDEO_ID = '';
       </p>
     </div>
   </section>
+
+
+  <!-- ============================== -->
+  <!-- GUIDES: link the content pages -->
+  <!-- ============================== -->
+  <RelatedGuides title="Coaching guides" />
 
 
   <!-- ============================== -->

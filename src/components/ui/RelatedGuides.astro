@@ -5,16 +5,17 @@ import { guides } from '../../data/guides';
 
 interface Props {
   current?: string;
+  title?: string;
 }
 
-const { current } = Astro.props;
+const { current, title = 'More guides' } = Astro.props;
 
 const others = guides.filter((g) => g.href !== current);
 ---
 
 <nav aria-label="Related guides" class="py-16 sm:py-20 bg-warm-100/50">
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 class="font-display text-2xl font-bold text-warm-900 mb-8">More guides</h2>
+    <h2 class="font-display text-2xl font-bold text-warm-900 mb-8">{title}</h2>
     <ul class="space-y-3">
       {
         others.map((g) => (
