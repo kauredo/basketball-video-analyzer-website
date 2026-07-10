@@ -10,4 +10,6 @@ export const guides: Guide[] = [
   { href: '/for-coaches', label: 'Film review for coaches' },
   { href: '/scouting', label: 'Scouting opponents from film' },
   { href: '/free-alternative', label: 'A free alternative to Hudl' },
+  { href: '/vs-inbound-studio', label: 'Compared with Inbound Studio' },
+  { href: '/hudl-alternatives', label: 'Hudl alternatives for basketball' },
 ];
