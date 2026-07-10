@@ -1,0 +1,209 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { DownloadButton } from '@/components/features/DownloadButton';
+import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import { getCachedLatestRelease } from '@/utils/cache';
+import { fallbackReleaseData } from '@/utils/fallback';
+
+const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
+---
+
+<BaseLayout
+  title="Hudl Alternatives for Basketball"
+  fullTitle="Hudl Alternatives for Basketball Coaches — Free and Paid Options"
+  description="An honest roundup of Hudl alternatives for basketball film breakdown, from free open-source tools to paid analysis suites, and who each one actually fits."
+  type="article"
+>
+  <article class="py-20 sm:py-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-medium text-primary-600 mb-4">Comparison</p>
+      <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
+        Hudl alternatives for basketball
+      </h1>
+      <p class="text-lg sm:text-xl text-warm-600 mb-12">
+        Hudl is a full platform, and for a lot of programs it's the right answer.
+        But plenty of coaches pay for it and only ever use it to cut and share
+        clips from their own film. If that's you, or the budget isn't there,
+        here are the tools worth knowing about, and who each one fits.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Basketball Video Analyzer
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Full disclosure first: this is the tool this site is built around, so
+        take the pitch with that in mind. It's free and open source, runs on
+        Windows, macOS, and Linux, and does the film-breakdown loop: load your
+        game file, mark clips with keyboard shortcuts, tag them by category and
+        player, draw on the film, and export organized folders. It also charts
+        shots and shows basic stats. The film never leaves your computer. What
+        it doesn't do is host video in the cloud, capture live games, or run a
+        team-sharing platform. For more on where it stands against Hudl
+        specifically, see the
+        <a href="/free-alternative" class="text-primary-600 hover:underline">free alternative to Hudl</a>
+        write-up.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Kinovea
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Free and open source, Windows only. Kinovea is a general sports video
+        tool built for motion study: frame-by-frame review, drawing, angle and
+        distance measurement. It has no basketball-specific tagging or clip
+        organization, so it fits technique and biomechanics work more than
+        possession-by-possession breakdown.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        LongoMatch
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        A general sports-tagging tool with open-source roots and a paid pro
+        tier. It uses a customizable button dashboard for coding events during
+        or after a game, which works for basketball. If you want cross-platform
+        tagging and don't mind paying for the advanced features, it's worth a
+        look. Confirm the current plans on their site.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Nacsport
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        A paid, professional performance-analysis suite used across many sports.
+        It's deep and well-regarded, with tiered plans aimed at serious
+        analysts. If you're doing analysis as a real part of the job and want a
+        mature paid tool short of Hudl's full platform, it's a common pick.
+        Pricing is tiered; check their site for current numbers.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Doing it by hand in VLC
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Free, and the baseline most coaches actually compare against. You can
+        scrub through a game in VLC, note timestamps, and trim clips by hand.
+        It works. You just lose the tagging, the category export, and most of an
+        evening to managing files. That file-shuffling is the part a dedicated
+        tool takes off your plate.
+      </p>
+
+      <div class="overflow-x-auto my-8">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-warm-300">
+              <th class="py-3 pr-4 font-display font-semibold text-warm-900">Tool</th>
+              <th class="py-3 px-4 font-display font-semibold text-warm-900">Price</th>
+              <th class="py-3 px-4 font-display font-semibold text-warm-900">Basketball tagging</th>
+              <th class="py-3 px-4 font-display font-semibold text-warm-900">Platform</th>
+            </tr>
+          </thead>
+          <tbody class="text-warm-700">
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Basketball Video Analyzer</td>
+              <td class="py-3 px-4">Free</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Win, macOS, Linux</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Kinovea</td>
+              <td class="py-3 px-4">Free</td>
+              <td class="py-3 px-4">No (motion study)</td>
+              <td class="py-3 px-4">Windows</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">LongoMatch</td>
+              <td class="py-3 px-4">Free / paid pro</td>
+              <td class="py-3 px-4">Yes (generic)</td>
+              <td class="py-3 px-4">Cross-platform</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Nacsport</td>
+              <td class="py-3 px-4">Paid, tiered</td>
+              <td class="py-3 px-4">Yes (generic)</td>
+              <td class="py-3 px-4">Windows</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">VLC (by hand)</td>
+              <td class="py-3 px-4">Free</td>
+              <td class="py-3 px-4">No</td>
+              <td class="py-3 px-4">Win, macOS, Linux</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-warm-500 mb-8">
+        Details checked July 2026. Pricing and platform support for the paid
+        tools change, so confirm the current state on each tool's own site
+        before you commit.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        When Hudl is still the answer
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        None of these replace Hudl if what you need is the platform: cloud
+        hosting so your whole team can watch from anywhere, live capture, synced
+        stats, recruiting exposure, and league-wide film exchange. Programs that
+        rely on those should pay for Hudl. The tools above are for coaches whose
+        real need is cutting, tagging, and sharing clips from their own film.
+      </p>
+
+      <div class="mt-12 pt-8 border-t border-warm-200">
+        <h2 class="font-display text-2xl font-bold text-warm-900 mb-4">Try the free one</h2>
+        <p class="text-warm-600 mb-6 max-w-lg">
+          Free and open source, on Windows, macOS, and Linux. A quick download
+          to see if it covers your breakdown workflow.
+        </p>
+        <DownloadButton release={release} client:idle />
+      </div>
+    </div>
+  </article>
+
+  <RelatedGuides current="/hudl-alternatives" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "FAQPage",
+          "url": "https://basketballvideoanalyzer.com/hudl-alternatives",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is there a free alternative to Hudl for basketball?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Basketball Video Analyzer is free and open source and does the film-breakdown loop: cut, tag, draw on, and export clips from your own game film. Kinovea and VLC are also free, though neither does basketball-specific tagging."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can these tools replace Hudl completely?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Not the whole platform. Hudl adds cloud hosting, live capture, synced stats, recruiting, and league film exchange. The alternatives here replace the part where you cut, tag, and share clips from your own film, which for many coaches is all they use Hudl for."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What's the best free option for basketball film breakdown?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "For basketball-specific cutting and tagging, Basketball Video Analyzer. For general motion study, Kinovea. For doing it by hand with no install, VLC."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://basketballvideoanalyzer.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Hudl alternatives", "item": "https://basketballvideoanalyzer.com/hudl-alternatives" }
+          ]
+        }
+      ]
+    }
+  </script>
+</BaseLayout>

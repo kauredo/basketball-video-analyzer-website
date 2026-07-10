@@ -1,0 +1,190 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { DownloadButton } from '@/components/features/DownloadButton';
+import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import { getCachedLatestRelease } from '@/utils/cache';
+import { fallbackReleaseData } from '@/utils/fallback';
+
+const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
+---
+
+<BaseLayout
+  title="Basketball Video Analyzer vs Inbound Studio"
+  fullTitle="Basketball Video Analyzer vs Inbound Studio — Free vs Paid Film Breakdown"
+  description="An honest comparison of Basketball Video Analyzer, a free open-source desktop tool, with Inbound Studio, a paid basketball analysis app. What the subscription buys you, and who each one fits."
+  type="article"
+>
+  <article class="py-20 sm:py-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="text-sm font-medium text-primary-600 mb-4">Comparison</p>
+      <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
+        Basketball Video Analyzer vs Inbound Studio
+      </h1>
+      <p class="text-lg sm:text-xl text-warm-600 mb-12">
+        These two tools are more alike than most comparisons on this site. Both
+        run on your own computer, both keep your film local, and both are built
+        for cutting and tagging basketball game footage. Inbound Studio is a
+        paid product; this one is free and open source. So the honest question
+        is what the subscription buys you, and whether you need it.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        What Inbound Studio is
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Inbound Studio is professional-grade basketball analysis software for
+        Mac and Windows, starting at €14.99/month. It runs on your laptop with a
+        local offline database, and its pitch is putting elite scouting tools
+        within reach of ordinary clubs. The workflow centers on a customizable
+        tagging button panel, multiple games per project, and fast clip cutting.
+        For clubs and academies it adds an admin panel, multi-device support,
+        and team license packs. If you run a program and need several coaches
+        tagging across devices under one license, that management layer is a
+        real thing you'd be paying for, and it's worth the money.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        What this tool is
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Basketball Video Analyzer does the same core loop for free: load your
+        game file, mark clips with keyboard shortcuts, tag them into categories
+        and by player, and export organized folders. On top of that it draws on
+        the film (arrows, shapes, and text you can burn into exported clips),
+        plays clips back fullscreen in a present mode, charts shots on a court,
+        shows a stats dashboard, and ships in 11 languages. It runs on Windows,
+        macOS, and Linux, the film never leaves your machine, and the source is
+        public under the AGPL.
+      </p>
+
+      <div class="overflow-x-auto my-8">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-warm-300">
+              <th class="py-3 pr-4 font-display font-semibold text-warm-900"></th>
+              <th class="py-3 px-4 font-display font-semibold text-warm-900">This tool</th>
+              <th class="py-3 px-4 font-display font-semibold text-warm-900">Inbound Studio</th>
+            </tr>
+          </thead>
+          <tbody class="text-warm-700">
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Price</td>
+              <td class="py-3 px-4">Free</td>
+              <td class="py-3 px-4">From €14.99/month</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Cut &amp; tag clips by category</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Yes</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Runs on your computer, film stays local</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Yes</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Platforms</td>
+              <td class="py-3 px-4">Windows, macOS, Linux</td>
+              <td class="py-3 px-4">Windows, macOS</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Drawing on film (telestration)</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Check their feature list</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Shot chart &amp; stats</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Check their feature list</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Club admin panel &amp; multi-device</td>
+              <td class="py-3 px-4">No</td>
+              <td class="py-3 px-4">Yes</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Open source</td>
+              <td class="py-3 px-4">Yes (AGPL)</td>
+              <td class="py-3 px-4">No</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-warm-500 mb-8">
+        Inbound Studio pricing and features checked July 2026 from their
+        website. A couple of rows say "check their feature list" where I
+        couldn't confirm the current state from the outside, and I'd rather say
+        that than guess.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Which one fits you
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        If you're a coach breaking down your own film, cutting and tagging
+        clips, drawing up plays, and showing them back, this tool covers that
+        and costs nothing. If you're running a club or academy with several
+        coaches who need to tag across devices under managed licenses with an
+        admin panel, that's what Inbound Studio sells, and paying for it is a
+        reasonable call. Try the free one first. If you hit a wall that only the
+        management layer solves, you'll know exactly what you're buying.
+      </p>
+
+      <div class="mt-12 pt-8 border-t border-warm-200">
+        <h2 class="font-display text-2xl font-bold text-warm-900 mb-4">Try it free</h2>
+        <p class="text-warm-600 mb-6 max-w-lg">
+          Free and open source, on Windows, macOS, and Linux. Worth a download
+          to see if it covers what you need before you pay for anything.
+        </p>
+        <DownloadButton release={release} client:idle />
+      </div>
+    </div>
+  </article>
+
+  <RelatedGuides current="/vs-inbound-studio" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "FAQPage",
+          "url": "https://basketballvideoanalyzer.com/vs-inbound-studio",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is Basketball Video Analyzer really free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. It's free and open source under the AGPL, with no subscription and no per-seat pricing. Inbound Studio starts at €14.99/month."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do I need Inbound Studio if I use this?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Not for the core work. Both cut and tag clips from your own local film. Inbound Studio adds club-oriented management (an admin panel, multi-device support, team licenses) that this free tool doesn't have. If you need that layer, it's worth paying for; if you don't, this covers the breakdown loop for free."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does my game film get uploaded anywhere?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Both tools run on your computer and keep the film local. There's no account and no cloud with Basketball Video Analyzer."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://basketballvideoanalyzer.com/" },
+            { "@type": "ListItem", "position": 2, "name": "vs Inbound Studio", "item": "https://basketballvideoanalyzer.com/vs-inbound-studio" }
+          ]
+        }
+      ]
+    }
+  </script>
+</BaseLayout>
