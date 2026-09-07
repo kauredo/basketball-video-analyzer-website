@@ -20,6 +20,17 @@
     @apply text-warm-900 bg-warm-50;
   }
 
+  /* Every interactive element, not just the two button classes below. Before
+     this, a keyboard user tabbing the site got Chrome's default rgb(0, 95, 204)
+     on links, which is the one colour that belongs to nothing here.
+     outline rather than box-shadow, because forced-colors mode drops shadows.
+     :focus-visible rather than :focus, so a mouse click draws nothing. */
+  :focus-visible {
+    outline: 2px solid theme("colors.primary.500");
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
   h1,
   h2,
   h3,
@@ -37,8 +48,7 @@
     @apply inline-flex items-center justify-center gap-3 px-8 py-4 text-lg font-semibold
       bg-primary-500 text-white rounded-lg
       transition-all duration-200
-      hover:bg-primary-600 hover:-translate-y-0.5
-      focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+      hover:bg-primary-600 hover:-translate-y-0.5;
     box-shadow: 0 4px 14px rgba(var(--accent-rgb), 0.25);
   }
 
@@ -50,19 +60,16 @@
   .btn {
     @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-medium
       transition-all duration-200 rounded-lg
-      focus:outline-none focus:ring-2 focus:ring-offset-2
       disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   .btn-primary {
-    @apply btn bg-primary-500 text-white hover:bg-primary-600
-      focus:ring-primary-500;
+    @apply btn bg-primary-500 text-white hover:bg-primary-600;
   }
 
   .btn-secondary {
     @apply btn bg-white text-warm-800 border border-warm-300
-      hover:border-warm-400 hover:bg-warm-100
-      focus:ring-warm-500;
+      hover:border-warm-400 hover:bg-warm-100;
   }
 
   .btn-lg {
