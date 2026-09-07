@@ -1,9 +1,9 @@
 import type { ReleaseInfo } from "@/types/github";
 
 export const fallbackReleaseData: ReleaseInfo = {
-  version: "v1.0.0",
+  version: "v1.7.2",
   releaseDate: new Date("2024-12-20"),
-  releaseNotes: `# Basketball Video Analyzer v1.0.0
+  releaseNotes: `# Basketball Video Analyzer v1.7.2
 
 ## 🎉 Initial Release
 
@@ -16,7 +16,7 @@ Professional video analysis tool for basketball coaches to cut, organize, and ex
 - **Hierarchical Categories**: Parent-child categories with unlimited depth
 - **Advanced Video Cutting**: Frame-by-frame navigation with keyboard shortcuts
 - **Export System**: Organized clip libraries with folder structure
-- **Multi-Language**: English and Portuguese support
+- **Multi-Language**: 11 languages
 - **Cross-Platform**: Windows, macOS, and Linux support
 
 ### 🏀 Perfect for

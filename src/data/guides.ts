@@ -3,7 +3,7 @@ export interface Guide {
   label: string;
 }
 
-// Single source of truth for the guide pages — used by both the Footer nav and
+// Single source of truth for the guide pages, used by both the Footer nav and
 // the RelatedGuides cross-links so labels and the list can't drift.
 export const guides: Guide[] = [
   { href: '/film-breakdown', label: 'How to break down game film' },

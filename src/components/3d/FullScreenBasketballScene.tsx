@@ -93,7 +93,7 @@ export function FullScreenBasketballScene({
         <Scene onLoaded={handleLoaded} isMobile={isMobile} />
       </Canvas>
 
-      {/* Subtle gradient overlay for text readability — no blur, let the 3D scene show */}
+      {/* Subtle gradient overlay for text readability, no blur, let the 3D scene show */}
       <div className="absolute inset-0 bg-gradient-to-r from-warm-50/80 via-warm-50/40 to-transparent pointer-events-none"></div>
     </div>
   );
