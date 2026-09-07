@@ -57,10 +57,21 @@ ground the host paints behind it.
 
 | Hex | Name | Job |
 |---|---|---|
-| `#14A79A` | accent | The one accent. |
-| `#3ED0C2` | accent-hi | Its dark-theme face. |
-| `#0A6E68` | accent-lo | Its light-theme face, and the CTA fill. |
-| `#0E3B37` | act-face | The tint behind the armed Mark In button. |
+| `#0B7972` | accent | The one accent, and the fill on both surfaces in both themes. |
+| `#075450` | accent-lo | Its hover and pressed face. |
+| `#3ED0C2` | accent-hi | The accent on a ground that is dark whatever the theme: the app's focus ring, the Present mode counter, the telestration toolbar. |
+
+The first three rows are what shipped, and they are not what this file said
+before implementation. Two measurements moved them. `#14A79A` cannot sit behind
+white at all, at 2.99:1, so it could never be the fill. And `#0A6E68`, which
+white does clear at 6.10:1, reads at only 2.85:1 against the app's own graphite
+ground, under the 3.0 bar for identifying a control, so the button was legible
+but its shape was not. `#0B7972` is inside the window that clears both: 5.26:1
+behind white, 3.31:1 on graphite, 5.26:1 on paper.
+
+Anything changing the accent again has to land in that window. It is narrow:
+white needs the fill no lighter than L\* 0.183, and the graphite ground needs it
+no darker than L\* 0.132.
 
 **One accent, one job: the clip being cut right now.** The marked region on the
 scrub bar, the armed `Mark In (Z)`, the live Duration readout, `Create clip`,
@@ -151,22 +162,42 @@ reappeared 3000px down behind body copy and made that copy unreadable.
 
 Measured, not estimated. Recompute after any accent change.
 
-| Pair | Ratio | Bar |
-|---|---|---|
-| White on `#0A6E68` (site CTA) | 6.5:1 | passes AA |
-| White on `#14A79A` | 2.9:1 | **fails**, so the accent is never a fill behind white at this face |
-| `#1B1813` on `#F6F2EA` (body) | 15.4:1 | passes |
-| `#5C5648` on `#F6F2EA` (secondary) | 6.6:1 | passes |
-| `#8B8272` on `#F6F2EA` (micro) | 3.4:1 | large or non-essential text only |
+Every ratio below was recomputed against the shipped tokens, and the site rows
+were read off rendered pixels rather than assumed backgrounds.
 
-The four failures the audit found were all white on a mid-tone fill: the old
-site button at 2.85:1, the app's Export Clips at 2.84:1, Mark In at 2.36:1, and
-the step numerals at 1.67:1. Plan `021` fixes them against these tokens.
+| Pair | Before | After |
+|---|---|---|
+| White on the site's Download button | 2.85:1 | **5.26:1** |
+| White on the app's Export Clips and filter chips | 2.78:1 | **5.26:1** |
+| White on the app's Mark In (Z) | 2.78:1 | **5.26:1** |
+| White on the success toast, dark | 3.28:1 | **5.83:1** |
+| The site's step numerals, 48px bold, bar 3.0 | 1.06:1 | **6.03:1** |
+| The site's hero subhead over the court | 2.30:1 | **6.72:1** |
+| "Now in 11 languages", 12px | 2.96:1 | **6.34:1** |
+| Landing body copy | 4.34:1 | **6.34:1** |
+| The app's focus ring on graphite | n/a | **9.12:1** |
+| The app's focus ring on paper | n/a | **5.26:1** |
+
+Two corrections to the audit, worth keeping so nobody re-derives them. Mark In
+was reported at 2.36:1 on `--color-primary-light`; it was actually on
+`--color-success`, and `--color-primary-light` is never used as a fill. And the
+step numerals measured 1.06:1, not 1.67:1.
+
+Most of the site's failures below the fold had one cause, and it was structural
+rather than a colour choice. The court is a `fixed inset-0` layer behind the
+whole document, and the sections below the hero had translucent grounds
+(`bg-warm-100/50`, `bg-warm-100/30`), so terracotta showed through behind body
+copy thousands of pixels down. Those grounds are opaque now. The court belongs
+to the hero.
+
+Still failing, and not yet planned: white on the app's danger, warning and info
+fills, at 3.68:1, 2.16:1 and 3.12:1.
 
 ## Focus
 
 One ring, both surfaces: `outline: 2px solid` the accent's theme face, with
-`outline-offset: 2px`, on `:focus-visible` only.
+`outline-offset: 2px`, on `:focus-visible` only. `#3ED0C2` on graphite,
+`#0B7972` on paper.
 
 `outline` rather than `box-shadow`, because forced-colors mode drops shadows and
 keyboard users on Windows lose the ring. `:focus-visible` rather than `:focus`,
