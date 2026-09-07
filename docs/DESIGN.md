@@ -59,7 +59,7 @@ ground the host paints behind it.
 |---|---|---|
 | `#0B7972` | accent | The one accent, and the fill on both surfaces in both themes. |
 | `#075450` | accent-lo | Its hover and pressed face. |
-| `#3ED0C2` | accent-hi | The accent on a ground that is dark whatever the theme: the app's focus ring, the Present mode counter, the telestration toolbar. |
+| `#3ED0C2` | accent-hi | The accent on a ground that is dark whatever the theme. In practice that is Present mode alone, whose backdrop is `--bg-black`: it carries the counter and, via a scoped override, the focus ring. The telestration toolbar looked like such a surface and is not, because it draws on `--bg-overlay`, which is near-white in the light theme. |
 
 The first three rows are what shipped, and they are not what this file said
 before implementation. Two measurements moved them. `#14A79A` cannot sit behind
@@ -202,7 +202,12 @@ fills, at 3.68:1, 2.16:1 and 3.12:1.
 
 One ring, both surfaces: `outline: 2px solid` the accent's theme face, with
 `outline-offset: 2px`, on `:focus-visible` only. `#3ED0C2` on graphite,
-`#0B7972` on paper.
+`#0B7972` on paper. Present mode overrides `--focus-ring-color` to the bright
+face, because its backdrop is black in either theme.
+
+Do not set `border-radius` alongside the outline. Browsers already follow the
+element's own radius, and setting it changes the element's box while it holds
+focus.
 
 `outline` rather than `box-shadow`, because forced-colors mode drops shadows and
 keyboard users on Windows lose the ring. `:focus-visible` rather than `:focus`,

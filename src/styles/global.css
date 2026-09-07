@@ -6,8 +6,10 @@
 @tailwind utilities;
 
 :root {
-  /* The accent's rgb triple, for the one place a shadow needs it. Keep the
-     accent in exactly two places: this and the Tailwind primary scale. */
+  /* The accent's rgb triple, for the one place a shadow needs it.
+     The accent is a literal in four places across the two repos: here, the
+     Tailwind primary scale, public/site.webmanifest, and the app's
+     --color-primary. Nothing checks that they agree. */
   --accent-rgb: 11, 121, 114;
 }
 
@@ -28,7 +30,6 @@
   :focus-visible {
     outline: 2px solid theme("colors.primary.500");
     outline-offset: 2px;
-    border-radius: 2px;
   }
 
   h1,
