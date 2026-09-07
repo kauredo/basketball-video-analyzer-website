@@ -190,6 +190,11 @@ whole document, and the sections below the hero had translucent grounds
 copy thousands of pixels down. Those grounds are opaque now. The court belongs
 to the hero.
 
+The audit recorded that the six guide pages already passed at 6.34:1 and put
+them out of scope. They did not: every one of them, plus the 404, the footer and
+the navbar, used the same warm-600 body copy as the landing page, at 4.34:1.
+They are all on warm-700 now, measured at 6.34:1.
+
 Still failing, and not yet planned: white on the app's danger, warning and info
 fills, at 3.68:1, 2.16:1 and 3.12:1.
 
