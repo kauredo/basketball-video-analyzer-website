@@ -16,7 +16,6 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
 >
   <article class="py-20 sm:py-28">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-      <p class="text-sm font-medium text-primary-600 mb-4">Guide</p>
       <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
         How to break down game film fast
       </h1>
@@ -28,7 +27,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
       </p>
 
       <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
-        Pass 1 — Load the game, set up a project
+        Pass 1: load the game, set up a project
       </h2>
       <p class="text-warm-700 leading-relaxed mb-5">
         Drag the game file in and make a project for it. I keep one project per
@@ -37,7 +36,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
       </p>
 
       <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
-        Pass 2 — Mark the plays that matter
+        Pass 2: mark the plays that matter
       </h2>
       <p class="text-warm-700 leading-relaxed mb-5">
         Watch the game through and grab the plays you want to keep. For each one
@@ -46,10 +45,13 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
       </p>
       <ul class="space-y-2 mb-5 text-warm-700">
         <li class="flex gap-3"><kbd class="font-mono text-sm bg-warm-100 border border-warm-300 rounded px-2 py-0.5 text-warm-900">Space</kbd> play / pause</li>
-        <li class="flex gap-3"><kbd class="font-mono text-sm bg-warm-100 border border-warm-300 rounded px-2 py-0.5 text-warm-900">I</kbd> set the clip's in-point</li>
-        <li class="flex gap-3"><kbd class="font-mono text-sm bg-warm-100 border border-warm-300 rounded px-2 py-0.5 text-warm-900">O</kbd> set the clip's out-point</li>
+        <li class="flex gap-3"><kbd class="font-mono text-sm bg-warm-100 border border-warm-300 rounded px-2 py-0.5 text-warm-900">Z</kbd> mark the start of the clip</li>
+        <li class="flex gap-3"><kbd class="font-mono text-sm bg-warm-100 border border-warm-300 rounded px-2 py-0.5 text-warm-900">M</kbd> mark the end, which opens the clip form</li>
         <li class="flex gap-3"><kbd class="font-mono text-sm bg-warm-100 border border-warm-300 rounded px-2 py-0.5 text-warm-900">&larr; &rarr;</kbd> step frame by frame to trim the edges</li>
       </ul>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Both mark keys are configurable in Settings.
+      </p>
       <p class="text-warm-700 leading-relaxed mb-5">
         Tag clips as you cut them. A clip can have more than one tag, so a
         possession that's both a pick-and-roll and a missed rotation can go under
@@ -76,7 +78,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
       </p>
 
       <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
-        Pass 3 — Export the folders
+        Pass 3: export the folders
       </h2>
       <p class="text-warm-700 leading-relaxed mb-5">
         When you're done, export. You get one folder per category with the clips
