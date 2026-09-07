@@ -5,6 +5,12 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* The accent's rgb triple, for the one place a shadow needs it. Keep the
+     accent in exactly two places: this and the Tailwind primary scale. */
+  --accent-rgb: 11, 121, 114;
+}
+
 @layer base {
   html {
     font-family: "DM Sans Variable", "DM Sans", "SF Pro Text", system-ui, sans-serif;
@@ -33,11 +39,11 @@
       transition-all duration-200
       hover:bg-primary-600 hover:-translate-y-0.5
       focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
-    box-shadow: 0 4px 14px rgba(255, 107, 53, 0.25);
+    box-shadow: 0 4px 14px rgba(var(--accent-rgb), 0.25);
   }
 
   .download-btn:hover {
-    box-shadow: 0 8px 24px rgba(255, 107, 53, 0.35);
+    box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.35);
   }
 
   /* Button base classes referenced by DownloadButton.tsx */
