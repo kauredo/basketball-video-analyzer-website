@@ -74,8 +74,15 @@ white needs the fill no lighter than L\* 0.183, and the graphite ground needs it
 no darker than L\* 0.132.
 
 **One accent, one job: the clip being cut right now.** The marked region on the
-scrub bar, the armed `Mark In (Z)`, the live Duration readout, `Create clip`,
-and the site's primary CTA. Nothing decorative gets it. The old site spent the
+scrub bar, **both** `Mark In (Z)` and `Mark Out (M)`, the live Duration readout,
+`Create clip`, and the site's primary CTA. Nothing decorative gets it.
+
+The two marks take the two faces, `#0B7972` and the deeper `#075450`. They are
+one operation with two ends, so they belong to one hue. `Mark Out` was on
+`--color-danger` and the pair read as safe against destructive, which put a red
+button under the coach's most-used key. Red is reserved for what actually
+destroys, and nothing in the mark row qualifies: `Clear Marks` discards two
+marks, not work, and stays muted. The old site spent the
 accent on six different roles, including feature icons and link arrows, which
 is why the button stopped being the loudest thing on the page.
 
