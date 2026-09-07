@@ -59,7 +59,7 @@ ground the host paints behind it.
 |---|---|---|
 | `#0B7972` | accent | The one accent, and the fill on both surfaces in both themes. |
 | `#075450` | accent-lo | Its hover and pressed face. |
-| `#3ED0C2` | accent-hi | The accent on a ground that is dark whatever the theme: the app's focus ring, the Present mode counter, the telestration toolbar. |
+| `#3ED0C2` | accent-hi | The accent on a ground that is dark whatever the theme. In practice that is Present mode alone, whose backdrop is `--bg-black`: it carries the counter and, via a scoped override, the focus ring. The telestration toolbar looked like such a surface and is not, because it draws on `--bg-overlay`, which is near-white in the light theme. |
 
 The first three rows are what shipped, and they are not what this file said
 before implementation. Two measurements moved them. `#14A79A` cannot sit behind
@@ -74,8 +74,15 @@ white needs the fill no lighter than L\* 0.183, and the graphite ground needs it
 no darker than L\* 0.132.
 
 **One accent, one job: the clip being cut right now.** The marked region on the
-scrub bar, the armed `Mark In (Z)`, the live Duration readout, `Create clip`,
-and the site's primary CTA. Nothing decorative gets it. The old site spent the
+scrub bar, **both** `Mark In (Z)` and `Mark Out (M)`, the live Duration readout,
+`Create clip`, and the site's primary CTA. Nothing decorative gets it.
+
+The two marks take the two faces, `#0B7972` and the deeper `#075450`. They are
+one operation with two ends, so they belong to one hue. `Mark Out` was on
+`--color-danger` and the pair read as safe against destructive, which put a red
+button under the coach's most-used key. Red is reserved for what actually
+destroys, and nothing in the mark row qualifies: `Clear Marks` discards two
+marks, not work, and stays muted. The old site spent the
 accent on six different roles, including feature icons and link arrows, which
 is why the button stopped being the loudest thing on the page.
 
@@ -190,6 +197,11 @@ whole document, and the sections below the hero had translucent grounds
 copy thousands of pixels down. Those grounds are opaque now. The court belongs
 to the hero.
 
+The audit recorded that the six guide pages already passed at 6.34:1 and put
+them out of scope. They did not: every one of them, plus the 404, the footer and
+the navbar, used the same warm-600 body copy as the landing page, at 4.34:1.
+They are all on warm-700 now, measured at 6.34:1.
+
 Still failing, and not yet planned: white on the app's danger, warning and info
 fills, at 3.68:1, 2.16:1 and 3.12:1.
 
@@ -197,7 +209,12 @@ fills, at 3.68:1, 2.16:1 and 3.12:1.
 
 One ring, both surfaces: `outline: 2px solid` the accent's theme face, with
 `outline-offset: 2px`, on `:focus-visible` only. `#3ED0C2` on graphite,
-`#0B7972` on paper.
+`#0B7972` on paper. Present mode overrides `--focus-ring-color` to the bright
+face, because its backdrop is black in either theme.
+
+Do not set `border-radius` alongside the outline. Browsers already follow the
+element's own radius, and setting it changes the element's box while it holds
+focus.
 
 `outline` rather than `box-shadow`, because forced-colors mode drops shadows and
 keyboard users on Windows lose the ring. `:focus-visible` rather than `:focus`,

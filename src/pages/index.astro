@@ -34,6 +34,11 @@ const DEMO_VIDEO_ID = '';
       enableOnMobile={true}
     />
 
+    <!-- On a phone the headline crosses the ball, where the render is at its
+         darkest and warm-900 falls to 1.25:1. Scrim the scene back on small
+         screens only; the desktop hero is unaffected. -->
+    <div class="absolute inset-0 bg-warm-50/80 sm:hidden" aria-hidden="true"></div>
+
     <!-- Hero Content, left-aligned -->
     <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       <div class="max-w-2xl">
