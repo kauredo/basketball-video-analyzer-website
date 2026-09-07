@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import HeroCourt from '@/components/ui/HeroCourt.astro';
 import { FullScreenBasketball3D } from '@/components/3d/FullScreenBasketball3D';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
@@ -27,17 +28,12 @@ const DEMO_VIDEO_ID = '';
   <!-- ============================== -->
   <!-- HERO: Full viewport, 3D ball   -->
   <!-- ============================== -->
-  <section aria-label="Hero" class="relative min-h-screen flex items-center">
-    <!-- 3D Basketball Background -->
-    <FullScreenBasketball3D
-      client:idle
-      enableOnMobile={true}
-    />
-
-    <!-- On a phone the headline crosses the ball, where the render is at its
-         darkest and warm-900 falls to 1.25:1. Scrim the scene back on small
-         screens only; the desktop hero is unaffected. -->
-    <div class="absolute inset-0 bg-warm-50/80 sm:hidden" aria-hidden="true"></div>
+  <section aria-label="Hero" class="relative flex items-center min-h-[34rem] sm:min-h-screen py-16 sm:py-0">
+    <!-- Below sm this is line work in the page; at sm and up it is the 3D scene.
+         client:media rather than client:idle, so a phone never downloads the
+         Three.js chunk it would not render. -->
+    <HeroCourt />
+    <FullScreenBasketball3D client:media="(min-width: 640px)" />
 
     <!-- Hero Content, left-aligned -->
     <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
