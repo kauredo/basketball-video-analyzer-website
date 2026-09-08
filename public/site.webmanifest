@@ -4,7 +4,7 @@
   "description": "Professional video analysis tool for basketball coaches. Cut, organize, and export game footage for team scouting and player development.",
   "start_url": "/",
   "display": "browser",
-  "background_color": "#FDFBF7",
+  "background_color": "#F6F2EA",
   "theme_color": "#0B7972",
   "orientation": "portrait-primary",
   "icons": [
