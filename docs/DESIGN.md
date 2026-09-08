@@ -218,6 +218,15 @@ It must be clipped to the section that owns it. The previous implementation put
 the court on a `fixed inset-0` layer spanning the whole document, so it
 reappeared 3000px down behind body copy and made that copy unreadable.
 
+**The desktop hero still does this, and it is a landmine for new sections.**
+`FullScreenBasketball3D` is `fixed inset-0` across the whole document, so any
+section below the hero that does not paint its own opaque ground gets terracotta
+and basketball behind its body copy. The sections that existed when `021` swept
+for translucent grounds are fine; a section added later is not, and one added on
+2026-09-08 reproduced the bug immediately. Every section below the hero must set
+a ground. Until the hero layer is scoped to the hero, this is a rule, not a
+style preference.
+
 ## Contrast
 
 Measured, not estimated. Recompute after any accent change.
