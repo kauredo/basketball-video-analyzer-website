@@ -51,26 +51,28 @@ const lanes = [
        that was supposed to be passing them. The direction names this exact
        failure: a playhead that does not line up with its own markers is worse
        than no playhead. -->
-  <div class="grid grid-cols-[7rem_minmax(0,1fr)] lg:grid-cols-[9rem_minmax(0,1fr)] gap-x-6">
-    <span class="font-body text-xs uppercase tracking-[0.14em] text-warm-700 self-end pb-3">
+  <div class="grid grid-cols-[4.5rem_minmax(0,1fr)] sm:grid-cols-[7rem_minmax(0,1fr)] lg:grid-cols-[9rem_minmax(0,1fr)] gap-x-4 sm:gap-x-6">
+    <!-- Hidden on phones, where the column is 4.5rem and it wrapped to two
+         lines. The clock carries the same information and does not wrap. -->
+    <span class="hidden sm:block font-body text-xs uppercase tracking-[0.14em] text-warm-700 self-end pb-3 whitespace-nowrap">
       Second half
     </span>
     <div class="flex items-baseline justify-end gap-2 pb-3">
-      <span class="font-mono text-3xl lg:text-4xl text-warm-900 tabular-nums leading-none" data-clock>0:00</span>
-      <span class="font-mono text-base text-warm-700 tabular-nums leading-none">/ 1:25:39</span>
+      <span class="font-mono text-2xl sm:text-3xl lg:text-4xl text-warm-900 tabular-nums leading-none" data-clock>0:00</span>
+      <span class="font-mono text-sm sm:text-base text-warm-700 tabular-nums leading-none">/ 1:25:39</span>
     </div>
 
     <span></span>
-    <div class="relative h-28" data-track>
+    <div class="relative h-20 sm:h-28" data-track>
       <div class="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 bg-warm-400"></div>
       <!-- The axis is inset by the ball's radius at both ends, and the lanes
            below inset by the same 3.5rem, so the ball sits fully on the rail
            at 0:00 instead of hanging half off its left end. Everything that
            carries a position lives in one of these boxes, which is what keeps
            the playhead, the fill and every marker on a single x-axis. -->
-      <div class="absolute inset-x-14 inset-y-0" data-axis>
+      <div class="absolute inset-x-10 sm:inset-x-14 inset-y-0" data-axis>
         <div class="absolute left-0 top-1/2 h-2 bg-primary-500" style="width: 0%; transform: translateY(-50%);" data-fill></div>
-        <div class="absolute left-0 top-1/2 w-28 h-28 -ml-14 text-warm-900" style="transform: translateY(-50%);" data-ball>
+        <div class="absolute left-0 top-1/2 w-20 h-20 -ml-10 sm:w-28 sm:h-28 sm:-ml-14 text-warm-900" style="transform: translateY(-50%);" data-ball>
         <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.7"
           stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
           <!-- Opaque, so the track it is riding does not show through the ball. -->
@@ -86,8 +88,8 @@ const lanes = [
 
     {lanes.map((lane) => (
       <>
-        <span class="font-body text-sm text-warm-700 truncate self-center py-2.5">{lane.name}</span>
-        <span class="relative block h-4 self-center py-2.5">
+        <span class="hidden sm:block font-body text-sm text-warm-700 truncate self-center py-3.5">{lane.name}</span>
+        <span class="relative hidden sm:block h-4 self-center py-3.5">
           <span class="absolute inset-x-0 top-1/2 h-px bg-warm-300"></span>
           <span class="absolute inset-x-14 inset-y-0 block">
             {lane.at.map((pct) => (
