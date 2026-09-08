@@ -2,6 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import ProductShot from '@/components/ui/ProductShot.astro';
+import cuttingImg from '@/assets/screenshots/video-cutting-interface.png';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
 
@@ -15,11 +17,11 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
   type="article"
 >
   <article class="py-20 sm:py-28">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
         How to break down game film fast
       </h1>
-      <p class="text-lg sm:text-xl text-warm-600 mb-12">
+      <p class="text-lg sm:text-xl text-warm-700 mb-12">
         I used to do this in VLC: scrub to a play, write down the timestamp, scrub
         to the next one. By the end you have a page of timestamps and no good way
         to show any of it to a player. This is what I do now. It takes about the
@@ -59,6 +61,12 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
         second time.
       </p>
 
+      <ProductShot
+        src={cuttingImg}
+        alt={"The app with a game paused at 36:20 of 1:25:39, the hint \"Press Z to mark the start of a clip, M to mark the end\", and below that the Mark In (Z) and Mark Out (M) buttons with a Mark In, Mark Out and Duration readout between them."}
+        caption={"Nothing is marked yet, so Mark In, Mark Out and Duration all read --:--. Press Z and the first one fills in."}
+      />
+
       <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
         Set up categories that match how you talk about the game
       </h2>
@@ -90,7 +98,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
 
       <div class="mt-12 pt-8 border-t border-warm-200">
         <h2 class="font-display text-2xl font-bold text-warm-900 mb-4">Try the workflow</h2>
-        <p class="text-warm-600 mb-6 max-w-lg">
+        <p class="text-warm-700 mb-6 max-w-lg">
           Basketball Video Analyzer is free and open source, on Windows, macOS,
           and Linux. Your film stays on your computer.
         </p>
@@ -99,7 +107,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
     </div>
   </article>
 
-  <RelatedGuides current="/film-breakdown" />
+  <RelatedGuides containerClass="max-w-xl" current="/film-breakdown" />
 
   <script type="application/ld+json">
     {

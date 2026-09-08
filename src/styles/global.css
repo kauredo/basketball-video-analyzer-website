@@ -5,6 +5,14 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* The accent's rgb triple, for the one place a shadow needs it.
+     The accent is a literal in four places across the two repos: here, the
+     Tailwind primary scale, public/site.webmanifest, and the app's
+     --color-primary. Nothing checks that they agree. */
+  --accent-rgb: 11, 121, 114;
+}
+
 @layer base {
   html {
     font-family: "DM Sans Variable", "DM Sans", "SF Pro Text", system-ui, sans-serif;
@@ -12,6 +20,16 @@
 
   body {
     @apply text-warm-900 bg-warm-50;
+  }
+
+  /* Every interactive element, not just the two button classes below. Before
+     this, a keyboard user tabbing the site got Chrome's default rgb(0, 95, 204)
+     on links, which is the one colour that belongs to nothing here.
+     outline rather than box-shadow, because forced-colors mode drops shadows.
+     :focus-visible rather than :focus, so a mouse click draws nothing. */
+  :focus-visible {
+    outline: 2px solid theme("colors.primary.500");
+    outline-offset: 2px;
   }
 
   h1,
@@ -31,32 +49,28 @@
     @apply inline-flex items-center justify-center gap-3 px-8 py-4 text-lg font-semibold
       bg-primary-500 text-white rounded-lg
       transition-all duration-200
-      hover:bg-primary-600 hover:-translate-y-0.5
-      focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
-    box-shadow: 0 4px 14px rgba(255, 107, 53, 0.25);
+      hover:bg-primary-600 hover:-translate-y-0.5;
+    box-shadow: 0 4px 14px rgba(var(--accent-rgb), 0.25);
   }
 
   .download-btn:hover {
-    box-shadow: 0 8px 24px rgba(255, 107, 53, 0.35);
+    box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.35);
   }
 
   /* Button base classes referenced by DownloadButton.tsx */
   .btn {
     @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-medium
       transition-all duration-200 rounded-lg
-      focus:outline-none focus:ring-2 focus:ring-offset-2
       disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   .btn-primary {
-    @apply btn bg-primary-500 text-white hover:bg-primary-600
-      focus:ring-primary-500;
+    @apply btn bg-primary-500 text-white hover:bg-primary-600;
   }
 
   .btn-secondary {
     @apply btn bg-white text-warm-800 border border-warm-300
-      hover:border-warm-400 hover:bg-warm-100
-      focus:ring-warm-500;
+      hover:border-warm-400 hover:bg-warm-100;
   }
 
   .btn-lg {

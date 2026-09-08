@@ -1,18 +1,24 @@
 ---
+import { guides } from '@/data/guides';
 ---
 
 <nav class="fixed top-0 left-0 right-0 z-50 bg-warm-50/90 backdrop-blur-sm border-b border-warm-200/60">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-14">
       <!-- Logo -->
-      <a href="/" aria-label="Basketball Video Analyzer, home" class="flex items-center gap-2 text-warm-900 hover:text-primary-600 transition-colors">
-        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M3.33946 16.9997C6.10089 21.7826 12.2168 23.4214 16.9997 20.66C18.9493 19.5344 20.3765 17.8514 21.1962 15.9286C22.3875 13.1341 22.2958 9.83304 20.66 6.99972C19.0242 4.1664 16.2112 2.43642 13.1955 2.07088C11.1204 1.81935 8.94932 2.21386 6.99972 3.33946C2.21679 6.10089 0.578039 12.2168 3.33946 16.9997Z" stroke="currentColor" stroke-width="1.5"/>
-          <path d="M16.9498 20.5732C16.9498 20.5732 16.0108 13.982 14.0005 10.5C11.9901 7.01798 7.05029 3.42676 7.05029 3.42676" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M21.8638 12.5803C16.4528 11.3933 9.05903 16.348 7.57739 20.8177" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          <path d="M16.4141 3.20884C14.9262 7.6299 7.67443 12.5122 2.28877 11.4515" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <a href="/" aria-label="Basketball Video Analyzer, home" class="flex items-center gap-2 text-warm-900 hover:text-primary-600 transition-colors shrink-0">
+        <!-- The mark. Geometry is traced from photographs of a real ball;
+             see plans/026 and website/docs/DESIGN.md. -->
+        <svg class="w-6 h-6" viewBox="0 0 64 64" fill="none" stroke="currentColor"
+          stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="32" cy="32" r="29"/>
+          <path d="M 3.068 33.978 C 3.117 34.24, 3.177 34.46, 3.331 34.684 C 5.317 37.57, 16.386 38.405, 19.541 38.593 C 22.436 38.764, 25.338 38.82, 28.237 38.788 C 32.437 38.742, 36.636 38.513, 40.814 38.084 C 45.898 37.562, 51.858 36.731, 56.672 34.963 C 58.042 34.46, 60.848 33.434, 60.998 31.685"/>
+          <path d="M 32.36 3.002 C 31.774 3.017, 31.196 3.033, 30.614 3.116 C 27.419 3.57, 24.553 5.315, 22.243 7.507 C 15.301 14.096, 12.149 25.161, 12.004 34.485 C 11.909 40.559, 12.957 46.917, 15.952 52.272 C 17.663 55.33, 20.123 58.132, 23.384 59.565 C 24.034 59.851, 24.701 60.05, 25.385 60.235"/>
+          <path d="M 52.114 52.891 C 50.676 54.199, 48.97 55.061, 47.102 55.587 C 45.102 56.149, 43.006 56.303, 40.942 56.075 C 33.071 55.204, 24.432 49.118, 16.958 46.27 C 14.751 45.429, 11.463 44.374, 9.135 45.32 C 8.651 45.516, 8.191 45.823, 7.905 46.269 C 7.477 46.938, 7.63 47.651, 8.01 48.294"/>
+          <path d="M 8.055 15.64 C 7.722 16.171, 7.395 16.693, 7.128 17.262 C 5.98 19.701, 5.646 22.594, 6.535 25.171 C 7.071 26.725, 8.066 28.128, 9.469 29.011 C 14.476 32.164, 21.878 27.469, 26.039 24.729 C 28.216 23.294, 30.332 21.768, 32.46 20.262 C 34.729 18.655, 37.011 17.044, 39.45 15.702 C 42.656 13.938, 46.21 12.768, 49.838 12.267 C 51.574 12.027, 52.993 12.049, 54.255 13.407"/>
         </svg>
-        <span class="font-display font-semibold text-base sm:text-lg">Basketball Video Analyzer</span>
+        <span class="font-display font-semibold text-base sm:text-lg whitespace-nowrap hidden min-[420px]:inline"
+          >Basketball Video Analyzer</span>
       </a>
 
       <!-- Right side -->
@@ -21,13 +27,25 @@
           href="https://github.com/kauredo/basketball-video-analyzer"
           target="_blank"
           rel="noopener noreferrer"
-          class="hidden sm:block text-warm-500 hover:text-warm-900 transition-colors"
+          class="hidden sm:block text-warm-700 hover:text-warm-900 transition-colors"
           aria-label="GitHub Repository"
         >
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
           </svg>
         </a>
+        <button
+          type="button"
+          id="nav-menu-toggle"
+          class="sm:hidden inline-flex items-center justify-center w-11 h-11 -ml-2 text-warm-700"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+        >
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" />
+          </svg>
+        </button>
         <a
           href="/#download"
           class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium
@@ -39,6 +57,22 @@
       </div>
     </div>
   </div>
+
+  <!-- Below sm the bar carries only the wordmark and Download, so the guides
+       and GitHub live here. Same source as the footer, so the list cannot drift. -->
+  <div id="nav-menu" hidden class="sm:hidden border-t border-warm-200/60 bg-warm-50">
+    <nav aria-label="Guides" class="max-w-6xl mx-auto px-4 py-2 flex flex-col">
+      {guides.map((g) => (
+        <a href={g.href} class="py-3 text-warm-700 hover:text-warm-900 transition-colors">{g.label}</a>
+      ))}
+      <a
+        href="https://github.com/kauredo/basketball-video-analyzer"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="py-3 text-warm-700 hover:text-warm-900 transition-colors"
+      >GitHub</a>
+    </nav>
+  </div>
 </nav>
 
 <style>
@@ -46,3 +80,36 @@
     padding-top: 3.5rem;
   }
 </style>
+
+<script>
+  // A disclosure, not a modal: no focus trap, no scroll lock.
+  const toggle = document.getElementById('nav-menu-toggle');
+  const menu = document.getElementById('nav-menu');
+
+  if (toggle && menu) {
+    const setOpen = (open: boolean) => {
+      menu.hidden = !open;
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+
+    toggle.addEventListener('click', () => setOpen(menu.hidden));
+
+    menu.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) setOpen(false);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !menu.hidden) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    // A rotation that crosses the breakpoint must not strand it open, since the
+    // panel is sm:hidden and would simply vanish while aria-expanded said true.
+    window.matchMedia('(min-width: 640px)').addEventListener('change', (e) => {
+      if (e.matches) setOpen(false);
+    });
+  }
+</script>

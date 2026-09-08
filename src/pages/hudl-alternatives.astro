@@ -2,6 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import ProductShot from '@/components/ui/ProductShot.astro';
+import libraryImg from '@/assets/screenshots/clip-library-browser.png';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
 
@@ -15,11 +17,11 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
   type="article"
 >
   <article class="py-20 sm:py-28">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
         Hudl alternatives for basketball
       </h1>
-      <p class="text-lg sm:text-xl text-warm-600 mb-12">
+      <p class="text-lg sm:text-xl text-warm-700 mb-12">
         Hudl is a full platform, and for a lot of programs it's the right answer.
         But plenty of coaches pay for it and only ever use it to cut and share
         clips from their own film. If that's you, or the budget isn't there,
@@ -42,6 +44,12 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
         <a href="/free-alternative" class="text-primary-600 hover:underline">free alternative to Hudl</a>
         write-up.
       </p>
+
+      <ProductShot
+        src={libraryImg}
+        alt={"The clip library beside the video, with Export Clips, Open Clips Folder and a category filter listing each category and how many clips it holds."}
+        caption={"Clips export as ordinary video files in ordinary folders, one folder per category."}
+      />
 
       <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
         Kinovea
@@ -87,7 +95,10 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
         tool takes off your plate.
       </p>
 
-      <div class="overflow-x-auto my-8">
+      <!-- The comparison table is not prose, so it breaks out of the reading
+           column back to the 44rem it had before the measure was tightened.
+           Centred on the page axis, and never wider than the viewport. -->
+      <div class="overflow-x-auto my-8 relative left-1/2 -translate-x-1/2 w-[min(100vw-2rem,44rem)]">
         <table class="w-full text-left border-collapse text-sm">
           <thead>
             <tr class="border-b border-warm-300">
@@ -131,7 +142,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
           </tbody>
         </table>
       </div>
-      <p class="text-sm text-warm-500 mb-8">
+      <p class="text-sm text-warm-700 mb-8">
         Details checked July 2026. Pricing and platform support for the paid
         tools change, so confirm the current state on each tool's own site
         before you commit.
@@ -150,7 +161,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
 
       <div class="mt-12 pt-8 border-t border-warm-200">
         <h2 class="font-display text-2xl font-bold text-warm-900 mb-4">Try the free one</h2>
-        <p class="text-warm-600 mb-6 max-w-lg">
+        <p class="text-warm-700 mb-6 max-w-lg">
           Free and open source, on Windows, macOS, and Linux. A quick download
           to see if it covers your breakdown workflow.
         </p>
@@ -159,7 +170,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
     </div>
   </article>
 
-  <RelatedGuides current="/hudl-alternatives" />
+  <RelatedGuides containerClass="max-w-xl" current="/hudl-alternatives" />
 
   <script type="application/ld+json">
     {

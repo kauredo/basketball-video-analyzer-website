@@ -2,6 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import ProductShot from '@/components/ui/ProductShot.astro';
+import cuttingImg from '@/assets/screenshots/video-cutting-interface.png';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
 
@@ -15,11 +17,11 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
   type="article"
 >
   <article class="py-20 sm:py-28">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
         Basketball Video Analyzer vs Inbound Studio
       </h1>
-      <p class="text-lg sm:text-xl text-warm-600 mb-12">
+      <p class="text-lg sm:text-xl text-warm-700 mb-12">
         These two tools are more alike than most comparisons on this site. Both
         run on your own computer, both keep your film local, and both are built
         for cutting and tagging basketball game footage. Inbound Studio is a
@@ -56,7 +58,16 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
         public under the AGPL.
       </p>
 
-      <div class="overflow-x-auto my-8">
+      <ProductShot
+        src={cuttingImg}
+        alt={"The app with the side panel and the bottom panel both hidden, leaving the video, the scrub bar, the transport row reading 36:20 of 1:25:39, and the Mark In (Z) and Mark Out (M) row."}
+        caption={"You can hide both panels and cut in just this. The 14.99 a month buys the admin panel and the multi-device licenses, not this screen."}
+      />
+
+      <!-- The comparison table is not prose, so it breaks out of the reading
+           column back to the 44rem it had before the measure was tightened.
+           Centred on the page axis, and never wider than the viewport. -->
+      <div class="overflow-x-auto my-8 relative left-1/2 -translate-x-1/2 w-[min(100vw-2rem,44rem)]">
         <table class="w-full text-left border-collapse text-sm">
           <thead>
             <tr class="border-b border-warm-300">
@@ -109,7 +120,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
           </tbody>
         </table>
       </div>
-      <p class="text-sm text-warm-500 mb-8">
+      <p class="text-sm text-warm-700 mb-8">
         Inbound Studio pricing and features checked July 2026 from their
         website. A couple of rows say "check their feature list" where I
         couldn't confirm the current state from the outside, and I'd rather say
@@ -131,7 +142,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
 
       <div class="mt-12 pt-8 border-t border-warm-200">
         <h2 class="font-display text-2xl font-bold text-warm-900 mb-4">Try it free</h2>
-        <p class="text-warm-600 mb-6 max-w-lg">
+        <p class="text-warm-700 mb-6 max-w-lg">
           Free and open source, on Windows, macOS, and Linux. Worth a download
           to see if it covers what you need before you pay for anything.
         </p>
@@ -140,7 +151,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
     </div>
   </article>
 
-  <RelatedGuides current="/vs-inbound-studio" />
+  <RelatedGuides containerClass="max-w-xl" current="/vs-inbound-studio" />
 
   <script type="application/ld+json">
     {

@@ -4,17 +4,21 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // The one accent, and it has one job: the action being taken right
+        // now. 500 and 600 are the same hexes the desktop app uses for its
+        // action colour, so a coach clicking Download and then opening the
+        // program sees one colour do one thing.
         primary: {
-          50: "#FFF4ED",
-          100: "#FFE6D5",
-          200: "#FFD0AA",
-          300: "#FFB274",
-          400: "#FF8A5C",
-          500: "#FF6B35",
-          600: "#E55A2B",
-          700: "#CC4A1F",
-          800: "#B33E17",
-          900: "#99340F",
+          50: "#F0F9F9",
+          100: "#DDF3F2",
+          200: "#BAE8E5",
+          300: "#8BDAD5",
+          400: "#2FC6BC",
+          500: "#0B7972",
+          600: "#075450",
+          700: "#064742",
+          800: "#043935",
+          900: "#032B28",
         },
         court: {
           wood: "#D4A574",

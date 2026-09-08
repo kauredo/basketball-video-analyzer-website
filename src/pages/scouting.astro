@@ -2,6 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import ProductShot from '@/components/ui/ProductShot.astro';
+import libraryImg from '@/assets/screenshots/clip-library-browser.png';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
 
@@ -15,11 +17,11 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
   type="article"
 >
   <article class="py-20 sm:py-28">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
         Scout an opponent from their own film
       </h1>
-      <p class="text-lg sm:text-xl text-warm-600 mb-12">
+      <p class="text-lg sm:text-xl text-warm-700 mb-12">
         A scout is easier for a team to take in when you can show it. "They run a
         lot of horns" means more once they've watched five possessions of it. You
         can put that together straight from an opponent's game tape.
@@ -46,6 +48,12 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
         the same tendency you have something concrete to plan around.
       </p>
 
+      <ProductShot
+        src={libraryImg}
+        alt={"The clip library beside the video, showing 10 clips for SIMECQ vs Lobos and a category filter reading All 10, Defense 0, Offense 4, Rebounding 2, Special Plays 0, Transition 4, Turnovers 1."}
+        caption={"Transition 4 and Turnovers 1 after one game. Clip two more into the same categories and you'll see which of those is a habit."}
+      />
+
       <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
         Pull from more than one game
       </h2>
@@ -69,7 +77,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
 
       <div class="mt-12 pt-8 border-t border-warm-200">
         <h2 class="font-display text-2xl font-bold text-warm-900 mb-4">Build your next scout</h2>
-        <p class="text-warm-600 mb-6 max-w-lg">
+        <p class="text-warm-700 mb-6 max-w-lg">
           Free and open source, on Windows, macOS, and Linux. No account, and no
           limit on how much you clip.
         </p>
@@ -78,7 +86,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
     </div>
   </article>
 
-  <RelatedGuides current="/scouting" />
+  <RelatedGuides containerClass="max-w-xl" current="/scouting" />
 
   <script type="application/ld+json">
     {
