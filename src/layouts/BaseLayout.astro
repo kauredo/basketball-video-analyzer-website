@@ -145,8 +145,13 @@ const socialImage = new URL(image, Astro.site);
       body {
         font-family: 'DM Sans Variable', 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
         line-height: 1.6;
-        color: #2C2418;
-        background-color: #FDFBF7;
+        /* These two are warm-900 and warm-50 written out, because this block
+           paints before the stylesheet loads and cannot use a Tailwind class.
+           They are the one place the scale is duplicated, so they have to be
+           changed with it: a stale literal here left the 404 on the old
+           near-white ground after the rest of the site moved to paper. */
+        color: #1B1813;
+        background-color: #F6F2EA;
       }
 
       h1, h2, h3, h4, h5, h6 {
