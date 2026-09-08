@@ -302,13 +302,20 @@ The old hero rotated a basketball because 3D objects rotate. It popped in at
 the CTA competing for the eye, and was deleted entirely on phones. Whatever
 replaces it earns its place by showing the product.
 
-The real 3D ball is still on desktop, gated behind
-`client:media="(min-width: 640px)"` by `031` so a phone never downloads a chunk
-it cannot render, and confined to the hero's own box by the fix above. The
-scroll stage described in this section is not built; the ball still rotates
-because 3D objects rotate. That is `026`'s remaining scope, and it is the one
-place in this file where the gap is a feature nobody has written rather than a
-value nobody has changed.
+Built on 2026-09-08 as `src/components/ui/HeroStage.astro`, and the 3D ball is
+gone with it, along with `three`, `@react-three/fiber` and `@react-three/drei`.
+The landing route's JavaScript went from about 1.1MB to 66KB. The stage is one
+inline script and no dependencies.
+
+Two things the build settled. The lanes carry the app's own top-level
+categories in the colours `023` gave them, Offense `#B15F43`, Defense `#4075BF`
+and Rebounding `#A144E4`, so the hero shows the product's data rather than an
+illustration of it. And the track and the lanes are one grid, not two blocks:
+built as two, the markers sat 7rem right of the playhead that was meant to be
+passing them, which is the failure the second rule above names.
+
+The playhead's disc is opaque paper. Drawn with `fill: none` the teal fill
+behind it showed through the ball, which reads as a rendering fault.
 
 ## Structure
 
@@ -437,13 +444,14 @@ the part still on paper, with what adopting it would cost. It is here so nobody
 reads the tables above as aspirational, and nobody re-derives this by
 screenshotting the site again.
 
-### Both neutral palettes
+### The app's neutral palette
 
-The direction specified seventeen neutrals across the two surfaces. None of them
-shipped. The site is on the `warm-*` scale it has always used; the app is on
-neutral greys with no hue cast. The proposal was:
+The site's half was built on 2026-09-08: the `warm-*` scale now holds the
+direction's paper values under the old class names, so the ~230 usages did not
+have to move. What is left is the app's, which is a different size of job. The
+proposal for both is kept below, with the site column marked done:
 
-| Job | Proposed, app | Proposed, site |
+| Job | Proposed, app (not built) | Site (built 2026-09-08) |
 |---|---|---|
 | Ground | `#151319` ink-900, plum-cast graphite | `#F6F2EA` paper |
 | Chrome | `#1C1A21` ink-800 | `#EDE7DB` paper-2 |
@@ -456,30 +464,37 @@ neutral greys with no hue cast. The proposal was:
 | Micro-labels | `#756D83` tx-3 | `#8B8272` tx-3 |
 | Playhead | `#E4DCCD` bone | n/a |
 
-The site half is close to what ships: `#DED5C4` against `warm-300` `#E3D5BD` is
-within a shade, which is why the hairlines built on 2026-09-08 use `warm-300`
-and look right. Adopting the rest is a token swap in `tailwind.config.cjs` plus
-a contrast re-measure of every row in the table above, because moving the ground
-moves every ratio measured against it.
+The app half is the plum-cast graphite, and it is a visible change to every
+surface in the product. The ink values would also need the whole semantic ink
+table re-derived, since those are measured against `--bg-quaternary`. Not
+planned; it belongs with `027`, which chose the direction and whose third
+done-criterion, "the direction has been applied to the app's workspace, not
+only to the landing page", is still open on the app side.
 
-The app half is a different size of job. The plum cast is a visible change to
-every surface in the product, and the ink values would need the whole semantic
-ink table re-derived, since those are measured against `--bg-quaternary`.
-
-Neither is planned. Both belong with `027`, which chose the direction.
+What the site swap cost, for anyone sizing the app one: the scale values, one
+hardcoded pair in `BaseLayout`'s critical-CSS block, and a contrast sweep. The
+sweep is the part worth budgeting. It walks every text node on all ten routes
+against its computed ground, and it found two failures the swap exposed rather
+than caused: the 404 page using `warm-400`, the hairline colour, as 14px body
+copy at 2.00:1, and the critical-CSS literals that kept that page on the old
+near-white ground after everything else moved.
 
 ### No cards, no shadows, no radii above 1px
 
-This is the direction's structural rule and the app contradicts it 265 times:
-173 `border-radius` declarations and 92 `box-shadow` ones, plus a five-step
-shadow scale in `variables.css` that exists to be used. The site keeps
-`rounded-xl` on the product shots and `shadow-2xl` under them.
+Done on the landing route: the product shots lost their radius and their
+shadow and took a hairline frame, the same line that divides the bands. A dark
+app screenshot on paper separates from it without a drop shadow.
 
-This one is worth a decision rather than a migration. Stripping radius and
+The app still contradicts the rule 265 times: 173 `border-radius` declarations
+and 92 `box-shadow` ones, plus a five-step shadow scale in `variables.css` that
+exists to be used.
+
+That one is worth a decision rather than a migration. Stripping radius and
 shadow from a dense desktop tool removes the depth cue that separates a floating
 panel from the band behind it, and the direction's answer to that is the
-hairline. That trade is real and has not been tested at 1440x900 with both
-panels open. Prototype before committing.
+hairline. The trade is real and has not been tested at 1440x900 with both
+panels open. Prototype before committing. The site is weak evidence either way,
+because a landing page has six things on it and the workspace has sixty.
 
 ### Fixed on 2026-09-08
 

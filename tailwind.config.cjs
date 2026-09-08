@@ -25,18 +25,25 @@ module.exports = {
           line: "#FFFFFF",
           net: "#E8E8E8",
         },
+        // Scorebook paper. The names are the old scale's so the ~230 class
+        // usages did not have to move; the values are the direction's, and the
+        // job each one does is named here because a number does not say it.
+        //
+        // The scale was near-white before: warm-50 was #FDFBF7, which is 99%
+        // white, and the two band grounds differed by 1.05:1. That is what
+        // "so much white" was. Paper is a colour, not the absence of one.
         warm: {
-          50: "#FDFBF7",
-          100: "#F9F5ED",
-          200: "#F0E8D8",
-          300: "#E3D5BD",
-          400: "#C9B494",
-          500: "#A8906A",
-          600: "#8B7355",
-          700: "#6E5A42",
-          800: "#4A3C2C",
-          900: "#2C2418",
-          950: "#1A1510",
+          50: "#F6F2EA", // paper. The page ground.
+          100: "#EDE7DB", // paper-2. The alternate band. 1.10:1 against paper.
+          200: "#E5DFD1", // fills that are not functional: stripes, inline code.
+          300: "#DED5C4", // rule. The hairline on every band edge.
+          400: "#BFB39C", // rule-2. Second weight, and the court line work.
+          500: "#A39880", // between the rule and the micro-label. Non-text only.
+          600: "#8B8272", // tx-3, micro-labels. 3.40:1 on paper: NOT body copy.
+          700: "#5C5648", // tx-2. Body and secondary copy, 6.53:1 on paper.
+          800: "#3B372E", // between the body ink and the headline.
+          900: "#1B1813", // tx. Headline and primary ink, 15.85:1 on paper.
+          950: "#100E0B", // the deepest ink. Reserved.
         },
       },
       fontFamily: {
