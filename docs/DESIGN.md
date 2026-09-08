@@ -199,9 +199,29 @@ site's ink in the navbar, near-white in the app's header, the accent on an icon.
 
 **The 16px cut is a different drawing, and that is deliberate.** Four seam
 strands do not fit in sixteen pixels; three separate passes reached that
-conclusion independently. The favicon drops the upper cheek and thickens the
-rest to 2.6. Thinning the stroke instead produces grey mush. `mark.svg` and
+conclusion independently. The reduced cut drops the upper cheek and thickens
+the rest to 2.6. Thinning the stroke instead produces grey mush. `mark.svg` and
 `mark-small.svg` are both in `src/assets/brand/`.
+
+**The reduced cut is used at 16px and nowhere else.** That rule is worth
+stating plainly because breaking it shipped a visibly broken mark to
+production. `favicon.svg` was built from `mark-small.svg`, and an SVG favicon
+has no fixed size: a browser renders it at 16px in a tab and at tile size in a
+bookmark grid, where a missing seam does not read as a simplification, it reads
+as a mark with a line left off. `favicon-32x32.png` had the same source, and 32
+pixels carry four strands without trouble.
+
+`scripts/build-icons.mjs` generates every icon from the two marks and holds
+that rule in code. There was no script before, which is how one asset came to
+be made from the wrong drawing with nothing to catch it. Run it after any
+change to either mark.
+
+Transparent rasters (`favicon-16x16`, `favicon-32x32`, `favicon.png`) sit on
+whatever the browser paints. The opaque ones (`apple-touch-icon`, `icon-192`,
+`icon-512`) carry `warm-50` themselves, because a home-screen tile has no
+ground of its own and a transparent one looks like a hole in the wallpaper.
+Those three, and `site.webmanifest`'s `background_color`, were still on the
+pre-Scorebook `#FDFBF7` until 2026-09-08.
 
 `favicon.svg` carries a `prefers-color-scheme` swap to the bright face, which
 the PNG fallbacks cannot do.
