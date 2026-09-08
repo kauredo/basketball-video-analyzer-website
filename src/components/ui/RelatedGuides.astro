@@ -17,14 +17,14 @@ const others = guides.filter((g) => g.href !== current);
 
 <nav aria-label="Related guides" class="py-16 sm:py-20 bg-warm-100">
   <div class={`${containerClass} mx-auto px-4 sm:px-6 lg:px-8`}>
-    <h2 class="font-display text-2xl font-bold text-warm-900 mb-8">{title}</h2>
+    <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mb-8">{title}</h2>
     <ul class="space-y-3">
       {
         others.map((g) => (
           <li>
             <a
               href={g.href}
-              class="group inline-flex items-center gap-2 text-lg text-warm-700 hover:text-primary-600 transition-colors"
+              class="group inline-flex items-center gap-2 text-warm-700 hover:text-primary-600 transition-colors"
             >
               <span class="text-primary-500 group-hover:translate-x-0.5 transition-transform">&rarr;</span>
               {g.label}

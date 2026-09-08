@@ -17,7 +17,11 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
   type="article"
 >
   <article class="py-20 sm:py-28">
-    <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- The prose column sits on the site's own content edge rather than
+         centred in the viewport, so a guide's H1 starts where the wordmark
+         above it does. max-w-xl still sets the measure. -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-xl">
       <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
         Hudl alternatives for basketball
       </h1>
@@ -159,7 +163,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
         real need is cutting, tagging, and sharing clips from their own film.
       </p>
 
-      <div class="mt-12 pt-8 border-t border-warm-200">
+      <div class="mt-12 pt-8 border-t border-warm-300">
         <h2 class="font-display text-2xl font-bold text-warm-900 mb-4">Try the free one</h2>
         <p class="text-warm-700 mb-6 max-w-lg">
           Free and open source, on Windows, macOS, and Linux. A quick download
@@ -167,10 +171,11 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
         </p>
         <DownloadButton release={release} client:idle />
       </div>
+      </div>
     </div>
   </article>
 
-  <RelatedGuides containerClass="max-w-xl" current="/hudl-alternatives" />
+  <RelatedGuides containerClass="max-w-6xl" current="/hudl-alternatives" />
 
   <script type="application/ld+json">
     {

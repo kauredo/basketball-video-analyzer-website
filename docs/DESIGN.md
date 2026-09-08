@@ -259,17 +259,22 @@ control label.
 | Body | inherits `text-base` | 16px | Running prose, and the step ordinals. |
 | Small | `text-sm` | 14px | Card copy, the platform line, footnotes. |
 
-Two things still sit off this scale, both inside `RelatedGuides.astro`: its
-heading at 24px and its links at 18px. Plan `033` owns that component.
+Everything on the site is on this scale as of 2026-09-08. `RelatedGuides.astro`
+was the last exception, at 24px for its heading and 18px for its links; the
+heading now takes the same `text-2xl sm:text-3xl` as a guide `h2` and the links
+inherit body.
 
 The step ordinals in "How it works" were `text-5xl` bold, which drew a
 decorative `1` at 48px above a 36px section heading. Folding them to the title's
 own size and weight was worse, not better: two reviewers read `1 Load your game
 tape` as one line of type, because size, family, weight, cap height and baseline
 all matched and only the ink differed. An ordinal has to differ from the thing
-it marks in more than colour. They are now 14px DM Sans medium in `warm-600`
-against a 20px Space Grotesk semibold `warm-900` title, set on their own line so
-ordinal, title and body copy all share one left edge.
+it marks in more than colour. They are now 14px DM Sans medium in `warm-700`
+against a 20px Space Grotesk semibold `warm-900` title, set in their own gutter
+column. The column is the strongest of those signals: an ordinal beside the
+title it marks cannot be read as part of it. `warm-600` would have been the
+quieter choice and is no longer available for text, since the palette repoint
+made it the micro-label value at 3.40:1.
 
 **The measure, and why the obvious container width misses.** Character counts
 below are the first rendered line of all 26 body paragraphs across the six guide
@@ -456,6 +461,17 @@ so a mouse click does not draw one.
 Note for anyone testing the app: an Electron window that does not hold OS focus
 suppresses `:focus-visible` entirely. The ring is not missing, the window is not
 focused. That misreading cost this project two false findings.
+
+### Two the audit listed that measured clean
+
+Kept here so they are not re-derived. **Anchor offset**: the navbar is `fixed`
+at 56px, so `/#download` was expected to land under it. It cannot. That
+section's own `py-24 sm:py-32` is 96 to 128px of top padding, which clears the
+navbar on its own, and the heading measured 96px clear at 1440x900. Adding
+`scroll-margin-top` would be CSS that never applies. **The mobile height budget
+`034` missed**: it shipped at 5630 against a 5603 baseline, 27px over its
+zero-growth criterion. Deleting the 3D hero gave that back and more. The
+landing route measures 5605 at 393px now, 2px off the baseline.
 
 ## Chosen but not built
 
