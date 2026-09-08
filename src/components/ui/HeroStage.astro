@@ -1,8 +1,8 @@
 ---
 // The hero's scroll stage, which DESIGN.md's Motion section has specified since
-// 2026-09-07 and which nobody built. The ball is the playhead: scrolling rolls
-// it along the track, the clock runs from 0:00 to 1:25:39, and each possession
-// flips from a ghosted outline to a filled marker as the playhead passes it.
+// 2026-09-07. The ball is the playhead: scrolling rolls it along a track, the
+// clock runs from 0:00 to 1:25:39, and each possession flips from a ghosted
+// outline to a filled marker as the playhead passes it.
 //
 // It replaces a photoreal 3D basketball that cost a 939KB Three.js chunk plus
 // 183KB of client runtime, sat opposite the CTA competing for the eye, and told
@@ -25,6 +25,15 @@
 // Rebounding are the three top-level categories the Basketball preset seeds,
 // in the colours plan 023 gave them for CIELAB separation. So the hero is not
 // an illustration of the product, it is the product's data.
+//
+// Sized as the hero's art on 2026-09-08. The first build drew all of this at
+// diagram weight and parked it under the copy: a 36px ball in a 148px band, in
+// an 832px hero whose top right was 592x588 of empty paper. It read as a chart
+// legend. The 3D ball it replaced was about 490px across, and losing that much
+// physical presence is what "it does not look premium" was describing. Nothing
+// about the concept changed here. The ball is 112px, the track carries it, the
+// markers are 16px, and the clock is a timecode readout at 36px rather than a
+// caption at 14px.
 
 const DURATION = 5139; // 1:25:39 in seconds, the clock in the app screenshots
 
@@ -35,27 +44,34 @@ const lanes = [
 ];
 ---
 
-<div class="hero-stage mt-10 sm:mt-14" aria-hidden="true">
+<div class="hero-stage" aria-hidden="true">
   <!-- One grid for the whole stage, so the track and every lane below it hang
        off the same label column and share one x-axis. Built as two separate
        blocks first, and the markers then sat 7rem to the right of the playhead
        that was supposed to be passing them. The direction names this exact
        failure: a playhead that does not line up with its own markers is worse
        than no playhead. -->
-  <div class="grid grid-cols-[6rem_minmax(0,1fr)] sm:grid-cols-[7rem_minmax(0,1fr)] gap-x-5">
-    <span class="font-body text-xs uppercase tracking-wider text-warm-700 text-right self-end pb-2">
+  <div class="grid grid-cols-[7rem_minmax(0,1fr)] lg:grid-cols-[9rem_minmax(0,1fr)] gap-x-6">
+    <span class="font-body text-xs uppercase tracking-[0.14em] text-warm-700 self-end pb-3">
       Second half
     </span>
-    <span class="font-mono text-sm text-warm-900 tabular-nums text-right pb-2">
-      <span data-clock>0:00</span> <span class="text-warm-700">/ 1:25:39</span>
-    </span>
+    <div class="flex items-baseline justify-end gap-2 pb-3">
+      <span class="font-mono text-3xl lg:text-4xl text-warm-900 tabular-nums leading-none" data-clock>0:00</span>
+      <span class="font-mono text-base text-warm-700 tabular-nums leading-none">/ 1:25:39</span>
+    </div>
 
     <span></span>
-    <div class="relative h-9" data-track>
-      <div class="absolute inset-x-0 top-1/2 h-px bg-warm-400"></div>
-      <div class="absolute left-0 top-1/2 h-1.5 bg-primary-500" style="width: 0%; transform: translateY(-50%);" data-fill></div>
-      <div class="absolute left-0 top-1/2 w-9 h-9 -ml-[1.125rem] text-warm-900" style="transform: translateY(-50%);" data-ball>
-        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2"
+    <div class="relative h-28" data-track>
+      <div class="absolute inset-x-0 top-1/2 h-0.5 -translate-y-1/2 bg-warm-400"></div>
+      <!-- The axis is inset by the ball's radius at both ends, and the lanes
+           below inset by the same 3.5rem, so the ball sits fully on the rail
+           at 0:00 instead of hanging half off its left end. Everything that
+           carries a position lives in one of these boxes, which is what keeps
+           the playhead, the fill and every marker on a single x-axis. -->
+      <div class="absolute inset-x-14 inset-y-0" data-axis>
+        <div class="absolute left-0 top-1/2 h-2 bg-primary-500" style="width: 0%; transform: translateY(-50%);" data-fill></div>
+        <div class="absolute left-0 top-1/2 w-28 h-28 -ml-14 text-warm-900" style="transform: translateY(-50%);" data-ball>
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.7"
           stroke-linecap="round" stroke-linejoin="round" class="w-full h-full">
           <!-- Opaque, so the track it is riding does not show through the ball. -->
           <circle cx="32" cy="32" r="29" class="fill-warm-50"></circle>
@@ -63,24 +79,27 @@ const lanes = [
           <path d="M 32.36 3.002 C 31.774 3.017, 31.196 3.033, 30.614 3.116 C 27.419 3.57, 24.553 5.315, 22.243 7.507 C 15.301 14.096, 12.149 25.161, 12.004 34.485 C 11.909 40.559, 12.957 46.917, 15.952 52.272 C 17.663 55.33, 20.123 58.132, 23.384 59.565 C 24.034 59.851, 24.701 60.05, 25.385 60.235"></path>
           <path d="M 52.114 52.891 C 50.676 54.199, 48.97 55.061, 47.102 55.587 C 45.102 56.149, 43.006 56.303, 40.942 56.075 C 33.071 55.204, 24.432 49.118, 16.958 46.27 C 14.751 45.429, 11.463 44.374, 9.135 45.32 C 8.651 45.516, 8.191 45.823, 7.905 46.269 C 7.477 46.938, 7.63 47.651, 8.01 48.294"></path>
           <path d="M 8.055 15.64 C 7.722 16.171, 7.395 16.693, 7.128 17.262 C 5.98 19.701, 5.646 22.594, 6.535 25.171 C 7.071 26.725, 8.066 28.128, 9.469 29.011 C 14.476 32.164, 21.878 27.469, 26.039 24.729 C 28.216 23.294, 30.332 21.768, 32.46 20.262 C 34.729 18.655, 37.011 17.044, 39.45 15.702 C 42.656 13.938, 46.21 12.768, 49.838 12.267 C 51.574 12.027, 52.993 12.049, 54.255 13.407"></path>
-        </svg>
+          </svg>
+        </div>
       </div>
     </div>
 
     {lanes.map((lane) => (
       <>
-        <span class="font-body text-xs text-warm-700 text-right truncate self-center py-1.5">{lane.name}</span>
-        <span class="relative block h-3 self-center py-1.5">
+        <span class="font-body text-sm text-warm-700 truncate self-center py-2.5">{lane.name}</span>
+        <span class="relative block h-4 self-center py-2.5">
           <span class="absolute inset-x-0 top-1/2 h-px bg-warm-300"></span>
-          {lane.at.map((pct) => (
-            <span
-              class="absolute top-1/2 w-2.5 h-2.5 -ml-[0.3125rem] rounded-full border transition-colors duration-200"
-              style={`left: ${pct}%; transform: translateY(-50%); border-color: ${lane.colour}; background: transparent;`}
-              data-marker={pct}
-              data-colour={lane.colour}
-            >
-            </span>
-          ))}
+          <span class="absolute inset-x-14 inset-y-0 block">
+            {lane.at.map((pct) => (
+              <span
+                class="absolute top-1/2 w-4 h-4 -ml-2 rounded-full border-2 transition-colors duration-200"
+                style={`left: ${pct}%; transform: translateY(-50%); border-color: ${lane.colour}; background: transparent;`}
+                data-marker={pct}
+                data-colour={lane.colour}
+              >
+              </span>
+            ))}
+          </span>
         </span>
       </>
     ))}
@@ -95,7 +114,7 @@ const lanes = [
     const clock = stage.querySelector("[data-clock]");
     const fill = stage.querySelector("[data-fill]");
     const ball = stage.querySelector("[data-ball]");
-    const track = stage.querySelector("[data-track]");
+    const axis = stage.querySelector("[data-axis]");
     const markers = [...stage.querySelectorAll("[data-marker]")];
     const still = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -116,7 +135,7 @@ const lanes = [
       // so the whole thing is watchable without the page holding the scroll.
       const span = Math.max(1, (hero ? hero.offsetHeight : window.innerHeight) * 1.2);
       const p = Math.min(1, Math.max(0, window.scrollY / span));
-      const w = track.clientWidth;
+      const w = axis.clientWidth;
 
       clock.textContent = mmss(p * DURATION);
       fill.style.width = `${p * 100}%`;

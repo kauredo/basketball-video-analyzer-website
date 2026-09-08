@@ -4,7 +4,6 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import { guides } from '@/data/guides';
 import presentImg from '@/assets/screenshots/present-mode.png';
-import HeroCourt from '@/components/ui/HeroCourt.astro';
 import HeroStage from '@/components/ui/HeroStage.astro';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
@@ -27,31 +26,55 @@ const DEMO_VIDEO_ID = '';
 >
 
   <!-- ============================== -->
-  <!-- HERO: Full viewport, 3D ball   -->
+  <!-- HERO: copy, then the scroll stage -->
   <!-- ============================== -->
-  <section aria-label="Hero" class="relative flex items-center min-h-[34rem] sm:min-h-0 py-16 sm:py-24">
-    <!-- Line work in the page rather than wallpaper behind it, and it stops at
-         the hero's own edge. Phone only; the stage below carries the desktop. -->
-    <HeroCourt />
-
-    <!-- Hero Content, left-aligned -->
+  <section aria-label="Hero" class="relative py-16">
     <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-      <div class="max-w-2xl">
-        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-warm-900 leading-[1.1] mb-6">
-          Free basketball video analysis tool, built by a coach.
-        </h1>
-        <p class="text-xl text-warm-900 mb-8 max-w-lg">
-          I got tired of scrubbing through game tapes in VLC, so I built this. Mark plays, organize clips, export folders. That's it.
-        </p>
+      <div class="lg:flex lg:items-center lg:gap-10">
+        <div class="max-w-2xl lg:flex-1">
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-warm-900 leading-[1.1] mb-6 text-balance">
+            Free basketball video analysis tool, built by a coach.
+          </h1>
+          <p class="text-xl text-warm-900 mb-8 max-w-lg">
+            I got tired of scrubbing through game tapes in VLC, so I built this. Mark plays, organize clips, export folders. That's it.
+          </p>
 
-        <DownloadButton release={release} client:idle />
-        <p class="text-sm text-warm-900 mt-4">
-          Windows, macOS, and Linux &middot; Free &amp; open source
-        </p>
+          <DownloadButton release={release} client:idle />
+          <p class="text-sm text-warm-900 mt-4">
+            <a href="#download" class="underline underline-offset-2 decoration-warm-400 hover:decoration-warm-900">Windows, macOS, and Linux</a>
+            &middot; Free &amp; open source
+          </p>
+        </div>
+
+        <!-- The app itself, in the fold. The hero's right half was 592x588 of
+             bare paper with a 1.85:1 court drawing in it, and nothing above the
+             fold said "video software" until this screenshot appeared 950px
+             down the page. It is the same frame the showcase section used to
+             carry on its own, moved up rather than duplicated. -->
+        <div class="mt-12 lg:mt-0 lg:w-[40%] lg:shrink-0">
+          <!-- Cropped, not fitted. The window is 1440 CSS px wide; letting it
+               fit a 435px column reduces it 3.3x and puts the app's 13px UI
+               text at 4px, which is the same "graphic nobody can read" problem
+               the court drawing had. object-cover against a 11/10 box shows
+               the middle 52% at 0.58x instead, biased down the frame so the
+               scrub bar and the Mark In / Mark Out band come with the video. -->
+          <div class="overflow-hidden border border-warm-400 aspect-[11/10] lg:aspect-[11/10]">
+            <Image
+              src={videoCuttingImg}
+              alt="Basketball Video Analyzer, video cutting interface showing the video player, timeline, and clip creator"
+              class="w-full h-full object-cover object-[50%_64%]"
+              widths={[480, 720, 960, 1440]}
+              sizes="(max-width: 1024px) 100vw, 460px"
+              format="webp"
+              quality={85}
+              loading="eager"
+            />
+          </div>
+        </div>
       </div>
 
       <!-- Full measure, not the copy's 2xl, because a track needs the width. -->
-      <div class="hidden sm:block">
+      <div class="hidden sm:block mt-10 lg:mt-12">
         <HeroStage />
       </div>
     </div>
@@ -64,22 +87,10 @@ const DEMO_VIDEO_ID = '';
   <section aria-label="Product showcase" class="py-16 sm:py-24 bg-warm-50 border-t border-warm-300">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="sr-only">The app</h2>
-      <!-- Screenshot, clean, no overlay -->
-      <div class="overflow-hidden border border-warm-400">
-        <Image
-          src={videoCuttingImg}
-          alt="Basketball Video Analyzer, video cutting interface showing the video player, timeline, and clip creator"
-          class="w-full h-auto block"
-          widths={[640, 960, 1280, 1920]}
-          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1152px"
-          format="webp"
-          quality={80}
-          loading="lazy"
-        />
-      </div>
-
-      <!-- 3 callouts, not cards, just text -->
-      <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+      <!-- 3 callouts, not cards, just text. The screenshot that used to head
+           this section is in the hero now; running it twice inside 950px was
+           the cost of putting the product in the fold, so it moved. -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
         <div>
           <div class="flex items-center gap-2 mb-2">
             <svg class="w-5 h-5 text-primary-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
