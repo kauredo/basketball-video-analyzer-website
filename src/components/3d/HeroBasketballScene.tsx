@@ -35,15 +35,15 @@ function Scene({ onLoaded, isMobile }: ScrollBasketballProps) {
   );
 }
 
-interface FullScreenBasketballSceneProps {
+interface HeroBasketballSceneProps {
   className?: string;
   onLoaded?: () => void;
 }
 
-export function FullScreenBasketballScene({
+export function HeroBasketballScene({
   className = "",
   onLoaded,
-}: FullScreenBasketballSceneProps) {
+}: HeroBasketballSceneProps) {
   const [isReady, setIsReady] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -70,7 +70,7 @@ export function FullScreenBasketballScene({
     : { position: [0, 0, 5], fov: 70 };
 
   return (
-    <div className={`fixed inset-0 -z-10 ${className}`}>
+    <div className={`absolute inset-0 z-0 ${className}`}>
       <Canvas
         camera={{
           ...cameraConfig,
