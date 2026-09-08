@@ -15,7 +15,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
   type="article"
 >
   <article class="py-20 sm:py-28">
-    <div class="max-w-lg mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
         Scout an opponent from their own film
       </h1>
@@ -78,7 +78,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
     </div>
   </article>
 
-  <RelatedGuides current="/scouting" />
+  <RelatedGuides containerClass="max-w-xl" current="/scouting" />
 
   <script type="application/ld+json">
     {
