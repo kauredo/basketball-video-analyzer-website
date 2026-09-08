@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:contrast": "astro build && (astro preview --port 4321 & sleep 5) && node scripts/check-contrast.mjs; kill %1 2>/dev/null"
   },
   "dependencies": {
     "@astrojs/react": "^4.3.1",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@types/react": "^19.1.13",
-    "@types/react-dom": "^19.1.9"
+    "@types/react-dom": "^19.1.9",
+    "playwright": "^1.63.0"
   }
 }
