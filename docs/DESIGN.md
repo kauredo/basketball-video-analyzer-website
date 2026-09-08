@@ -1,11 +1,22 @@
 # Design system: Scorebook
 
 The direction settled on 2026-09-07 by plan `027`, chosen from four independent
-directions. This file records what the product uses. `design-system.md` is the
-other half of the pair: it says who the product is for and what it should feel
-like, and it does not change when tokens do.
+directions. `design-system.md` is the other half of the pair: it says who the
+product is for and what it should feel like, and it does not change when tokens
+do.
 
-Everything before this rewrite described a palette neither surface used.
+**Read the tables below as the shipped values, and the section at the end as the
+part of the direction still on paper.** That split matters, because for a year
+this file claimed to record what the product used while specifying a palette
+neither surface had ever painted. It was rewritten once on 2026-09-07 and got
+the same thing wrong again: the new tables were the direction's proposal, and
+implementation went a different way without coming back to the file. An
+art-direction pass on 2026-09-08 read the rendered pixels and found that of the
+seventeen neutrals specified here, none shipped. Only the accent matched.
+
+So: hexes below are read from `tailwind.config.cjs` and
+`app/src/renderer/styles/variables.css`. Anything not yet built is under
+"Chosen but not built", with what it would cost.
 
 ## The direction
 
@@ -19,34 +30,67 @@ hint, mark, timeline. The app reads as a stack of rows a coach fills in rather
 than a set of floating panels. That is what lets it hold five control bands, a
 three-lane timeline and two side panels at 1440x900 without feeling crowded.
 
+Of that paragraph and the one above it, what is built today is the band
+structure in the app, which predates the direction, and the hairlines on the
+site, added 2026-09-08. The rest of the sentence, the graphite and paper
+palettes and "no cards, no shadows, no radii above 1px", is not built. The app
+ships 173 `border-radius` and 92 `box-shadow` declarations. See the end of this
+file.
+
 ## Colour
 
 ### The app, dark
 
-| Hex | Name | Job |
-|---|---|---|
-| `#151319` | ink-900 | App background. Graphite with a faint plum cast, so it is not a blue-black. |
-| `#1C1A21` | ink-800 | Chrome that holds controls: topbar, transport, mark row, timeline, right panel. |
-| `#232028` | ink-700 | Sunken wells inside controls: button faces, input fields, chips. |
-| `#0E0D11` | ink-950 | The video pillarbox surround. The only true black. |
-| `#2C2834` | rule | The hairline. Every division in the app is this 1px line and nothing else. |
-| `#443E51` | rule-2 | Second hairline weight, for control outlines and the pressed segment. |
-| `#EDE9F2` | tx | Primary text. |
-| `#A79FB4` | tx-2 | Labels, secondary text, inactive controls. |
-| `#756D83` | tx-3 | Micro-labels and units. |
-| `#E4DCCD` | bone | The playhead, and only the playhead. Warm off-white, so it never reads as accent. |
+Read from `app/src/renderer/styles/variables.css`. Neutral greys, no hue cast.
+
+| Token | Dark | Light | Job |
+|---|---|---|---|
+| `--bg-primary` | `#1a1a1a` | `#ffffff` | App background. |
+| `--bg-secondary` | `#2a2a2a` | `#f5f5f5` | Chrome that holds controls, and card grounds. |
+| `--bg-tertiary` | `#333333` | `#eeeeee` | Sunken wells: button faces, input fields, chips. |
+| `--bg-quaternary` | `#444444` | `#e0e0e0` | The lightest ground in dark, the darkest in light. Contrast for anything drawn as ink is measured here, because it is the worst case in both themes. |
+| `--bg-black` | `#000000` | `#000000` | Present mode's backdrop. Theme-independent. |
+| `--border-color` | `#444444` | `#d0d0d0` | Divisions and control outlines. |
+| `--track` | `#787878` | `#868686` | What states a progress track's extent, as a fill in the transport and a 1px outline on the stats bars. Split out because `--bg-tertiary` reads 1.38:1 against the transport row and 1.14:1 against a stats card, both under the 3.0 bar for identifying a control. |
+| `--text-primary` | `#ffffff` | `#212121` | Primary text. |
+| `--text-secondary` | `#cccccc` | `#616161` | Labels and secondary text. |
+| `--text-tertiary` | `#aaaaaa` | `#757575` | Micro-labels and units. |
+| `--text-white` | `#ffffff` | `#ffffff` | Text on a fill. Theme-independent, so a rule that paints on a coloured button does not flip ink with the theme. |
+
+### The app's semantic colour
+
+Each of these is two tokens, not one, and the split is the whole point. A fill
+sits behind white text and has to clear 4.5:1 against white. The same idea drawn
+as text or a border sits on the app's own grounds and has to clear 4.5:1 against
+those, which pulls the hex the other way. One value cannot do both.
+
+| Job | Fill | Ink, dark | Ink, light |
+|---|---|---|---|
+| Danger | `#d32f2f` (`-dark` `#c62828`) | `#ef9a9a` | `#b3261e` |
+| Warning | `#ff9800` | `#ffb74d` | `#a04100` |
+| Info | `#2196f3` | `#4fc3f7` | `#1257a8` |
+| Success | `#2e7d32` (`-dark` `#1b5e20`) | n/a | n/a |
+
+Warning and info have no fill behind text anywhere, so their fill values stay
+bright and are used for borders and toast rails only. Do not put white on
+either: `#ff9800` reads 2.16:1 behind it.
 
 ### The site, warm paper
 
-| Hex | Name | Job |
+The `warm-*` scale from `tailwind.config.cjs`. The site never left it.
+
+| Class | Hex | Job |
 |---|---|---|
-| `#F6F2EA` | paper | Page ground. |
-| `#EDE7DB` | paper-2 | Header and tail bands. |
-| `#DED5C4` | rule | Hairline. |
-| `#BFB39C` | rule-2 | Second hairline weight, and the court line work. |
-| `#1B1813` | tx | Headline and body ink. |
-| `#5C5648` | tx-2 | Secondary copy. |
-| `#8B8272` | tx-3 | Micro-labels. |
+| `warm-50` | `#FDFBF7` | Page ground, and the odd bands. |
+| `warm-100` | `#F9F5ED` | The even bands. The two grounds differ by 1.05:1, which is a tint, not a division. The rule does the dividing. |
+| `warm-200` | `#F0E8D8` | Fills that are not functional: table stripes, inline code. |
+| `warm-300` | `#E3D5BD` | The hairline. Every band edge on the landing route carries one. |
+| `warm-400` | `#C9B494` | Second hairline weight, and the court line work. |
+| `warm-700` | `#6E5A42` | Body copy and secondary copy. 6.34:1 on `warm-50`. |
+| `warm-900` | `#2C2418` | Headline ink. |
+
+`warm-600` `#8B7355` survives in three places and is below the AA bar for body
+copy at 4.34:1. It is not a body-copy colour; check before adding a fourth.
 
 **The site has no dark mode, and is not getting one.** It did not have one
 before and the direction does not give it one. Dark belongs to the app, light
@@ -258,9 +302,13 @@ The old hero rotated a basketball because 3D objects rotate. It popped in at
 the CTA competing for the eye, and was deleted entirely on phones. Whatever
 replaces it earns its place by showing the product.
 
-If the real 3D ball comes back on desktop, gate it behind
-`client:media="(min-width: 640px)"` so a phone never downloads a chunk it
-cannot render.
+The real 3D ball is still on desktop, gated behind
+`client:media="(min-width: 640px)"` by `031` so a phone never downloads a chunk
+it cannot render, and confined to the hero's own box by the fix above. The
+scroll stage described in this section is not built; the ball still rotates
+because 3D objects rotate. That is `026`'s remaining scope, and it is the one
+place in this file where the gap is a feature nobody has written rather than a
+value nobody has changed.
 
 ## Structure
 
@@ -273,14 +321,18 @@ It must be clipped to the section that owns it. The previous implementation put
 the court on a `fixed inset-0` layer spanning the whole document, so it
 reappeared 3000px down behind body copy and made that copy unreadable.
 
-**The desktop hero still does this, and it is a landmine for new sections.**
-`FullScreenBasketball3D` is `fixed inset-0` across the whole document, so any
-section below the hero that does not paint its own opaque ground gets terracotta
-and basketball behind its body copy. The sections that existed when `021` swept
-for translucent grounds are fine; a section added later is not, and one added on
-2026-09-08 reproduced the bug immediately. Every section below the hero must set
-a ground. Until the hero layer is scoped to the hero, this is a rule, not a
-style preference.
+The desktop hero did it a second time. `FullScreenBasketball3D` was `fixed
+inset-0` across the whole document, so any section below the hero that did not
+paint its own opaque ground got terracotta and basketball behind its body copy.
+The sections that existed when `021` swept for translucent grounds were fine; a
+section added on 2026-09-08 reproduced the bug the day it was written. That is
+what a rule enforced by a comment gets you.
+
+It is `absolute inset-0` inside the hero now, and the component is
+`HeroBasketball3D`. Sections below the hero no longer have to paint a ground,
+though they all still do. **Anything full-bleed on this site is clipped to the
+section that owns it.** Two implementations have been caught breaking that;
+there is no third reading of it.
 
 ## Contrast
 
@@ -319,8 +371,37 @@ them out of scope. They did not: every one of them, plus the 404, the footer and
 the navbar, used the same warm-600 body copy as the landing page, at 4.34:1.
 They are all on warm-700 now, measured at 6.34:1.
 
-Still failing, and not yet planned: white on the app's danger, warning and info
-fills, at 3.68:1, 2.16:1 and 3.12:1.
+Fixed on 2026-09-08, and the fix was structural. White on the app's danger,
+warning and info fills measured 3.68:1, 2.16:1 and 3.12:1, and the reason was
+that each idea had one token doing two jobs. Splitting fill from ink moved
+seven pairs at once, all measured against `--bg-quaternary`, which is the
+lightest ground in the dark theme and the darkest in the light one:
+
+| Pair | Before | After |
+|---|---|---|
+| White on danger | 3.68:1 | **4.98:1** |
+| Danger as ink, dark | 3.90:1 | **4.53:1** |
+| Danger as ink, light | 3.68:1 | **4.95:1** |
+| Warning as ink, dark | 4.52:1 | **5.63:1** |
+| Warning as ink, light | 1.63:1 | **4.89:1** |
+| Info as ink, dark | 3.12:1 | **4.86:1** |
+| Info as ink, light | 2.37:1 | **5.38:1** |
+
+The light-theme numbers were the worse half and the audit never had them,
+because it read the dark theme only. `#ff9800` on light paper at 1.63:1 was the
+worst pair in the app.
+
+Two more found while measuring. `.deletePresetBtn:hover` was declared twice in
+`CategoryManager.module.css` and the later one won, painting `#f44336` on
+`#ef5350`, about 1.3:1, so the delete icon disappeared under the pointer. And
+the danger buttons took `--text-primary`, which is `#212121` in the light theme,
+so one rule painted white text in one theme and near-black in the other. They
+take `--text-white` now.
+
+The stats bars had the same shape of problem as the scrub track before them.
+`.barTrack` drew on `--bg-tertiary`, 1.14:1 against its card, so the track was
+invisible and a short bar had nothing to be short against. It carries a 1px
+`--track` outline now.
 
 One more was found on 2026-09-08 and fixed: the "Coaching guides" band drew on
 `bg-warm-100/50`, so on the home page the hero's terracotta came through it and
@@ -349,37 +430,73 @@ Note for anyone testing the app: an Electron window that does not hold OS focus
 suppresses `:focus-visible` entirely. The ring is not missing, the window is not
 focused. That misreading cost this project two false findings.
 
-## Drift found on 2026-09-08, not yet fixed
+## Chosen but not built
 
-An art-direction pass read the rendered pixels rather than this file and found
-that most of what the colour table above specifies is not what the site paints.
-Recording it here so the next person does not re-derive it, and so nobody treats
-the table as describing the live site.
+The direction was chosen on 2026-09-07 and implemented in parts. What follows is
+the part still on paper, with what adopting it would cost. It is here so nobody
+reads the tables above as aspirational, and nobody re-derives this by
+screenshotting the site again.
 
-| Job | This file says | The site renders |
+### Both neutral palettes
+
+The direction specified seventeen neutrals across the two surfaces. None of them
+shipped. The site is on the `warm-*` scale it has always used; the app is on
+neutral greys with no hue cast. The proposal was:
+
+| Job | Proposed, app | Proposed, site |
 |---|---|---|
-| Page ground | `#F6F2EA` paper | `#FDFBF7` and `#F9F5ED` |
-| Headline ink | `#1B1813` tx | `#2C2418` |
-| Secondary copy | `#5C5648` tx-2 | `#6E5A42` |
-| Hairline | `#DED5C4` rule | nothing renders below the navbar |
-| Accent | `#0B7972` | `#0B7972` |
+| Ground | `#151319` ink-900, plum-cast graphite | `#F6F2EA` paper |
+| Chrome | `#1C1A21` ink-800 | `#EDE7DB` paper-2 |
+| Wells | `#232028` ink-700 | n/a |
+| Pillarbox | `#0E0D11` ink-950 | n/a |
+| Hairline | `#2C2834` rule | `#DED5C4` rule |
+| Hairline, 2 | `#443E51` rule-2 | `#BFB39C` rule-2 |
+| Primary ink | `#EDE9F2` tx | `#1B1813` tx |
+| Secondary ink | `#A79FB4` tx-2 | `#5C5648` tx-2 |
+| Micro-labels | `#756D83` tx-3 | `#8B8272` tx-3 |
+| Playhead | `#E4DCCD` bone | n/a |
 
-Only the accent matches, and it matches exactly, which is what rules out a
-colour-profile shift in the captures. The site is still on the original `warm-*`
-scale from `tailwind.config.cjs`. The contrast table in this file agrees with the
-pixels and not with the colour table: it records landing body copy at 6.34:1,
-which is `#6E5A42` on `#FDFBF7`, not `#5C5648` on `#F6F2EA`.
+The site half is close to what ships: `#DED5C4` against `warm-300` `#E3D5BD` is
+within a shade, which is why the hairlines built on 2026-09-08 use `warm-300`
+and look right. Adopting the rest is a token swap in `tailwind.config.cjs` plus
+a contrast re-measure of every row in the table above, because moving the ground
+moves every ratio measured against it.
 
-Two further gaps in the same pass:
+The app half is a different size of job. The plum cast is a visible change to
+every surface in the product, and the ink values would need the whole semantic
+ink table re-derived, since those are measured against `--bg-quaternary`.
 
-- **The ruled bands do not exist.** The direction's first line is that every
-  division in the product is a 1px hairline. On the landing route the only
-  horizontal rule is the navbar underline at 1.03:1, and the section boundaries
-  are ground changes of 1.02:1. There are no hairlines to see.
-- **The desktop hero still runs the 3D basketball** this file describes as
-  deleted, in the position it describes as the problem, opposite the CTA. Plan
-  `031` gated it behind `client:media` so phones no longer download it, which
-  was that plan's scope. Desktop was left as it was.
+Neither is planned. Both belong with `027`, which chose the direction.
 
-Neither is planned yet. Both belong with `027`, which chose the direction, and
-`026`, which is still open on the mark.
+### No cards, no shadows, no radii above 1px
+
+This is the direction's structural rule and the app contradicts it 265 times:
+173 `border-radius` declarations and 92 `box-shadow` ones, plus a five-step
+shadow scale in `variables.css` that exists to be used. The site keeps
+`rounded-xl` on the product shots and `shadow-2xl` under them.
+
+This one is worth a decision rather than a migration. Stripping radius and
+shadow from a dense desktop tool removes the depth cue that separates a floating
+panel from the band behind it, and the direction's answer to that is the
+hairline. That trade is real and has not been tested at 1440x900 with both
+panels open. Prototype before committing.
+
+### Fixed on 2026-09-08
+
+Two items that were in this section and are not any more, kept so the record
+reads straight:
+
+- **The ruled bands.** On the landing route the only horizontal rule was the
+  navbar underline at 1.03:1, and section boundaries were ground changes of
+  1.05:1. Every band edge carries a 1px `warm-300` rule now. Two edges
+  deliberately do not: More features continues Present mode rather than
+  dividing from it, and that is what the `pb-12`/`pt-12` pairing is for.
+- **The document-wide 3D layer.** The hero scene was `fixed inset-0`, so it was
+  not the hero's backdrop, it was a layer over the whole document. Every section
+  below had to paint an opaque ground or render its body copy on the
+  basketball, and one section did not paint one. It is `absolute inset-0` inside
+  the hero now, measuring 900px against a 5493px document, and the component is
+  called `HeroBasketball3D` rather than `FullScreenBasketball3D`. The standing
+  rule that every section must paint its own ground is gone with it. This is
+  the second time a `fixed inset-0` court layer caused a contrast failure on
+  this site; see the note under Contrast about the translucent grounds.
