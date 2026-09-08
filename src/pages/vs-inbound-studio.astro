@@ -2,6 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import ProductShot from '@/components/ui/ProductShot.astro';
+import cuttingImg from '@/assets/screenshots/video-cutting-interface.png';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
 
@@ -55,6 +57,12 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
         macOS, and Linux, the film never leaves your machine, and the source is
         public under the AGPL.
       </p>
+
+      <ProductShot
+        src={cuttingImg}
+        alt={"The app with the side panel and the bottom panel both hidden, leaving the video, the scrub bar, the transport row reading 36:20 of 1:25:39, and the Mark In (Z) and Mark Out (M) row."}
+        caption={"You can hide both panels and cut in just this. The 14.99 a month buys the admin panel and the multi-device licenses, not this screen."}
+      />
 
       <!-- The comparison table is not prose, so it breaks out of the reading
            column back to the 44rem it had before the measure was tightened.

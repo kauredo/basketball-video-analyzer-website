@@ -2,6 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import ProductShot from '@/components/ui/ProductShot.astro';
+import libraryImg from '@/assets/screenshots/clip-library-browser.png';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
 
@@ -45,6 +47,12 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
         single clip doesn't show much, but once you've tagged ten possessions of
         the same tendency you have something concrete to plan around.
       </p>
+
+      <ProductShot
+        src={libraryImg}
+        alt={"The clip library beside the video, showing 10 clips for SIMECQ vs Lobos and a category filter reading All 10, Defense 0, Offense 4, Rebounding 2, Special Plays 0, Transition 4, Turnovers 1."}
+        caption={"Transition 4 and Turnovers 1 after one game. Clip two more into the same categories and you'll see which of those is a habit."}
+      />
 
       <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
         Pull from more than one game

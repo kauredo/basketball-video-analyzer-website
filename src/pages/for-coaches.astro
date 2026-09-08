@@ -2,6 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import ProductShot from '@/components/ui/ProductShot.astro';
+import categoriesImg from '@/assets/screenshots/category-management.png';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
 
@@ -45,6 +47,12 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
         examples of the same mistake, back to back, usually makes the point on its
         own.
       </p>
+
+      <ProductShot
+        src={categoriesImg}
+        alt={"The category list in the Settings window. Man-to-Man, Press and Zone Defense indented under Defense in blue, then Offense in orange with Fast Break, Isolation, Pick & Roll and Post Up, then Rebounding in purple with Defensive Rebound and Offensive Rebound."}
+        caption={"Each sub-category keeps its parent's color, so you can tell a Defense clip from an Offense clip on the timeline without reading the label."}
+      />
 
       <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
         Hand it to players in a form they'll open
