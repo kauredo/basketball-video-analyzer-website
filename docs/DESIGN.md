@@ -107,6 +107,61 @@ Two rules for anyone changing them, both from the audit:
 
 Plan `023` covers both.
 
+## The mark
+
+A basketball, drawn from measurements rather than from memory.
+
+The audit scored the old mark 2/10 with a verdict of START OVER: a stock glyph
+from an icon library set beside the product name. Four abstract replacements
+were drawn and rejected, then three "drawn ball" attempts, then three more that
+tried to encode clip in-points into the seams. The operator's verdict on the
+last of those settled it: "they both look broken, the dashes don't look
+intentional." Removing a segment from a line reads as damage, and no amount of
+tuning gap widths changes that. A 64px ball cannot carry a timeline.
+
+Then the more useful correction: "we need to first start with a good
+representation of a basketball. accurate lines and perspective." Every mark up
+to that point had drawn the seams by eye.
+
+**What a basketball's seams actually are.** Two great circles meeting at 90
+degrees at the poles, plus two closed cheek loops. Six crossings, twelve edges,
+eight panels, which is the panel count every source agrees on. The cheek seam is
+**not a wave**: it runs at constant longitude for most of its length and turns
+hard near the pole, reaching to about 15 degrees of colatitude. Four independent
+readings across two photographs put that turn at 15.5, 14.9, 15.2 and 16.9
+degrees.
+
+That flat-sided lobe is the whole difference between a basketball and a
+volleyball. Modelled as a series it needs one correction term,
+`57.82 + 15.46 cos2psi + 2.63 cos4psi`; a pure cosine puts the 45-degree point
+at 60.46 where the photographs say 55.19. An independent fit reached the same
+shape by a different route, a tanh-flattened sinusoid, and concluded that no
+cosine of any amplitude produces it.
+
+Two more measured facts worth keeping:
+
+- **Face-on, a real ball shows three seams, not four.** The fourth great circle
+  lies in the horizon plane and projects onto the silhouette. The familiar
+  vertical-plus-horizontal-plus-two-arcs icon is a stylisation of a pole-on view
+  at roughly double the real seam amplitude. Do not draw the ball face-on.
+- **Seams meet the silhouette tangentially**, measured at 73 degrees rising
+  toward 90. The exception is a great circle seen edge-on, which meets
+  near-perpendicular at 21 to 23 degrees from radial.
+
+**What shipped.** A three-quarter view, stroke 2.2 on a 64 viewBox with a radius
+of 29, which is 3.79% of the diameter against 2.2% in life. Single flat colour
+through `currentColor`, so the mark takes the colour of whatever it sits in: the
+site's ink in the navbar, near-white in the app's header, the accent on an icon.
+
+**The 16px cut is a different drawing, and that is deliberate.** Four seam
+strands do not fit in sixteen pixels; three separate passes reached that
+conclusion independently. The favicon drops the upper cheek and thickens the
+rest to 2.6. Thinning the stroke instead produces grey mush. `mark.svg` and
+`mark-small.svg` are both in `src/assets/brand/`.
+
+`favicon.svg` carries a `prefers-color-scheme` swap to the bright face, which
+the PNG fallbacks cannot do.
+
 ## Type
 
 **Space Grotesk** for display. **IBM Plex Sans** for interface and body.
