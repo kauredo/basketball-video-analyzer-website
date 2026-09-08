@@ -2,7 +2,7 @@
 import { guides } from '@/data/guides';
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 bg-warm-50/90 backdrop-blur-sm border-b border-warm-200/60">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-warm-50/90 backdrop-blur-sm border-b border-warm-300">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-14">
       <!-- Logo -->
@@ -60,7 +60,7 @@ import { guides } from '@/data/guides';
 
   <!-- Below sm the bar carries only the wordmark and Download, so the guides
        and GitHub live here. Same source as the footer, so the list cannot drift. -->
-  <div id="nav-menu" hidden class="sm:hidden border-t border-warm-200/60 bg-warm-50">
+  <div id="nav-menu" hidden class="sm:hidden border-t border-warm-300 bg-warm-50">
     <nav aria-label="Guides" class="max-w-6xl mx-auto px-4 py-2 flex flex-col">
       {guides.map((g) => (
         <a href={g.href} class="py-3 text-warm-700 hover:text-warm-900 transition-colors">{g.label}</a>
