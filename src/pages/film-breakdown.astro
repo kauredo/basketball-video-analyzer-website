@@ -2,6 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import ProductShot from '@/components/ui/ProductShot.astro';
+import cuttingImg from '@/assets/screenshots/video-cutting-interface.png';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
 
@@ -58,6 +60,12 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
         both. Do it while you're watching rather than going back over the game a
         second time.
       </p>
+
+      <ProductShot
+        src={cuttingImg}
+        alt='The app playing a game, with the transport row, the hint "Press Z to mark the start of a clip, M to mark the end", and the Mark In (Z) and Mark Out (M) buttons below it.'
+        caption='Pass 2 is two keys. Z sets the start of a clip, M sets the end, and the marks show as a Duration you can check before you cut.'
+      />
 
       <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
         Set up categories that match how you talk about the game

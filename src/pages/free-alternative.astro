@@ -2,6 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import ProductShot from '@/components/ui/ProductShot.astro';
+import projectsImg from '@/assets/screenshots/project-organization.png';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
 
@@ -100,6 +102,12 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
           </tbody>
         </table>
       </div>
+
+      <ProductShot
+        src={projectsImg}
+        alt='The project list, showing three games with their video files, clip counts and the dates they were last opened.'
+        caption='Every game is a project on your own disk. Nothing expires, and nothing is behind a login when the season ends.'
+      />
 
       <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
         Compared to doing it by hand

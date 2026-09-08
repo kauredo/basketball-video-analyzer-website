@@ -2,6 +2,8 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import ProductShot from '@/components/ui/ProductShot.astro';
+import libraryImg from '@/assets/screenshots/clip-library-browser.png';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
 
@@ -42,6 +44,12 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
         <a href="/free-alternative" class="text-primary-600 hover:underline">free alternative to Hudl</a>
         write-up.
       </p>
+
+      <ProductShot
+        src={libraryImg}
+        alt='The clip library beside the video, with Export Clips, Open Clips Folder and a category filter listing each category and how many clips it holds.'
+        caption='Clips export as ordinary video files in ordinary folders, one folder per category.'
+      />
 
       <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
         Kinovea
