@@ -5,7 +5,7 @@ import { DownloadButton } from '@/components/features/DownloadButton';
 import { guides } from '@/data/guides';
 import presentImg from '@/assets/screenshots/present-mode.png';
 import HeroCourt from '@/components/ui/HeroCourt.astro';
-import { HeroBasketball3D } from '@/components/3d/HeroBasketball3D';
+import HeroStage from '@/components/ui/HeroStage.astro';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
 
@@ -29,12 +29,10 @@ const DEMO_VIDEO_ID = '';
   <!-- ============================== -->
   <!-- HERO: Full viewport, 3D ball   -->
   <!-- ============================== -->
-  <section aria-label="Hero" class="relative flex items-center min-h-[34rem] sm:min-h-screen py-16 sm:py-0">
-    <!-- Below sm this is line work in the page; at sm and up it is the 3D scene.
-         client:media rather than client:idle, so a phone never downloads the
-         Three.js chunk it would not render. -->
+  <section aria-label="Hero" class="relative flex items-center min-h-[34rem] sm:min-h-0 py-16 sm:py-24">
+    <!-- Line work in the page rather than wallpaper behind it, and it stops at
+         the hero's own edge. Phone only; the stage below carries the desktop. -->
     <HeroCourt />
-    <HeroBasketball3D client:media="(min-width: 640px)" />
 
     <!-- Hero Content, left-aligned -->
     <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -50,6 +48,11 @@ const DEMO_VIDEO_ID = '';
         <p class="text-sm text-warm-900 mt-4">
           Windows, macOS, and Linux &middot; Free &amp; open source
         </p>
+      </div>
+
+      <!-- Full measure, not the copy's 2xl, because a track needs the width. -->
+      <div class="hidden sm:block">
+        <HeroStage />
       </div>
     </div>
   </section>
