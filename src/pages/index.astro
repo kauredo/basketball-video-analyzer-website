@@ -5,7 +5,7 @@ import { DownloadButton } from '@/components/features/DownloadButton';
 import { guides } from '@/data/guides';
 import presentImg from '@/assets/screenshots/present-mode.png';
 import HeroCourt from '@/components/ui/HeroCourt.astro';
-import { FullScreenBasketball3D } from '@/components/3d/FullScreenBasketball3D';
+import { HeroBasketball3D } from '@/components/3d/HeroBasketball3D';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
 
@@ -34,7 +34,7 @@ const DEMO_VIDEO_ID = '';
          client:media rather than client:idle, so a phone never downloads the
          Three.js chunk it would not render. -->
     <HeroCourt />
-    <FullScreenBasketball3D client:media="(min-width: 640px)" />
+    <HeroBasketball3D client:media="(min-width: 640px)" />
 
     <!-- Hero Content, left-aligned -->
     <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
@@ -58,7 +58,7 @@ const DEMO_VIDEO_ID = '';
   <!-- ============================== -->
   <!-- THE APP: Product showcase      -->
   <!-- ============================== -->
-  <section aria-label="Product showcase" class="py-16 sm:py-24">
+  <section aria-label="Product showcase" class="py-16 sm:py-24 bg-warm-50 border-t border-warm-300">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="sr-only">The app</h2>
       <!-- Screenshot, clean, no overlay -->
@@ -121,7 +121,7 @@ const DEMO_VIDEO_ID = '';
   <!-- VIDEO DEMO (shows when ID set) -->
   <!-- ============================== -->
   {DEMO_VIDEO_ID && (
-    <section aria-label="Demo video" class="py-16 sm:py-24 bg-warm-100">
+    <section aria-label="Demo video" class="py-16 sm:py-24 bg-warm-100 border-t border-warm-300">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="font-display text-3xl sm:text-4xl font-bold text-warm-900 mb-4">
           See it in action
@@ -147,7 +147,7 @@ const DEMO_VIDEO_ID = '';
   <!-- ============================== -->
   <!-- HOW IT WORKS: 3 steps          -->
   <!-- ============================== -->
-  <section aria-label="How it works" class="py-20 sm:py-28 bg-warm-100">
+  <section aria-label="How it works" class="py-20 sm:py-28 bg-warm-100 border-t border-warm-300">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="font-display text-3xl sm:text-4xl font-bold text-warm-900 mb-16">
         How it works
@@ -247,10 +247,7 @@ const DEMO_VIDEO_ID = '';
   <!-- PRESENT: the feature a coach   -->
   <!-- uses in front of a team        -->
   <!-- ============================== -->
-  <!-- The 3D hero is a fixed inset-0 layer spanning the whole document, so any
-       section without an opaque ground gets terracotta and basketball behind its
-       body copy. Every section below the hero must paint its own ground. -->
-  <section aria-label="Present mode" class="pt-20 sm:pt-28 pb-10 sm:pb-12 bg-warm-50">
+  <section aria-label="Present mode" class="pt-20 sm:pt-28 pb-10 sm:pb-12 bg-warm-50 border-t border-warm-300">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         <div>
@@ -282,8 +279,9 @@ const DEMO_VIDEO_ID = '';
   <!-- ============================== -->
   <!-- MORE: newer capabilities       -->
   <!-- ============================== -->
-  <!-- Opaque bg: this section sits over the fixed 3D ball backdrop; without it
-       the right column renders illegibly on top of the basketball. -->
+  <!-- No rule and no ground change above this one: it continues Present mode
+       rather than dividing from it, which is what the pb-12/pt-12 pairing is
+       for. The rule returns at Coaching guides. -->
   <section aria-label="More features" class="pt-10 sm:pt-12 pb-20 sm:pb-28 bg-warm-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="font-display text-3xl sm:text-4xl font-bold text-warm-900 mb-4">
@@ -342,7 +340,7 @@ const DEMO_VIDEO_ID = '';
   <!-- ============================== -->
   <!-- CTA: Open source + download    -->
   <!-- ============================== -->
-  <section id="download" aria-label="Download" class="py-24 sm:py-32 bg-warm-100">
+  <section id="download" aria-label="Download" class="py-24 sm:py-32 bg-warm-100 border-t border-warm-300">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-2xl">
         <h2 class="font-display text-3xl sm:text-4xl font-bold text-warm-900 mb-6">

@@ -1,13 +1,19 @@
+// The scene is the hero's backdrop and stops at the hero's bottom edge.
+// It used to be fixed inset-0, which made it a layer over the whole document:
+// every section below had to paint an opaque ground or render its body copy on
+// top of the basketball, and one that forgot did exactly that. Absolute inside
+// the hero, which is position: relative, confines it to the one band it
+// belongs to and takes that rule away.
 import { lazy, Suspense, useState, useEffect } from "react";
 
 // Lazy load the 3D scene for performance
-const FullScreenBasketballScene = lazy(() =>
-  import("./FullScreenBasketballScene").then(module => ({
-    default: module.FullScreenBasketballScene,
+const HeroBasketballScene = lazy(() =>
+  import("./HeroBasketballScene").then(module => ({
+    default: module.HeroBasketballScene,
   }))
 );
 
-interface FullScreenBasketball3DProps {
+interface HeroBasketball3DProps {
   className?: string;
   enableOnMobile?: boolean;
   onLoaded?: () => void;
@@ -15,7 +21,7 @@ interface FullScreenBasketball3DProps {
 
 function MobileFallback() {
   return (
-    <div className="fixed inset-0 -z-10 hero-gradient">
+    <div className="absolute inset-0 z-0 hero-gradient">
       <div className="absolute inset-0 court-bg"></div>
     </div>
   );
@@ -23,7 +29,7 @@ function MobileFallback() {
 
 function LoadingFallback() {
   return (
-    <div className="fixed inset-0 -z-10 hero-gradient">
+    <div className="absolute inset-0 z-0 hero-gradient">
       <div className="absolute inset-0 court-bg"></div>
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500"></div>
@@ -32,11 +38,11 @@ function LoadingFallback() {
   );
 }
 
-export function FullScreenBasketball3D({
+export function HeroBasketball3D({
   className = "",
   enableOnMobile = false,
   onLoaded,
-}: FullScreenBasketball3DProps) {
+}: HeroBasketball3DProps) {
   const [isMobile, setIsMobile] = useState(false);
   const [webGLSupported, setWebGLSupported] = useState(true);
   const [lowPerformance, setLowPerformance] = useState(false);
@@ -87,7 +93,7 @@ export function FullScreenBasketball3D({
   return (
     <div className={`fullscreen-basketball ${className}`}>
       <Suspense fallback={<LoadingFallback />}>
-        <FullScreenBasketballScene
+        <HeroBasketballScene
           className="w-full h-full"
           onLoaded={onLoaded}
         />
