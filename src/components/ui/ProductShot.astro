@@ -2,18 +2,18 @@
 // One captioned screenshot inside a guide page's reading column.
 //
 // A screenshot is not prose, so it breaks out of the column to the same 44rem
-// the comparison tables use, and never wider than the viewport. At the column's
-// own 512px a 2880px-wide app window renders its 13px UI text at about 2px;
-// 704px is the width the home page's screenshots effectively get, so this is
-// the floor rather than the goal. Cropping each shot to the panel its page
-// argues about is the real fix and belongs with the next capture pass.
+// the comparison tables use. At the column's own 512px a 2880px-wide app
+// window renders its 13px UI text at about 2px. Cropping each shot to the
+// panel its page argues about is plans/017's job, not this component's.
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
 interface Props {
+  /** An imported screenshot from src/assets/screenshots/. */
   src: ImageMetadata;
   /** What is on screen, not the word "screenshot". */
   alt: string;
+  /** Something the image and the paragraph above it do not already say. */
   caption: string;
 }
 
@@ -26,10 +26,12 @@ const { src, alt, caption } = Astro.props;
       src={src}
       alt={alt}
       widths={[704, 1408]}
-      sizes="(min-width: 768px) 704px, calc(100vw - 2rem)"
+      {/* 736px, not 768px: that is where min(100vw-2rem, 44rem) stops growing. */}
+      sizes="(min-width: 736px) 704px, calc(100vw - 2rem)"
+      format="webp"
+      quality={80}
     />
   </div>
-  <!-- The caption is read, so it keeps a reading measure rather than the
-       figure's width. -->
+  {/* The caption is read, so it keeps a reading measure, not the figure's. */}
   <figcaption class="mt-3 max-w-lg text-sm text-warm-700">{caption}</figcaption>
 </figure>

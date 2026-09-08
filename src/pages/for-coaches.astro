@@ -50,8 +50,8 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
 
       <ProductShot
         src={categoriesImg}
-        alt='The category settings, showing a nested tree: Defense with Man-to-Man, Press and Zone Defense under it, then Offense with Fast Break, Isolation, Pick & Roll and Post Up.'
-        caption='Categories nest, so "transition defense" can sit under Defense and still pull clips from every game you have tagged.'
+        alt={"The category list in the Settings window. Man-to-Man, Press and Zone Defense indented under Defense in blue, then Offense in orange with Fast Break, Isolation, Pick & Roll and Post Up, then Rebounding in purple with Defensive Rebound and Offensive Rebound."}
+        caption={"Each sub-category keeps its parent's color, so you can tell a Defense clip from an Offense clip on the timeline without reading the label."}
       />
 
       <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
