@@ -2,7 +2,7 @@
 import { Image } from 'astro:assets';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
-import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import { guides } from '@/data/guides';
 import HeroCourt from '@/components/ui/HeroCourt.astro';
 import { FullScreenBasketball3D } from '@/components/3d/FullScreenBasketball3D';
 import { getCachedLatestRelease } from '@/utils/cache';
@@ -297,7 +297,33 @@ const DEMO_VIDEO_ID = '';
   <!-- ============================== -->
   <!-- GUIDES: link the content pages -->
   <!-- ============================== -->
-  <RelatedGuides title="Coaching guides" />
+  <!-- Same ground as the section above, divided by a rule rather than by a
+       colour change, and on the page's own 6xl measure so it does not sit on a
+       narrower axis than everything else. The footer indexes these six as well;
+       what this section adds is the line under each one. -->
+  <section aria-label="Coaching guides" class="py-20 sm:py-28 bg-warm-50 border-t border-warm-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl sm:text-4xl font-bold text-warm-900 mb-4">
+        Coaching guides
+      </h2>
+      <p class="text-warm-700 mb-12 max-w-lg">
+        Longer pieces on the parts that take practice rather than software.
+      </p>
+
+      <ul class="space-y-7 max-w-2xl">
+        {guides.map((g) => (
+          <li>
+            <a href={g.href} class="group block">
+              <span class="font-display font-semibold text-warm-900 group-hover:text-primary-600 transition-colors">
+                {g.label}
+              </span>
+              <span class="block text-warm-700 text-sm leading-relaxed mt-1">{g.blurb}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
 
 
   <!-- ============================== -->
