@@ -126,6 +126,59 @@ Extended, which the 11 locale files need.
 Both faces are self-hosted through `@fontsource-variable`. The app is offline
 software and must never reach a font CDN at runtime.
 
+### The site's scale
+
+Six sizes render on the landing route. Five are the type scale; the sixth is a
+control label.
+
+| Step | Tailwind | Renders | Job |
+|---|---|---|---|
+| Display | `text-4xl sm:text-5xl lg:text-6xl` | 60px | The landing H1. The guide pages stop at `sm:text-5xl`, so theirs is 48px. |
+| Section | `text-3xl sm:text-4xl` landing, `text-2xl sm:text-3xl` guides | 36px / 30px | Every `h2`. |
+| Sub | `text-xl` | 20px | Step titles and the hero subhead. |
+| Control | `.btn-lg` in `global.css` | 18px | Download button labels. Not part of the prose scale, but it renders. |
+| Body | inherits `text-base` | 16px | Running prose, and the step ordinals. |
+| Small | `text-sm` | 14px | Card copy, the platform line, footnotes. |
+
+Two things still sit off this scale, both inside `RelatedGuides.astro`: its
+heading at 24px and its links at 18px. Plan `033` owns that component.
+
+The step ordinals in "How it works" were `text-5xl` bold, which drew a
+decorative `1` at 48px above a 36px section heading. Folding them to the title's
+own size and weight was worse, not better: two reviewers read `1 Load your game
+tape` as one line of type, because size, family, weight, cap height and baseline
+all matched and only the ink differed. An ordinal has to differ from the thing
+it marks in more than colour. They are now 14px DM Sans medium in `warm-600`
+against a 20px Space Grotesk semibold `warm-900` title, set on their own line so
+ordinal, title and body copy all share one left edge.
+
+**The measure, and why the obvious container width misses.** Character counts
+below are the first rendered line of all 26 body paragraphs across the six guide
+pages, at 1440px.
+
+| Container | Text width at `lg` | Range | Average | Inside 60-75 |
+|---|---|---|---|---|
+| `max-w-3xl` (what shipped) | 704px | 87-107 | 99.4 | almost none |
+| `max-w-2xl` | 608px | 75-99 | 89.0 | 1 of 26 |
+| **`max-w-xl`** | **512px** | **60-84** | **67.7** | **25 of 26** |
+| `max-w-lg` | 448px | 53-68 | 58.9 | 12 of 26 |
+| `max-w-prose` | 647px | 87-107 | 94.7 | almost none |
+
+Measure this in the browser and do not derive it. Container width and character
+count do not track each other closely enough to extrapolate: DM Sans lays out at
+about 7.3px per character at 16px measured glyph by glyph, but the marginal rate
+between two container widths is nearer 6.2px, and using either constant to pick
+a width lands about 20% wide. `max-w-prose` is the specific trap, because 65ch
+sounds like 65 characters and resolves to 711px, which is 95.
+
+**The comparison tables are not prose.** The three of them break out of the
+reading column with `relative left-1/2 -translate-x-1/2 w-[min(100vw-2rem,44rem)]`,
+one expression rather than a ramp of tuned negative margins. 44rem is the 704px
+they had under `max-w-3xl`, and they hold it from 768px up; below that the
+viewport caps them and they behave as they always did on a phone. Squeezed into
+the 512px reading column they wrapped every platform cell onto three lines with
+500px of page empty either side.
+
 ## Motion
 
 The hero is a scroll stage. The basketball is the playhead: scrolling rolls it
@@ -178,9 +231,9 @@ were read off rendered pixels rather than assumed backgrounds.
 | White on the app's Export Clips and filter chips | 2.78:1 | **5.26:1** |
 | White on the app's Mark In (Z) | 2.78:1 | **5.26:1** |
 | White on the success toast, dark | 3.28:1 | **5.83:1** |
-| The site's step numerals, 48px bold, bar 3.0 | 1.06:1 | **6.03:1** |
+| The site's step ordinals, now 14px, bar 4.5 | 1.06:1 | **6.03:1** |
 | The site's hero subhead over the court | 2.30:1 | **6.72:1** |
-| "Now in 11 languages", 12px | 2.96:1 | **6.34:1** |
+| "Now in 11 languages", now 14px | 2.96:1 | **6.34:1** |
 | Landing body copy | 4.34:1 | **6.34:1** |
 | The app's focus ring on graphite | n/a | **9.12:1** |
 | The app's focus ring on paper | n/a | **5.26:1** |
@@ -205,6 +258,14 @@ They are all on warm-700 now, measured at 6.34:1.
 Still failing, and not yet planned: white on the app's danger, warning and info
 fills, at 3.68:1, 2.16:1 and 3.12:1.
 
+One more was found on 2026-09-08 and fixed: the "Coaching guides" band drew on
+`bg-warm-100/50`, so on the home page the hero's terracotta came through it and
+the link ink fell from 4.65:1 at the start of a line to 4.29:1 by the end of it,
+crossing the AA bar mid-sentence. The ground is opaque now and reads 6.03:1 the
+whole way across. It was the last translucent ground on the site; the sweep that
+made the others opaque missed this one because it lives in a component rather
+than in `index.astro`.
+
 ## Focus
 
 One ring, both surfaces: `outline: 2px solid` the accent's theme face, with
@@ -223,3 +284,38 @@ so a mouse click does not draw one.
 Note for anyone testing the app: an Electron window that does not hold OS focus
 suppresses `:focus-visible` entirely. The ring is not missing, the window is not
 focused. That misreading cost this project two false findings.
+
+## Drift found on 2026-09-08, not yet fixed
+
+An art-direction pass read the rendered pixels rather than this file and found
+that most of what the colour table above specifies is not what the site paints.
+Recording it here so the next person does not re-derive it, and so nobody treats
+the table as describing the live site.
+
+| Job | This file says | The site renders |
+|---|---|---|
+| Page ground | `#F6F2EA` paper | `#FDFBF7` and `#F9F5ED` |
+| Headline ink | `#1B1813` tx | `#2C2418` |
+| Secondary copy | `#5C5648` tx-2 | `#6E5A42` |
+| Hairline | `#DED5C4` rule | nothing renders below the navbar |
+| Accent | `#0B7972` | `#0B7972` |
+
+Only the accent matches, and it matches exactly, which is what rules out a
+colour-profile shift in the captures. The site is still on the original `warm-*`
+scale from `tailwind.config.cjs`. The contrast table in this file agrees with the
+pixels and not with the colour table: it records landing body copy at 6.34:1,
+which is `#6E5A42` on `#FDFBF7`, not `#5C5648` on `#F6F2EA`.
+
+Two further gaps in the same pass:
+
+- **The ruled bands do not exist.** The direction's first line is that every
+  division in the product is a 1px hairline. On the landing route the only
+  horizontal rule is the navbar underline at 1.03:1, and the section boundaries
+  are ground changes of 1.02:1. There are no hairlines to see.
+- **The desktop hero still runs the 3D basketball** this file describes as
+  deleted, in the position it describes as the problem, opposite the CTA. Plan
+  `031` gated it behind `client:media` so phones no longer download it, which
+  was that plan's scope. Desktop was left as it was.
+
+Neither is planned yet. Both belong with `027`, which chose the direction, and
+`026`, which is still open on the mark.

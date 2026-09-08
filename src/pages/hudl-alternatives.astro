@@ -15,7 +15,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
   type="article"
 >
   <article class="py-20 sm:py-28">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
         Hudl alternatives for basketball
       </h1>
@@ -87,7 +87,10 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
         tool takes off your plate.
       </p>
 
-      <div class="overflow-x-auto my-8">
+      <!-- The comparison table is not prose, so it breaks out of the reading
+           column back to the 44rem it had before the measure was tightened.
+           Centred on the page axis, and never wider than the viewport. -->
+      <div class="overflow-x-auto my-8 relative left-1/2 -translate-x-1/2 w-[min(100vw-2rem,44rem)]">
         <table class="w-full text-left border-collapse text-sm">
           <thead>
             <tr class="border-b border-warm-300">
@@ -159,7 +162,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
     </div>
   </article>
 
-  <RelatedGuides current="/hudl-alternatives" />
+  <RelatedGuides containerClass="max-w-xl" current="/hudl-alternatives" />
 
   <script type="application/ld+json">
     {
