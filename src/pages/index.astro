@@ -4,7 +4,6 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import { guides } from '@/data/guides';
 import presentImg from '@/assets/screenshots/present-mode.png';
-import HeroCourt from '@/components/ui/HeroCourt.astro';
 import HeroStage from '@/components/ui/HeroStage.astro';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
@@ -27,31 +26,35 @@ const DEMO_VIDEO_ID = '';
 >
 
   <!-- ============================== -->
-  <!-- HERO: Full viewport, 3D ball   -->
+  <!-- HERO: copy, then the scroll stage -->
   <!-- ============================== -->
-  <section aria-label="Hero" class="relative flex items-center min-h-[34rem] sm:min-h-0 py-16 sm:py-24">
-    <!-- Line work in the page rather than wallpaper behind it, and it stops at
-         the hero's own edge. Phone only; the stage below carries the desktop. -->
-    <HeroCourt />
-
-    <!-- Hero Content, left-aligned -->
+  <section aria-label="Hero" class="relative py-16">
     <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-      <div class="max-w-2xl">
-        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-warm-900 leading-[1.1] mb-6">
-          Free basketball video analysis tool, built by a coach.
-        </h1>
-        <p class="text-xl text-warm-900 mb-8 max-w-lg">
-          I got tired of scrubbing through game tapes in VLC, so I built this. Mark plays, organize clips, export folders. That's it.
-        </p>
+      <!-- The headline holds the left, the action holds the right, and the
+           stage below gets the whole width. The right side used to be 592x588
+           of bare paper; putting the CTA there fills it without asking the
+           fold to carry a second product image the stage would compete with. -->
+      <div class="lg:flex lg:items-end lg:justify-between lg:gap-12">
+        <div class="max-w-2xl lg:flex-1">
+          <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-warm-900 leading-[1.1] mb-6 text-balance">
+            Free basketball video analysis tool, built by a coach.
+          </h1>
+          <p class="text-xl text-warm-900 max-w-lg">
+            I got tired of scrubbing through game tapes in VLC, so I built this. Mark plays, organize clips, export folders. That's it.
+          </p>
+        </div>
 
-        <DownloadButton release={release} client:idle />
-        <p class="text-sm text-warm-900 mt-4">
-          Windows, macOS, and Linux &middot; Free &amp; open source
-        </p>
+        <div class="mt-8 lg:mt-0 lg:shrink-0">
+          <DownloadButton release={release} client:idle />
+          <p class="text-sm text-warm-900 mt-4">
+            <a href="#download" class="underline underline-offset-2 decoration-warm-400 hover:decoration-warm-900">Windows, macOS, and Linux</a>
+            &middot; Free &amp; open source
+          </p>
+        </div>
       </div>
 
       <!-- Full measure, not the copy's 2xl, because a track needs the width. -->
-      <div class="hidden sm:block">
+      <div class="mt-10 lg:mt-12">
         <HeroStage />
       </div>
     </div>
@@ -64,19 +67,28 @@ const DEMO_VIDEO_ID = '';
   <section aria-label="Product showcase" class="py-16 sm:py-24 bg-warm-50 border-t border-warm-300">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="sr-only">The app</h2>
-      <!-- Screenshot, clean, no overlay -->
-      <div class="overflow-hidden border border-warm-400">
+      <!-- Full measure, so the app's 13px UI text renders near 10px instead of
+           the 4px it got in a 435px hero column. Below lg the container is too
+           narrow for that, so the frame crops to an 11/10 box and shows the
+           middle of the window at 0.57x rather than the whole of it at 0.27x.
+           A screenshot nobody can read is decoration. -->
+      <div class="overflow-hidden border border-warm-400 aspect-[11/10] lg:aspect-[2880/1382]">
         <Image
           src={videoCuttingImg}
           alt="Basketball Video Analyzer, video cutting interface showing the video player, timeline, and clip creator"
-          class="w-full h-auto block"
-          widths={[640, 960, 1280, 1920]}
-          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1152px"
+          class="w-full h-full object-cover"
+          widths={[480, 720, 960, 1280, 1920]}
+          sizes="(max-width: 1024px) 100vw, 1152px"
           format="webp"
-          quality={80}
+          quality={82}
           loading="lazy"
         />
       </div>
+
+      <p class="mt-4 text-sm text-warm-700 max-w-xl">
+        The video pane, the scrub bar, and the marking controls. Z marks the start
+        of a clip, M marks the end.
+      </p>
 
       <!-- 3 callouts, not cards, just text -->
       <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">

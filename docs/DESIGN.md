@@ -344,26 +344,42 @@ behind it showed through the ball, which reads as a rendering fault.
 
 ## Structure
 
-The court is the page's geometry, not its wallpaper. The three-point arc and
-the key belong to the hero. The key frames the three steps. The centre circle
-sits under the closing CTA. All of it is SVG line work in `rule-2`, which costs
-nothing at runtime and survives 393px.
+**There is no court line work on the site.** Earlier versions of this section
+said the three-point arc and the key belonged to the hero, that the key framed
+the three steps and the centre circle sat under the closing CTA. Only the hero
+half of that was ever built, and it was removed on 2026-09-08. The rest
+described a proposal.
 
-It must be clipped to the section that owns it. The previous implementation put
-the court on a `fixed inset-0` layer spanning the whole document, so it
-reappeared 3000px down behind body copy and made that copy unreadable.
+It came out because of a number. `rule-2` is `#BFB39C`, which is **1.85:1**
+against paper, and the hero drew it at 50% opacity on top of that. At that
+contrast a drawing is an artifact rather than a texture: an outside reviewer
+reading the rendered page called it a cropped ghost with no anchor to any
+layout element, and on phones the same arcs were strong enough to cut through
+the headline and two lines of the subhead. Neither breakpoint had it right.
+Taking it to a contrast where a visitor could identify a basketball court would
+have put decorative line work at roughly body-copy weight behind the headline,
+which is worse.
 
-The desktop hero did it a second time. `FullScreenBasketball3D` was `fixed
-inset-0` across the whole document, so any section below the hero that did not
-paint its own opaque ground got terracotta and basketball behind its body copy.
-The sections that existed when `021` swept for translucent grounds were fine; a
-section added on 2026-09-08 reproduced the bug the day it was written. That is
-what a rule enforced by a comment gets you.
+What fills the hero's right side now is the app. The video-cutting screenshot
+moved up out of the section below it, so the product appears in the first 900px
+instead of 950px down, and the page runs one screenshot rather than two of the
+same window inside 950px.
 
-It is `absolute inset-0` inside the hero now, and the component is
-`HeroBasketball3D`. Sections below the hero no longer have to paint a ground,
-though they all still do. **Anything full-bleed on this site is clipped to the
-section that owns it.** Two implementations have been caught breaking that;
+**Screenshots in the hero are cropped, not fitted.** The window is 1440 CSS px
+wide. Fitting it to the 435px column reduces it 3.3x and renders the app's 13px
+UI text at 4px, which is the same unreadable-graphic problem the court art had.
+`object-cover` against an 11/10 box shows the middle 53% at 0.57x instead, so
+the toolbar labels and the Mark Out (M) button read at both sizes.
+
+**Anything full-bleed on this site is clipped to the section that owns it.**
+The rule survives the art that prompted it, because it was written after two
+separate implementations broke it. A `fixed inset-0` court layer spanning the
+whole document reappeared 3000px down behind body copy and made that copy
+unreadable. `FullScreenBasketball3D` then did the same thing, so any section
+below the hero that did not paint its own opaque ground got terracotta and
+basketball behind its body copy; the sections that existed when `021` swept for
+translucent grounds were fine, and a section added on 2026-09-08 reproduced the
+bug the day it was written. Two implementations have been caught breaking this;
 there is no third reading of it.
 
 ## Contrast

@@ -50,11 +50,9 @@
       bg-primary-500 text-white rounded-lg
       transition-all duration-200
       hover:bg-primary-600 hover:-translate-y-0.5;
-    box-shadow: 0 4px 14px rgba(var(--accent-rgb), 0.25);
   }
 
   .download-btn:hover {
-    box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.35);
   }
 
   /* Button base classes referenced by DownloadButton.tsx */
