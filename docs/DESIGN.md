@@ -126,6 +126,38 @@ Extended, which the 11 locale files need.
 Both faces are self-hosted through `@fontsource-variable`. The app is offline
 software and must never reach a font CDN at runtime.
 
+### The site's scale
+
+Five steps carry every page. The count is the point: eleven distinct rendered
+styles is what a page assembled rather than designed looks like, and the
+landing route had that many before `035`.
+
+| Step | Tailwind | Desktop | Job |
+|---|---|---|---|
+| Display | `text-4xl sm:text-5xl lg:text-6xl` | 60px | The H1, once per page. |
+| Section | `text-3xl sm:text-4xl` on the landing, `text-2xl sm:text-3xl` on the guides | 36px / 30px | Every `h2`. |
+| Sub | `text-xl` | 20px | Step titles, the hero subhead, and the step numeral. |
+| Body | no class, inherits `text-base` | 16px | Running prose. |
+| Small | `text-sm` | 14px | Card copy, the platform line, footnotes. |
+
+The step numerals in "How it works" sit on the Sub step, in `warm-700`. They
+were `text-5xl` bold, which made a decorative `1` larger than the section
+heading above it and put the page's giant-ghost-numeral tell in plain sight.
+At 20px beside the step title they read as what they are, a numbered list.
+
+**The measure.** The six guide pages hold their prose at `max-w-lg`, which is
+448px of text at `lg` and 60 to 70 characters in DM Sans. `max-w-3xl` gave 99.
+The obvious `max-w-2xl` still gave 76 to 103, because DM Sans runs about 6.1px
+per character at 16px and the character count does not follow the container
+width the way a `ch` unit implies. Measure it in the browser rather than
+trusting `max-w-prose`, which resolves to 65ch and lands near 100 characters
+for this face.
+
+The three comparison tables break back out of that column with
+`sm:-mx-16 lg:-mx-20`, restoring the 608px they had before. Squeezed into
+448px they wrapped every platform cell onto three lines while 500px of page
+sat empty either side.
+
 ## Motion
 
 The hero is a scroll stage. The basketball is the playhead: scrolling rolls it
