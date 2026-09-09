@@ -2,15 +2,25 @@
 
 > Free, open-source basketball video analysis tool built by a coach, for coaches.
 
-Basketball Video Analyzer is a desktop application for cutting, organizing, and exporting basketball game footage. It runs on Windows, macOS, and Linux.
+Basketball Video Analyzer is a desktop application for cutting, tagging, organizing, and exporting basketball game footage. It runs on Windows, macOS, and Linux, works entirely offline, and costs nothing.
 
 ## Key Features
 
-- **Video Cutting**: Mark in/out points with keyboard shortcuts (I, O, Space, arrow keys for frame-by-frame)
-- **Hierarchical Categories**: Create category trees for offense, defense, transitions, or any coaching system
-- **Clip Library**: Browse and filter all marked clips with visual thumbnails
-- **Batch Export**: Export clips organized into category-based folders with one click
-- **Project Organization**: Organize footage by game, opponent, or practice session
+- **Video Cutting**: Mark the start and end of a clip with a keypress (Z and M by default, both rebindable), with frame-by-frame stepping and HH:MM:SS time search
+- **Hierarchical Categories**: Build category trees for offense, defense, transitions, or any coaching system, and save them as presets to reuse across projects
+- **Clip Library**: Browse clips as a thumbnail grid or as an editable table, with inline editing of title, categories and notes, multi-select for bulk actions, and a keep/cut/review status per clip
+- **Player Tagging**: Tag clips with the players involved and filter the library by player
+- **Court Positions**: Mark where on the floor a play happened
+- **Stats Dashboard**: Clip counts and durations broken down by category, player, and quarter
+- **Present Mode**: Play a filtered set of clips back to back for a team film session
+- **Telestration**: Draw over paused video (arrows, circles, freehand) and replay the annotations
+- **YouTube Import**: Pull game footage in from a YouTube URL
+- **Export**: Cut clips out as MP4 organized into category folders, or export the clip list as CSV, JSON, or Sportscode-compatible timeline XML
+- **Project Organization**: Keep footage separated by game, opponent, or practice session
+
+## Languages
+
+The interface ships in 11 languages: English, Portuguese, Spanish, French, Italian, German, Greek, Lithuanian, Slovenian, Serbian, and Turkish. Switching language does not require a restart.
 
 ## Links
 
@@ -21,8 +31,8 @@ Basketball Video Analyzer is a desktop application for cutting, organizing, and 
 
 ## Technical Details
 
-- Built with Electron and web technologies
-- Cross-platform: Windows, macOS, Linux
-- Free and open source (MIT license)
-- No subscriptions, no data collection
+- Built with Electron, React, and TypeScript; video processing uses FFmpeg
+- Cross-platform: Windows, macOS (signed and notarized), Linux (.deb and .rpm)
+- Free and open source under AGPL-3.0
+- No subscriptions, no accounts, no data collection; clips and projects stay on your own machine
 - Created by kauredo (https://github.com/kauredo)
