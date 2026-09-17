@@ -2,7 +2,7 @@
 
 > Free, open-source basketball video analysis tool built by a coach, for coaches.
 
-Basketball Video Analyzer is a desktop application for cutting, tagging, organizing, and exporting basketball game footage. It runs on Windows, macOS, and Linux, works entirely offline, and costs nothing.
+Basketball Video Analyzer is a desktop application for cutting, tagging, organizing, and exporting basketball game footage. It runs on Windows, macOS (Apple Silicon), and Linux, works offline (YouTube import and update checks need a connection), and costs nothing.
 
 ## Key Features
 
