@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /CLAUDE/
 
 # AI crawlers — explicitly allowed for AI search visibility
 User-agent: GPTBot

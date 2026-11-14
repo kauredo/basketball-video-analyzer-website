@@ -7,6 +7,7 @@ import sitemap from "@astrojs/sitemap";
 // https://astro.build/config
 export default defineConfig({
   site: "https://basketballvideoanalyzer.com",
+  trailingSlash: "always",
   redirects: {
     "/download": "/",
     "/pricing": "/",
@@ -16,9 +17,7 @@ export default defineConfig({
       configFile: "./tailwind.config.cjs",
     }),
     react(),
-    sitemap({
-      filter: (page) => !page.includes('/CLAUDE'),
-    }),
+    sitemap(),
   ],
   build: {
     // Enable CSS and JS minification

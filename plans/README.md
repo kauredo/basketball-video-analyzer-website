@@ -8,7 +8,7 @@ This repo has no test, lint or typecheck scripts. `npm run build` plus greps ove
 
 | Plan | Title | Priority | Effort | Depends on | Status |
 |------|-------|----------|--------|------------|--------|
-| 001  | Every page has one URL, the one with the trailing slash | P1 | S | — | TODO |
+| 001  | Every page has one URL, the one with the trailing slash | P1 | S | — | DONE |
 | 002  | llms.txt lists the guides, and every production deploy pings IndexNow | P2 | S | 001 | TODO |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
