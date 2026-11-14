@@ -4,9 +4,7 @@ import type {
   GitHubRelease,
   PlatformAsset,
   ReleaseInfo,
-  Platform,
 } from "@/types/github";
-import { getArchitecture } from "./platform";
 
 const octokit = new Octokit({
   auth: import.meta.env.GITHUB_TOKEN, // Optional for higher rate limits
@@ -125,57 +123,5 @@ export async function getLatestRelease(): Promise<ReleaseInfo | null> {
     }
 
     return null;
-  }
-}
-
-export function getRecommendedDownload(
-  platformAssets: PlatformAsset[],
-  userPlatform: Platform
-): PlatformAsset | null {
-  const userArch = getArchitecture();
-
-  // Filter by platform
-  const platformOptions = platformAssets.filter(
-    asset => asset.platform === userPlatform
-  );
-
-  if (platformOptions.length === 0) {
-    return null;
-  }
-
-  // Prefer exact architecture match
-  const archMatch = platformOptions.find(
-    asset => asset.architecture === userArch
-  );
-  if (archMatch) {
-    return archMatch;
-  }
-
-  // Fallback to first available option for the platform
-  return platformOptions[0];
-}
-
-export async function getAllReleases(): Promise<ReleaseInfo[]> {
-  try {
-    const { data: releases } = await octokit.rest.repos.listReleases({
-      owner: REPO_OWNER,
-      repo: REPO_NAME,
-      per_page: 10,
-    });
-
-    return releases.map(release => ({
-      version: release.tag_name.replace(/^v/, ""), // Strip leading 'v'
-      releaseDate: new Date(release.published_at ?? 0),
-      releaseNotes: release.body || "",
-      platforms: parseAssets(release.assets),
-      isPrerelease: release.prerelease,
-      downloadCount: release.assets.reduce(
-        (sum, asset) => sum + asset.download_count,
-        0
-      ),
-    }));
-  } catch (error) {
-    console.error("Failed to fetch releases:", error);
-    return [];
   }
 }
