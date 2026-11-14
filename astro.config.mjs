@@ -16,9 +16,7 @@ export default defineConfig({
       configFile: "./tailwind.config.cjs",
     }),
     react(),
-    sitemap({
-      filter: (page) => !page.includes('/CLAUDE'),
-    }),
+    sitemap(),
   ],
   build: {
     // Enable CSS and JS minification
