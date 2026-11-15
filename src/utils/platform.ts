@@ -55,6 +55,11 @@ export function getPlatformDisplayName(platform: Platform): string {
   }
 }
 
+export function getDownloadLabel(platform: Platform): string {
+  const name = getPlatformDisplayName(platform);
+  return platform === "macos" ? `${name} (Apple Silicon)` : name;
+}
+
 export function formatFileSize(bytes: number): string {
   const sizes = ["Bytes", "KB", "MB", "GB"];
   if (bytes === 0) return "0 Bytes";
@@ -71,9 +76,11 @@ export function getRecommendedDownload(
 ): PlatformAsset | null {
   const userArch = getArchitecture();
 
-  const platformOptions = platformAssets.filter(
-    asset => asset.platform === userPlatform
-  );
+  const platformOptions = platformAssets
+    .filter(asset => asset.platform === userPlatform)
+    .sort(
+      (a, b) => Number(a.fileType === "zip") - Number(b.fileType === "zip")
+    );
 
   if (platformOptions.length === 0) {
     return null;

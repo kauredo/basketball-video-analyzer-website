@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   detectPlatform,
-  getPlatformDisplayName,
+  getDownloadLabel,
   formatFileSize,
   getRecommendedDownload,
 } from "@/utils/platform";
@@ -108,7 +108,7 @@ export function DownloadButton({
       {getPlatformIcon(userPlatform)}
       <span className="flex flex-col items-start">
         <span className="font-semibold">
-          Download for {getPlatformDisplayName(userPlatform)}
+          Download for {getDownloadLabel(userPlatform)}
         </span>
         {(showVersion || showSize) && (
           <span className="text-sm opacity-90 font-normal">

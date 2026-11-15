@@ -1,10 +1,6 @@
 import { Octokit } from "@octokit/rest";
-import type {
-  GitHubAsset,
-  GitHubRelease,
-  PlatformAsset,
-  ReleaseInfo,
-} from "@/types/github";
+import type { ReleaseInfo } from "@/types/github";
+import { parseAssets } from "@/utils/assets";
 
 const octokit = new Octokit({
   auth: import.meta.env.GITHUB_TOKEN, // Optional for higher rate limits
@@ -22,69 +18,6 @@ export class GitHubAPIError extends Error {
     super(message);
     this.name = "GitHubAPIError";
   }
-}
-
-function parseAssets(assets: GitHubAsset[]): PlatformAsset[] {
-  const platformAssets: PlatformAsset[] = [];
-
-  for (const asset of assets) {
-    const filename = asset.name.toLowerCase();
-    let platform: PlatformAsset["platform"];
-    let fileType: PlatformAsset["fileType"];
-    let architecture: PlatformAsset["architecture"] = "x64"; // Default
-
-    // Determine platform and file type
-    if (
-      filename.includes(".exe") ||
-      filename.includes("windows") ||
-      filename.includes("win32")
-    ) {
-      platform = "windows";
-      fileType = "exe";
-    } else if (
-      filename.includes(".dmg") ||
-      filename.includes("darwin") ||
-      filename.includes("macos")
-    ) {
-      platform = "macos";
-      fileType = "dmg";
-      // Check for Apple Silicon
-      if (filename.includes("arm64") || filename.includes("apple-silicon")) {
-        architecture = "arm64";
-      }
-    } else if (filename.includes(".deb")) {
-      platform = "linux";
-      fileType = "deb";
-    } else if (filename.includes(".rpm")) {
-      platform = "linux";
-      fileType = "rpm";
-    } else if (filename.includes(".zip")) {
-      // Determine platform for zip files
-      if (filename.includes("win")) {
-        platform = "windows";
-        fileType = "zip";
-      } else if (filename.includes("mac") || filename.includes("darwin")) {
-        platform = "macos";
-        fileType = "zip";
-      } else {
-        platform = "linux";
-        fileType = "zip";
-      }
-    } else {
-      continue; // Skip unknown file types
-    }
-
-    platformAssets.push({
-      platform,
-      architecture,
-      fileType,
-      url: asset.browser_download_url,
-      size: asset.size,
-      filename: asset.name,
-    });
-  }
-
-  return platformAssets;
 }
 
 export async function getLatestRelease(): Promise<ReleaseInfo | null> {
