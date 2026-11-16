@@ -9,7 +9,7 @@ This repo has no test, lint or typecheck scripts. `npm run build` plus greps ove
 | Plan | Title | Priority | Effort | Depends on | Status |
 |------|-------|----------|--------|------------|--------|
 | 001  | Every page has one URL, the one with the trailing slash | P1 | S | — | DONE |
-| 002  | llms.txt lists the guides, and every production deploy pings IndexNow | P2 | S | 001 | TODO |
+| 002  | llms.txt lists the guides, and every production deploy pings IndexNow | P2 | S | 001 | DONE for the guide list (2026-11-16). The per-deploy ping was not built: the analytics hub already submits this site's sitemap to IndexNow every Monday, using the key file in `public/`. |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 
