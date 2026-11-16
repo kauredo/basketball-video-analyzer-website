@@ -1,0 +1,201 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { DownloadButton } from '@/components/features/DownloadButton';
+import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import ProductShot from '@/components/ui/ProductShot.astro';
+import categoryImg from '@/assets/screenshots/category-management.png';
+import { getCachedLatestRelease } from '@/utils/cache';
+import { fallbackReleaseData } from '@/utils/fallback';
+
+const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
+---
+
+<BaseLayout
+  title="Basketball Video Analyzer vs Once Sport Analyser"
+  fullTitle="Basketball Video Analyzer vs Once Sport Analyser | Free vs €12 to €72 a Month"
+  description="Once Sport Analyser is a paid desktop tagger with live tagging and automatic player tracking. Basketball Video Analyzer is free and covers the after-the-game breakdown."
+  type="article"
+>
+  <article class="py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-xl">
+      <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
+        Basketball Video Analyzer vs Once Sport Analyser
+      </h1>
+      <p class="text-lg sm:text-xl text-warm-700 mb-12">
+        These two are close in shape. Both are desktop apps, both tag plays
+        with keyboard shortcuts, and both draw on the video. Once Sport
+        Analyser adds live tagging during the game and automatic player
+        tracking, and charges a monthly subscription. This one is free and does
+        the breakdown after the final whistle.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        What Once Sport Analyser is
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Once Sport Analyser is a desktop app for Windows and macOS from Once,
+        which also sells a telestrator, a tactics board and an automatic
+        camera. Its basketball page describes automated court tracking and
+        basketball tagging panels. You can tag actions live from a stream or a
+        camera with a capture card, tag with hotkeys, and use automatic player
+        tracking that Once describes as AI keyframing.
+      </p>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Analyser comes in three plans: Basic at €12 a month, Pro at €36 and
+        Elite at €72. The pricing page ticks the Coach Board Pro add-on by
+        default, which shows them as €14, €38 and €74. Paying yearly is
+        cheaper, and you can cancel any time. There is a 14-day free trial of
+        the Elite plan with no credit card.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        What this tool is
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Basketball Video Analyzer is free and open source, on Windows, macOS
+        and Linux. You load a recorded game, mark plays with Z and M, and tag
+        them into your own category tree, by player and by quarter. You can
+        draw arrows and shapes on paused video and burn them into the exported
+        clip, mark where each shot came from for the shot chart, and play a
+        filtered set back to back in present mode for a team session. It has no
+        live tagging and no automatic tracking.
+      </p>
+
+      <ProductShot
+        src={categoryImg}
+        alt={"The category list in the Settings window. Man-to-Man, Press and Zone Defense indented under Defense in blue, then Offense in orange with Fast Break, Isolation, Pick & Roll and Post Up, then Rebounding in purple with Defensive Rebound and Offensive Rebound."}
+        caption={"Your own category tree, saved as a preset and reused game after game."}
+      />
+
+      <div class="overflow-x-auto my-8 relative left-1/2 -translate-x-1/2 w-[min(100vw-2rem,44rem)]">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-warm-300">
+              <th class="py-3 pr-4 font-display font-semibold text-warm-900"></th>
+              <th class="py-3 px-4 font-display font-semibold text-warm-900">Basketball Video Analyzer</th>
+              <th class="py-3 px-4 font-display font-semibold text-warm-900">Once Sport Analyser</th>
+            </tr>
+          </thead>
+          <tbody class="text-warm-700">
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Price</td>
+              <td class="py-3 px-4">Free</td>
+              <td class="py-3 px-4">€12 to €72 a month</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Platforms</td>
+              <td class="py-3 px-4">Windows, macOS, Linux</td>
+              <td class="py-3 px-4">Windows, macOS</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Keyboard tagging</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Yes</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Drawing on video</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Yes</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Live tagging during the game</td>
+              <td class="py-3 px-4">No</td>
+              <td class="py-3 px-4">Yes</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Automatic player tracking</td>
+              <td class="py-3 px-4">No</td>
+              <td class="py-3 px-4">Yes</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Shot chart</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Not on the pages checked</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Open source</td>
+              <td class="py-3 px-4">Yes (AGPL)</td>
+              <td class="py-3 px-4">No</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-warm-700 mb-8">
+        Once details from its
+        <a class="underline underline-offset-2" href="https://once.de/pricing/" rel="noopener">pricing page</a>,
+        <a class="underline underline-offset-2" href="https://once.de/basketball-video-analysis/" rel="noopener">basketball page</a>,
+        <a class="underline underline-offset-2" href="https://once.de/once-sport-analyser/" rel="noopener">Analyser page</a>
+        and <a class="underline underline-offset-2" href="https://once.de/once-sport-analyser-free-trial/" rel="noopener">free trial page</a>,
+        checked 16 November 2026. Prices are the monthly euro prices shown there.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Which one fits you
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        If you have an analyst tagging from the bench during games, or you
+        want tracking drawn for you, Once is built for that and the trial costs
+        nothing to find out. If you break down the recorded game afterwards and
+        want clips, drawings and a shot chart without a subscription, start
+        with this one.
+      </p>
+
+      <div class="mt-12 pt-8 border-t border-warm-300">
+        <h2 class="font-display text-2xl font-bold text-warm-900 mb-4">Try it free</h2>
+        <p class="text-warm-700 mb-6 max-w-lg">
+          Free and open source, on Windows, macOS and Linux.
+        </p>
+        <DownloadButton release={release} client:idle />
+      </div>
+      </div>
+    </div>
+  </article>
+
+  <RelatedGuides containerClass="max-w-6xl" current="/vs-once/" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "FAQPage",
+          "url": "https://basketballvideoanalyzer.com/vs-once/",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How much does Once Sport Analyser cost?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Once lists Analyser Basic at €12 a month, Pro at €36 and Elite at €72, or €14, €38 and €74 with the Coach Board Pro add-on, with a 14-day free trial (checked on once.de on 16 November 2026). Basketball Video Analyzer is free."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can Basketball Video Analyzer tag live during a game?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. It works on recorded game files. Once Sport Analyser can tag live from a stream or a camera with a capture card."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do both run on a Mac?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Once Sport Analyser is available for Windows and macOS. Basketball Video Analyzer runs on Windows, macOS and Linux."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://basketballvideoanalyzer.com/" },
+            { "@type": "ListItem", "position": 2, "name": "vs Once Sport Analyser", "item": "https://basketballvideoanalyzer.com/vs-once/" }
+          ]
+        }
+      ]
+    }
+  </script>
+</BaseLayout>
