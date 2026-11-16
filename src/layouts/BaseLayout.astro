@@ -97,10 +97,18 @@ const dates = type === 'article' ? pageDates[Astro.url.pathname] : undefined;
     <link rel="preload" href={dmSansLatin} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={spaceGroteskLatin} as="font" type="font/woff2" crossorigin />
 
-    <!-- Google Analytics (deferred to reduce TBT) -->
+    <!-- Google Analytics (deferred to reduce TBT). Every consent type stays
+         denied, so it sets no cookies and sends cookieless pings only. See
+         /privacy/, which describes this. -->
     <script is:inline define:vars={{ gaId: import.meta.env.PUBLIC_GA_MEASUREMENT_ID }}>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied'
+      });
       if (gaId) {
         var loadGA = function() {
           var s = document.createElement('script');
