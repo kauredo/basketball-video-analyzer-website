@@ -14,4 +14,5 @@ export const guides: Guide[] = [
   { href: '/free-alternative/', label: 'A free alternative to Hudl', blurb: "What Hudl does that this doesn't, and what this does." },
   { href: '/vs-inbound-studio/', label: 'Compared with Inbound Studio', blurb: 'The closest comparison here. Both run locally; one is €14.99 a month.' },
   { href: '/hudl-alternatives/', label: 'Hudl alternatives for basketball', blurb: 'Five tools compared, including doing it by hand in VLC.' },
+  { href: '/vs-kinovea/', label: 'Compared with Kinovea', blurb: "Both free. Kinovea measures one movement on Windows; this cuts and tags whole games." },
 ];

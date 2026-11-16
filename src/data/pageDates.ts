@@ -9,5 +9,6 @@ export const pageDates: Record<string, { published: string; modified: string }> 
   '/free-alternative/': { published: '2026-06-01', modified: '2026-11-16' },
   '/hudl-alternatives/': { published: '2026-07-10', modified: '2026-11-16' },
   '/vs-inbound-studio/': { published: '2026-07-10', modified: '2026-11-16' },
+  '/vs-kinovea/': { published: '2026-11-16', modified: '2026-11-16' },
   '/privacy/': { published: '2026-11-16', modified: '2026-11-16' },
 };
