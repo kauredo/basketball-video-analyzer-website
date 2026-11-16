@@ -4,6 +4,7 @@ import {
   getDownloadLabel,
   formatFileSize,
   getRecommendedDownload,
+  getIntelMacDownload,
 } from "@/utils/platform";
 import type { ReleaseInfo, PlatformAsset, Platform } from "@/types/github";
 
@@ -99,7 +100,9 @@ export function DownloadButton({
     );
   }
 
-  return (
+  const intelMac = userPlatform === "macos" ? getIntelMacDownload(release.platforms) : null;
+
+  const button = (
     <button
       onClick={handleDownload}
       className={`download-btn ${size === "lg" ? "btn-lg" : ""} ${className}`}
@@ -132,5 +135,16 @@ export function DownloadButton({
         />
       </svg>
     </button>
+  );
+
+  if (!intelMac) return button;
+
+  return (
+    <span className="inline-flex flex-col items-start gap-2">
+      {button}
+      <a href={intelMac.url} className="text-sm text-warm-700 underline underline-offset-2">
+        Intel Mac? Download the Intel build
+      </a>
+    </span>
   );
 }

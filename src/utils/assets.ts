@@ -6,7 +6,8 @@ function detectArchitecture(
 ): PlatformAsset["architecture"] {
   if (/arm64|aarch64|apple-silicon/.test(filename)) return "arm64";
   if (/x64|x86_64|amd64/.test(filename)) return "x64";
-  // The app only ships an Apple Silicon build for macOS, and its DMG name has no architecture.
+  // The Apple Silicon DMG has no architecture in its name; the Intel one is
+  // BasketballVideoAnalyzer-x64.dmg.
   return platform === "macos" ? "arm64" : "x64";
 }
 
