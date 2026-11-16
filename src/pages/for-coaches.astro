@@ -1,4 +1,5 @@
 ---
+import { pageDates } from '@/data/pageDates';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import RelatedGuides from '@/components/ui/RelatedGuides.astro';
@@ -8,6 +9,48 @@ import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
 
 const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
+
+const dates = pageDates['/for-coaches/'];
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Film review for basketball coaches",
+      "description": "A weekly film-review workflow for basketball coaches: clip the teaching moments, group them by theme across games, and share short folders players will watch.",
+      "url": "https://basketballvideoanalyzer.com/for-coaches/",
+      "datePublished": dates.published,
+      "dateModified": dates.modified,
+      "author": {
+        "@type": "Person",
+        "name": "kauredo",
+        "url": "https://github.com/kauredo"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "name": "Basketball Video Analyzer",
+        "url": "https://basketballvideoanalyzer.com"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://basketballvideoanalyzer.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Film review for coaches",
+          "item": "https://basketballvideoanalyzer.com/for-coaches/"
+        }
+      ]
+    }
+  ]
+};
 ---
 
 <BaseLayout
@@ -93,27 +136,5 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
 
   <RelatedGuides containerClass="max-w-6xl" current="/for-coaches/" />
 
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Article",
-          "headline": "Film review for basketball coaches",
-          "description": "A weekly film-review workflow for basketball coaches: clip the teaching moments, group them by theme across games, and share short folders players will watch.",
-          "url": "https://basketballvideoanalyzer.com/for-coaches/",
-          "datePublished": "2026-06-01",
-          "author": { "@type": "Person", "name": "kauredo", "url": "https://github.com/kauredo" },
-          "about": { "@type": "SoftwareApplication", "name": "Basketball Video Analyzer", "url": "https://basketballvideoanalyzer.com" }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://basketballvideoanalyzer.com/" },
-            { "@type": "ListItem", "position": 2, "name": "Film review for coaches", "item": "https://basketballvideoanalyzer.com/for-coaches/" }
-          ]
-        }
-      ]
-    }
-  </script>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 </BaseLayout>

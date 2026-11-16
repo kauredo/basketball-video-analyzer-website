@@ -1,4 +1,5 @@
 ---
+import { pageDates } from '@/data/pageDates';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import RelatedGuides from '@/components/ui/RelatedGuides.astro';
@@ -8,6 +9,48 @@ import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
 
 const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
+
+const dates = pageDates['/scouting/'];
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Scouting opponents from game film",
+      "description": "How to build a basketball scouting report from an opponent's game tape: set up categories, clip tendencies across multiple games, and export a scout folder for your staff.",
+      "url": "https://basketballvideoanalyzer.com/scouting/",
+      "datePublished": dates.published,
+      "dateModified": dates.modified,
+      "author": {
+        "@type": "Person",
+        "name": "kauredo",
+        "url": "https://github.com/kauredo"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "name": "Basketball Video Analyzer",
+        "url": "https://basketballvideoanalyzer.com"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://basketballvideoanalyzer.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Scouting opponents from film",
+          "item": "https://basketballvideoanalyzer.com/scouting/"
+        }
+      ]
+    }
+  ]
+};
 ---
 
 <BaseLayout
@@ -93,27 +136,5 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
 
   <RelatedGuides containerClass="max-w-6xl" current="/scouting/" />
 
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Article",
-          "headline": "Scouting opponents from game film",
-          "description": "How to build a basketball scouting report from an opponent's game tape: set up categories, clip tendencies across multiple games, and export a scout folder for your staff.",
-          "url": "https://basketballvideoanalyzer.com/scouting/",
-          "datePublished": "2026-06-01",
-          "author": { "@type": "Person", "name": "kauredo", "url": "https://github.com/kauredo" },
-          "about": { "@type": "SoftwareApplication", "name": "Basketball Video Analyzer", "url": "https://basketballvideoanalyzer.com" }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://basketballvideoanalyzer.com/" },
-            { "@type": "ListItem", "position": 2, "name": "Scouting opponents from film", "item": "https://basketballvideoanalyzer.com/scouting/" }
-          ]
-        }
-      ]
-    }
-  </script>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 </BaseLayout>
