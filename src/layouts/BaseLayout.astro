@@ -31,7 +31,7 @@ const socialImage = new URL(image, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="motion-safe:scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -171,27 +171,6 @@ const socialImage = new URL(image, Astro.site);
     </main>
 
     <Footer />
-
-    <script>
-      // Smooth scrolling for anchor links
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-          anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const href = (e.currentTarget as HTMLAnchorElement).getAttribute('href');
-            if (href) {
-              const target = document.querySelector(href);
-              if (target) {
-                target.scrollIntoView({
-                  behavior: 'smooth',
-                  block: 'start'
-                });
-              }
-            }
-          });
-        });
-      });
-    </script>
 
     <script>
       import { inject } from "@vercel/analytics";

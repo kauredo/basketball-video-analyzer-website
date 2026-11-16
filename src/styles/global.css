@@ -76,12 +76,6 @@
   }
 }
 
-@layer utilities {
-  .scroll-smooth {
-    scroll-behavior: smooth;
-  }
-}
-
 @media (max-width: 640px) {
   .btn-lg {
     @apply px-6 py-3 text-base;
