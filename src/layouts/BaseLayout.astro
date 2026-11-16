@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Navbar from '../components/ui/Navbar.astro';
 import Footer from '../components/ui/Footer.astro';
+import { pageDates } from '../data/pageDates';
 
 import dmSansLatin from '@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url';
 import spaceGroteskLatin from '@fontsource-variable/space-grotesk/files/space-grotesk-latin-wght-normal.woff2?url';
@@ -28,6 +29,7 @@ const {
 const pageTitle = fullTitle || `${title} | Basketball Video Analyzer`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImage = new URL(image, Astro.site);
+const dates = type === 'article' ? pageDates[Astro.url.pathname] : undefined;
 ---
 
 <!doctype html>
@@ -53,6 +55,8 @@ const socialImage = new URL(image, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:image" content={socialImage} />
     <meta property="og:site_name" content="Basketball Video Analyzer" />
+    {dates && <meta property="article:published_time" content={dates.published} />}
+    {dates && <meta property="article:modified_time" content={dates.modified} />}
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -83,38 +87,6 @@ const socialImage = new URL(image, Astro.site);
               "@type": "Person",
               "name": "kauredo",
               "url": "https://github.com/kauredo"
-            }
-          },
-          {
-            "@type": "SoftwareApplication",
-            "name": "Basketball Video Analyzer",
-            "description": "Free basketball video analysis tool. Cut, organize, and export game footage. Built by a coach, for coaches.",
-            "url": "https://basketballvideoanalyzer.com",
-            "applicationCategory": "SportsApplication",
-            "operatingSystem": "Windows, macOS, Linux",
-            "offers": {
-              "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
-            },
-            "creator": {
-              "@type": "Person",
-              "name": "kauredo",
-              "url": "https://github.com/kauredo"
-            },
-            "downloadUrl": "https://github.com/kauredo/basketball-video-analyzer/releases",
-            "screenshot": "https://basketballvideoanalyzer.com/images/og-image.jpg",
-            "featureList": [
-              "Video cutting with keyboard shortcuts",
-              "Hierarchical category organization",
-              "Batch export with folder structure",
-              "Cross-platform compatibility"
-            ],
-            "license": "https://github.com/kauredo/basketball-video-analyzer/blob/main/LICENSE",
-            "isAccessibleForFree": true,
-            "softwareHelp": {
-              "@type": "WebPage",
-              "url": "https://github.com/kauredo/basketball-video-analyzer/issues"
             }
           }
         ]

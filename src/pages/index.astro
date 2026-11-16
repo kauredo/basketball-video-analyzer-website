@@ -7,6 +7,7 @@ import presentImg from '@/assets/screenshots/present-mode.png';
 import HeroStage from '@/components/ui/HeroStage.astro';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
+import { jsonLd } from '@/utils/jsonLd';
 
 import videoCuttingImg from '@/assets/screenshots/video-cutting-interface.png';
 import projectOrgImg from '@/assets/screenshots/project-organization.png';
@@ -17,12 +18,41 @@ const release = await getCachedLatestRelease() ?? fallbackReleaseData;
 
 // Set to a YouTube video ID (e.g. 'dQw4w9WgXcQ') to enable the demo video section
 const DEMO_VIDEO_ID = '';
+
+// The app itself is described here only, not on every page.
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Basketball Video Analyzer',
+  description: 'A free, open-source desktop app for cutting, tagging and exporting basketball game film. Built by a coach, for coaches.',
+  url: 'https://basketballvideoanalyzer.com/',
+  applicationCategory: 'SportsApplication',
+  operatingSystem: 'Windows, macOS (Apple Silicon), Linux',
+  softwareVersion: release.version,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  isAccessibleForFree: true,
+  license: 'https://www.gnu.org/licenses/agpl-3.0.html',
+  downloadUrl: 'https://github.com/kauredo/basketball-video-analyzer/releases/latest',
+  installUrl: 'https://basketballvideoanalyzer.com/#download',
+  screenshot: 'https://basketballvideoanalyzer.com/images/og-image.jpg',
+  inLanguage: ['en', 'pt', 'es', 'fr', 'it', 'de', 'el', 'lt', 'sl', 'sr', 'tr'],
+  featureList: [
+    'Cut clips with keyboard shortcuts',
+    'Hierarchical categories and saved presets',
+    'Player tagging and court positions',
+    'Drawing on paused video, replayed with the clip',
+    'Present mode for film sessions',
+    'Export to MP4 category folders, CSV, JSON or Sportscode-compatible XML',
+  ],
+  creator: { '@type': 'Person', name: 'kauredo', url: 'https://github.com/kauredo' },
+  softwareHelp: { '@type': 'WebPage', url: 'https://github.com/kauredo/basketball-video-analyzer/issues' },
+};
 ---
 
 <BaseLayout
   title="Free Basketball Video Analysis Tool"
   fullTitle="Basketball Video Analyzer | Free Video Analysis Software for Coaches"
-  description="Free, open-source basketball video analysis for coaches. Cut and tag clips with keyboard shortcuts, organize by category and player, draw on the film, and export. All offline, on Windows, macOS, and Linux."
+  description="Free, open-source basketball video analysis for coaches. Cut and tag clips with keyboard shortcuts, draw on the film, and export them. Windows, macOS and Linux."
 >
 
   <!-- ============================== -->
@@ -378,6 +408,8 @@ const DEMO_VIDEO_ID = '';
       </div>
     </div>
   </section>
+
+  <script type="application/ld+json" set:html={jsonLd(softwareSchema)} />
 
   <!-- HowTo Structured Data -->
   <script type="application/ld+json">

@@ -3,6 +3,7 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
+import { pageDates } from "./src/data/pageDates.ts";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,7 +18,13 @@ export default defineConfig({
       configFile: "./tailwind.config.cjs",
     }),
     react(),
-    sitemap(),
+    sitemap({
+      serialize(item) {
+        const dates = pageDates[new URL(item.url).pathname];
+        if (dates) item.lastmod = dates.modified;
+        return item;
+      },
+    }),
   ],
   build: {
     // Enable CSS and JS minification
