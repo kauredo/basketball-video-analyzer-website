@@ -2,7 +2,7 @@
 
 > Free, open-source basketball video analysis tool built by a coach, for coaches.
 
-Basketball Video Analyzer is a desktop application for cutting, tagging, organizing, and exporting basketball game footage. It runs on Windows, macOS (Apple Silicon), and Linux, works offline (YouTube import and update checks need a connection), and costs nothing.
+Basketball Video Analyzer is a desktop application for cutting, tagging, organizing, and exporting basketball game footage. It runs on Windows, macOS on Apple Silicon (there is no Intel Mac build), and Linux, works offline (YouTube import and update checks need a connection), and costs nothing.
 
 ## Key Features
 
@@ -21,6 +21,15 @@ Basketball Video Analyzer is a desktop application for cutting, tagging, organiz
 ## Languages
 
 The interface ships in 11 languages: English, Portuguese, Spanish, French, Italian, German, Greek, Lithuanian, Slovenian, Serbian, and Turkish. Switching language does not require a restart.
+
+## Guides
+
+- [How to break down game film](https://basketballvideoanalyzer.com/film-breakdown/): Three passes through a game: load it, mark the plays, export the folders.
+- [Film review for coaches](https://basketballvideoanalyzer.com/for-coaches/): A weekly rhythm that fits in one sitting.
+- [Scouting opponents from film](https://basketballvideoanalyzer.com/scouting/): Read a team's tendencies off their own tape, across more than one game.
+- [A free alternative to Hudl](https://basketballvideoanalyzer.com/free-alternative/): What Hudl does that this doesn't, and what this does.
+- [Compared with Inbound Studio](https://basketballvideoanalyzer.com/vs-inbound-studio/): The closest comparison here. Both run locally; one is €14.99 a month.
+- [Hudl alternatives for basketball](https://basketballvideoanalyzer.com/hudl-alternatives/): Five tools compared, including doing it by hand in VLC.
 
 ## Links
 
