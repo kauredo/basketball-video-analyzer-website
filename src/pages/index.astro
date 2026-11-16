@@ -7,6 +7,7 @@ import presentImg from '@/assets/screenshots/present-mode.png';
 import HeroStage from '@/components/ui/HeroStage.astro';
 import { getCachedLatestRelease } from '@/utils/cache';
 import { fallbackReleaseData } from '@/utils/fallback';
+import { jsonLd } from '@/utils/jsonLd';
 
 import videoCuttingImg from '@/assets/screenshots/video-cutting-interface.png';
 import projectOrgImg from '@/assets/screenshots/project-organization.png';
@@ -408,7 +409,7 @@ const softwareSchema = {
     </div>
   </section>
 
-  <script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />
+  <script type="application/ld+json" set:html={jsonLd(softwareSchema)} />
 
   <!-- HowTo Structured Data -->
   <script type="application/ld+json">

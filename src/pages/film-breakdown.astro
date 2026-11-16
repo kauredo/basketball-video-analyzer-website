@@ -1,5 +1,6 @@
 ---
 import { pageDates } from '@/data/pageDates';
+import { jsonLd } from '@/utils/jsonLd';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { DownloadButton } from '@/components/features/DownloadButton';
 import RelatedGuides from '@/components/ui/RelatedGuides.astro';
@@ -157,5 +158,5 @@ const schema = {
 
   <RelatedGuides containerClass="max-w-6xl" current="/film-breakdown/" />
 
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script type="application/ld+json" set:html={jsonLd(schema)} />
 </BaseLayout>

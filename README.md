@@ -13,7 +13,7 @@ npm run build     # the only gate; there is no lint or typecheck script
 npm run preview
 ```
 
-`src/utils/assets.test.ts` covers the release-asset parser: `node --experimental-strip-types --test src/utils/assets.test.ts`.
+Two small test files cover the release-asset parser and the page-date table: `node --experimental-strip-types --test src/utils/assets.test.ts src/data/pageDates.test.ts`.
 
 ## How the download button works
 
