@@ -47,6 +47,44 @@ const softwareSchema = {
   creator: { '@type': 'Person', name: 'kauredo', url: 'https://github.com/kauredo' },
   softwareHelp: { '@type': 'WebPage', url: 'https://github.com/kauredo/basketball-video-analyzer/issues' },
 };
+
+// Shown on the page and sent as FAQPage JSON-LD, so the two cannot drift.
+const faq = [
+  {
+    q: 'Is it really free?',
+    a: 'Yes. There is no paid tier, no trial and no account. The code is open source under the AGPL-3.0 licence, so anyone can read it on GitHub.',
+  },
+  {
+    q: 'Does it upload my game film anywhere?',
+    a: 'No. Videos, clips and projects stay in folders on your own computer. The app goes online only to check for updates, to import a YouTube video when you paste a link, and to send feedback when you write some.',
+  },
+  {
+    q: 'Does it work offline?',
+    a: 'Yes, apart from YouTube import and update checks. Cutting, tagging, drawing and exporting all run on your machine.',
+  },
+  {
+    q: 'Does it run on Mac and Windows?',
+    a: 'It runs on Windows 10 and later, on macOS 11 and later with an Apple Silicon chip (M1 or newer), and on Linux as a .deb or .rpm package. There is no build for Intel Macs.',
+  },
+  {
+    q: 'Can I export to Sportscode, Hudl or Excel?',
+    a: 'Clips export as MP4 files, one folder per category, which you can upload to Hudl, Google Drive or anywhere else. The clip list exports as CSV for Excel or Google Sheets, as JSON, or as a Sportscode-compatible timeline XML. There is no direct upload to Hudl.',
+  },
+  {
+    q: 'Which video files does it open?',
+    a: 'MP4, MOV, AVI, MKV, WMV, FLV, WebM and M4V.',
+  },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
 ---
 
 <BaseLayout
@@ -369,6 +407,55 @@ const softwareSchema = {
       </ul>
     </div>
   </section>
+
+
+  <!-- ============================== -->
+  <!-- FAQ and system requirements    -->
+  <!-- ============================== -->
+  <section id="faq" aria-labelledby="faq-heading" class="py-20 sm:py-28 bg-warm-50 border-t border-warm-300">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 id="faq-heading" class="font-display text-3xl sm:text-4xl font-bold text-warm-900 mb-12">
+        Questions coaches ask
+      </h2>
+
+      <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-16">
+        <dl class="space-y-8 max-w-2xl">
+          {faq.map(({ q, a }) => (
+            <div>
+              <dt class="font-display font-semibold text-warm-900">{q}</dt>
+              <dd class="text-warm-700 leading-relaxed mt-2">{a}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <aside aria-labelledby="requirements-heading" class="border-t border-warm-300 pt-8 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
+          <h3 id="requirements-heading" class="font-display font-semibold text-warm-900 mb-5">
+            System requirements
+          </h3>
+          <dl class="space-y-4 text-sm">
+            <div>
+              <dt class="font-medium text-warm-900">Windows</dt>
+              <dd class="text-warm-700">Windows 10 or later, 64-bit</dd>
+            </div>
+            <div>
+              <dt class="font-medium text-warm-900">macOS</dt>
+              <dd class="text-warm-700">macOS 11 or later, Apple Silicon only</dd>
+            </div>
+            <div>
+              <dt class="font-medium text-warm-900">Linux</dt>
+              <dd class="text-warm-700">64-bit, .deb (Ubuntu 18.04 or later) or .rpm</dd>
+            </div>
+            <div>
+              <dt class="font-medium text-warm-900">Memory and disk</dt>
+              <dd class="text-warm-700">4 GB of RAM (8 GB recommended), 2 GB free plus room for your clips</dd>
+            </div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
 
   <!-- ============================== -->
