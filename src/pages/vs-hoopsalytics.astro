@@ -1,0 +1,201 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { DownloadButton } from '@/components/features/DownloadButton';
+import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import ProductShot from '@/components/ui/ProductShot.astro';
+import libraryImg from '@/assets/screenshots/clip-library-browser.png';
+import { getCachedLatestRelease } from '@/utils/cache';
+import { fallbackReleaseData } from '@/utils/fallback';
+
+const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
+---
+
+<BaseLayout
+  title="Basketball Video Analyzer vs Hoopsalytics"
+  fullTitle="Basketball Video Analyzer vs Hoopsalytics | Local and Free vs Cloud Stats"
+  description="Hoopsalytics uploads your games, has analysts tag them and links every stat to video. Basketball Video Analyzer is free and keeps the film on your computer."
+  type="article"
+>
+  <article class="py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-xl">
+      <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
+        Basketball Video Analyzer vs Hoopsalytics
+      </h1>
+      <p class="text-lg sm:text-xl text-warm-700 mb-12">
+        Hoopsalytics is a basketball stats service: you upload the game, its
+        analysts score it, and every stat opens the clip behind it. This app
+        is a free desktop tool where you do the tagging yourself and the film
+        never leaves your computer. The question is whether you want the work
+        done for you, and whether your players need to watch from their phones.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        What Hoopsalytics is
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Hoopsalytics links every stat to the video of the play, and its shot
+        location data feeds interactive shot charts. When you ask for a price
+        quote you choose between having its analysts score your games, which
+        it recommends, or scoring and tagging them yourself. Games are uploaded
+        to its cloud, hosted through Vimeo, with no storage limit, and players,
+        parents and staff can all get access and watch on a phone, tablet or
+        computer. It has a free iPhone and iPad app that records and uploads
+        games.
+      </p>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Hoopsalytics does not publish its prices. You fill in a form and get a
+        quote by email. It is free to start with no credit card, and it offers
+        a 30-day money-back guarantee on purchases.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        What this tool is
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Basketball Video Analyzer is free and open source, and runs on
+        Windows, macOS and Linux. You load a game file, mark each play with the
+        keyboard, and tag it by category, player and quarter. Each clip can
+        carry a spot on the court for the shot chart, and the stats tab counts
+        clips by category, quarter and player. Clips export as ordinary video
+        files, the clip list as CSV, JSON or Sportscode XML. Nothing uploads,
+        so there is no account and no storage to pay for. There is also no
+        sharing platform: you send files the way you already do.
+      </p>
+
+      <ProductShot
+        src={libraryImg}
+        alt={"The clip library beside the video, with Export Clips, Open Clips Folder and a category filter listing each category and how many clips it holds."}
+        caption={"Clips leave as ordinary video files, one folder per category, ready for whatever you use to send them."}
+      />
+
+      <div class="overflow-x-auto my-8 relative left-1/2 -translate-x-1/2 w-[min(100vw-2rem,44rem)]">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-warm-300">
+              <th class="py-3 pr-4 font-display font-semibold text-warm-900"></th>
+              <th class="py-3 px-4 font-display font-semibold text-warm-900">Basketball Video Analyzer</th>
+              <th class="py-3 px-4 font-display font-semibold text-warm-900">Hoopsalytics</th>
+            </tr>
+          </thead>
+          <tbody class="text-warm-700">
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Price</td>
+              <td class="py-3 px-4">Free</td>
+              <td class="py-3 px-4">Quote by email; free to start</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Where the film lives</td>
+              <td class="py-3 px-4">Your computer</td>
+              <td class="py-3 px-4">Uploaded to its cloud</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Who tags the game</td>
+              <td class="py-3 px-4">You</td>
+              <td class="py-3 px-4">Its analysts, or you</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Shot chart</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Yes</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Box-score stats linked to video</td>
+              <td class="py-3 px-4">No, clip counts only</td>
+              <td class="py-3 px-4">Yes</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Players watch on their phones</td>
+              <td class="py-3 px-4">No</td>
+              <td class="py-3 px-4">Yes</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Drawing on video</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Not on the pages checked</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Open source</td>
+              <td class="py-3 px-4">Yes (AGPL)</td>
+              <td class="py-3 px-4">No</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-warm-700 mb-8">
+        Hoopsalytics details from its
+        <a class="underline underline-offset-2" href="https://www.hoopsalytics.com/" rel="noopener">home page</a>,
+        <a class="underline underline-offset-2" href="https://www.hoopsalytics.com/pricing.php" rel="noopener">pricing page</a>
+        and <a class="underline underline-offset-2" href="https://www.hoopsalytics.com/faq.php" rel="noopener">FAQ</a>,
+        checked 16 November 2026.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Which one fits you
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        If you want full stats without spending your evenings tagging, and
+        your players and their families should watch from anywhere, ask
+        Hoopsalytics for a quote. If you would rather tag the plays you care
+        about yourself, keep the film on your own machine and pay nothing, this
+        tool does that.
+      </p>
+
+      <div class="mt-12 pt-8 border-t border-warm-300">
+        <h2 class="font-display text-2xl font-bold text-warm-900 mb-4">Try it free</h2>
+        <p class="text-warm-700 mb-6 max-w-lg">
+          Free and open source, on Windows, macOS and Linux.
+        </p>
+        <DownloadButton release={release} client:idle />
+      </div>
+      </div>
+    </div>
+  </article>
+
+  <RelatedGuides containerClass="max-w-6xl" current="/vs-hoopsalytics/" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "FAQPage",
+          "url": "https://basketballvideoanalyzer.com/vs-hoopsalytics/",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How much does Hoopsalytics cost?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Hoopsalytics does not publish prices; its pricing page asks for your details and sends a quote by email. It is free to start and offers a 30-day money-back guarantee (checked 16 November 2026). Basketball Video Analyzer is free."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does my game film get uploaded?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "With Hoopsalytics, yes: games are uploaded and hosted online so players and staff can watch them. With Basketball Video Analyzer, no: the film and the clips stay on your computer."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Who tags the games?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Hoopsalytics offers to have its analysts score your games, or you can tag them yourself. In Basketball Video Analyzer you tag the plays yourself with keyboard shortcuts."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://basketballvideoanalyzer.com/" },
+            { "@type": "ListItem", "position": 2, "name": "vs Hoopsalytics", "item": "https://basketballvideoanalyzer.com/vs-hoopsalytics/" }
+          ]
+        }
+      ]
+    }
+  </script>
+</BaseLayout>
