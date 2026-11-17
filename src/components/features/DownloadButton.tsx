@@ -4,6 +4,7 @@ import {
   getDownloadLabel,
   formatFileSize,
   getRecommendedDownload,
+  getIntelMacDownload,
 } from "@/utils/platform";
 import type { ReleaseInfo, PlatformAsset, Platform } from "@/types/github";
 
@@ -48,6 +49,18 @@ export function DownloadButton({
 
       // Trigger download
       window.open(recommendedDownload.url, "_blank");
+    }
+  };
+
+  const handleIntelDownload = () => {
+    if (typeof window !== "undefined" && "gtag" in window) {
+      (window as any).gtag("event", "download", {
+        event_category: "engagement",
+        event_label: `macos-x64-${release.version}`,
+        platform: "macos",
+        version: release.version,
+        file_type: intelMac?.fileType,
+      });
     }
   };
 
@@ -99,7 +112,9 @@ export function DownloadButton({
     );
   }
 
-  return (
+  const intelMac = userPlatform === "macos" ? getIntelMacDownload(release.platforms) : null;
+
+  const button = (
     <button
       onClick={handleDownload}
       className={`download-btn ${size === "lg" ? "btn-lg" : ""} ${className}`}
@@ -132,5 +147,20 @@ export function DownloadButton({
         />
       </svg>
     </button>
+  );
+
+  if (!intelMac) return button;
+
+  return (
+    <span className="inline-flex flex-col items-start gap-2">
+      {button}
+      <a
+        href={intelMac.url}
+        onClick={handleIntelDownload}
+        className="text-sm text-warm-700 underline underline-offset-2"
+      >
+        Intel Mac? Download the Intel build
+      </a>
+    </span>
   );
 }

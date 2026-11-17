@@ -33,8 +33,8 @@ export function getArchitecture(): Architecture {
 
   const userAgent = window.navigator.userAgent.toLowerCase();
 
-  // Apple Silicon detection
-  if (userAgent.includes("mac") && userAgent.includes("arm64")) {
+  // Arm Linux browsers say so ("Linux aarch64"); Mac browsers never do.
+  if (userAgent.includes("aarch64") || userAgent.includes("arm64")) {
     return "arm64";
   }
 
@@ -70,17 +70,36 @@ export function formatFileSize(bytes: number): string {
   return `${size} ${sizes[i]}`;
 }
 
+/** The Intel Mac DMG, when a release has one. */
+export function getIntelMacDownload(platformAssets: PlatformAsset[]): PlatformAsset | null {
+  return (
+    platformAssets.find(
+      asset => asset.platform === "macos" && asset.fileType === "dmg" && asset.architecture === "x64"
+    ) ?? null
+  );
+}
+
 export function getRecommendedDownload(
   platformAssets: PlatformAsset[],
   userPlatform: Platform
 ): PlatformAsset | null {
-  const userArch = getArchitecture();
+  // Every Mac browser reports "Intel Mac OS X", Apple Silicon included, so
+  // the user agent cannot tell them apart. Most Macs now are Apple Silicon:
+  // offer that build, and the button links the Intel one beside it.
+  const userArch = userPlatform === "macos" ? "arm64" : getArchitecture();
 
-  const platformOptions = platformAssets
-    .filter(asset => asset.platform === userPlatform)
-    .sort(
-      (a, b) => Number(a.fileType === "zip") - Number(b.fileType === "zip")
-    );
+  const platformAssetsForUser = platformAssets.filter(
+    asset => asset.platform === userPlatform
+  );
+  // Installers first: a Mac with a DMG gets the DMG, never a zip.
+  const installers = platformAssetsForUser.filter(
+    asset => asset.fileType === "dmg"
+  );
+  const platformOptions = (
+    userPlatform === "macos" && installers.length > 0
+      ? installers
+      : platformAssetsForUser
+  ).sort((a, b) => Number(a.fileType === "zip") - Number(b.fileType === "zip"));
 
   if (platformOptions.length === 0) {
     return null;
