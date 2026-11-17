@@ -17,4 +17,5 @@ export const guides: Guide[] = [
   { href: '/vs-kinovea/', label: 'Compared with Kinovea', blurb: "Both free. Kinovea measures one movement on Windows; this cuts and tags whole games." },
   { href: '/vs-hoopsalytics/', label: 'Compared with Hoopsalytics', blurb: "Hoopsalytics tags your uploaded games for a quoted price; this is free and stays on your computer." },
   { href: '/vs-once/', label: 'Compared with Once Sport Analyser', blurb: "Once adds live tagging and tracking for €12 to €72 a month; this does the after-game breakdown free." },
+  { href: '/shot-chart/', label: 'Shot charts from game film', blurb: "Click each shot's spot as you clip it, then filter the chart by player, quarter or play." },
 ];

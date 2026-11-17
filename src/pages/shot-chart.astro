@@ -1,0 +1,127 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { DownloadButton } from '@/components/features/DownloadButton';
+import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import { getCachedLatestRelease } from '@/utils/cache';
+import { fallbackReleaseData } from '@/utils/fallback';
+
+const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
+---
+
+<BaseLayout
+  title="Shot Charts From Game Film"
+  fullTitle="How to Make a Basketball Shot Chart From Game Film | Free"
+  description="Make a shot chart from your own game video: mark each shot's spot on a half court as you clip it, then filter the chart by player, quarter or play type. Free."
+  type="article"
+>
+  <article class="py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-xl">
+      <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
+        Shot charts from game film
+      </h1>
+      <p class="text-lg sm:text-xl text-warm-700 mb-12">
+        A shot chart answers questions a box score can't. Where does their
+        best scorer shoot from when the game is close? Does your team stop
+        attacking the paint in the fourth quarter? If you already cut your game
+        film into clips, the chart is a few extra clicks per shot.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Mark the spot as you clip
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        In Basketball Video Analyzer you mark the start and end of a play with
+        Z and M, then save it with its categories and players. The same form
+        has an optional shot location: a half court where you click the spot
+        the shot came from. Doing it while the play is still on screen is the
+        quick way. Going back through a game later to place shots takes much
+        longer.
+      </p>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Tag the shots the way you want to read them later. A category for the
+        play type (pick and roll, post up, transition) and the shooter as the
+        player is enough for most scouting questions.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Read the chart
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Open Stats and switch to the Shot chart tab. Every clip with a location
+        is a dot on the court, coloured by its first category, and hovering a
+        dot shows the clip's title. Three filters narrow it down: player,
+        quarter and category. One player in the fourth quarter, or only the
+        pick and roll, is one change in a dropdown. Clips without a location
+        are counted under the chart, so you know what it leaves out.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Across more than one game
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        A chart from one game is a handful of dots. For an opponent, chart two
+        or three of their games with the same categories, and there are
+        enough shots to see where they like to shoot from. The <a class="underline underline-offset-2" href="/scouting/">scouting guide</a>
+        covers setting up categories you can reuse from game to game.
+      </p>
+
+      <div class="mt-12 pt-8 border-t border-warm-300">
+        <h2 class="font-display text-2xl font-bold text-warm-900 mb-4">Try it free</h2>
+        <p class="text-warm-700 mb-6 max-w-lg">
+          Free and open source, on Windows, macOS and Linux. Your film stays on
+          your computer.
+        </p>
+        <DownloadButton release={release} client:idle />
+      </div>
+      </div>
+    </div>
+  </article>
+
+  <RelatedGuides containerClass="max-w-6xl" current="/shot-chart/" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "FAQPage",
+          "url": "https://basketballvideoanalyzer.com/shot-chart/",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "How do I make a shot chart from game video?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "In Basketball Video Analyzer, cut each shot as a clip and click where it came from on the half court in the clip form. The Stats window's Shot chart tab then draws every located clip as a dot, coloured by category."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I filter a shot chart by player or quarter?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. The shot chart has player, quarter and category filters."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is it free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Basketball Video Analyzer is free and open source, and runs on Windows, macOS and Linux without uploading your film."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://basketballvideoanalyzer.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Shot charts from game film", "item": "https://basketballvideoanalyzer.com/shot-chart/" }
+          ]
+        }
+      ]
+    }
+  </script>
+</BaseLayout>
