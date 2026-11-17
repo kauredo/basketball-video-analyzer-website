@@ -26,6 +26,14 @@ test("a Mac gets the Apple Silicon DMG even when an Intel one ships", () => {
   assert.equal(getRecommendedDownload(both, "macos")?.filename, "BasketballVideoAnalyzer.dmg");
 });
 
+test("a Mac gets a DMG over a zip when no Apple Silicon DMG exists", () => {
+  const noArmDmg = release([
+    "BasketballVideoAnalyzer-x64.dmg",
+    "BasketballVideoAnalyzer-darwin-arm64-1.14.0.zip",
+  ]);
+  assert.equal(getRecommendedDownload(noArmDmg, "macos")?.fileType, "dmg");
+});
+
 test("the Intel DMG is found when it ships, and only then", () => {
   assert.equal(getIntelMacDownload(both)?.filename, "BasketballVideoAnalyzer-x64.dmg");
   assert.equal(getIntelMacDownload(release(["BasketballVideoAnalyzer.dmg"])), null);

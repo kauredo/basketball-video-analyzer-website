@@ -88,11 +88,18 @@ export function getRecommendedDownload(
   // offer that build, and the button links the Intel one beside it.
   const userArch = userPlatform === "macos" ? "arm64" : getArchitecture();
 
-  const platformOptions = platformAssets
-    .filter(asset => asset.platform === userPlatform)
-    .sort(
-      (a, b) => Number(a.fileType === "zip") - Number(b.fileType === "zip")
-    );
+  const platformAssetsForUser = platformAssets.filter(
+    asset => asset.platform === userPlatform
+  );
+  // Installers first: a Mac with a DMG gets the DMG, never a zip.
+  const installers = platformAssetsForUser.filter(
+    asset => asset.fileType === "dmg"
+  );
+  const platformOptions = (
+    userPlatform === "macos" && installers.length > 0
+      ? installers
+      : platformAssetsForUser
+  ).sort((a, b) => Number(a.fileType === "zip") - Number(b.fileType === "zip"));
 
   if (platformOptions.length === 0) {
     return null;

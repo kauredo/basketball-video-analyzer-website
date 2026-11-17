@@ -52,6 +52,18 @@ export function DownloadButton({
     }
   };
 
+  const handleIntelDownload = () => {
+    if (typeof window !== "undefined" && "gtag" in window) {
+      (window as any).gtag("event", "download", {
+        event_category: "engagement",
+        event_label: `macos-x64-${release.version}`,
+        platform: "macos",
+        version: release.version,
+        file_type: intelMac?.fileType,
+      });
+    }
+  };
+
   // Platform icons
   const getPlatformIcon = (platform: Platform) => {
     switch (platform) {
@@ -142,7 +154,11 @@ export function DownloadButton({
   return (
     <span className="inline-flex flex-col items-start gap-2">
       {button}
-      <a href={intelMac.url} className="text-sm text-warm-700 underline underline-offset-2">
+      <a
+        href={intelMac.url}
+        onClick={handleIntelDownload}
+        className="text-sm text-warm-700 underline underline-offset-2"
+      >
         Intel Mac? Download the Intel build
       </a>
     </span>
