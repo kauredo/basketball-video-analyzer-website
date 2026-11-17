@@ -11,5 +11,6 @@ export const pageDates: Record<string, { published: string; modified: string }> 
   '/vs-inbound-studio/': { published: '2026-07-10', modified: '2026-11-16' },
   '/vs-kinovea/': { published: '2026-11-16', modified: '2026-11-16' },
   '/vs-hoopsalytics/': { published: '2026-11-16', modified: '2026-11-16' },
+  '/vs-once/': { published: '2026-11-16', modified: '2026-11-16' },
   '/privacy/': { published: '2026-11-16', modified: '2026-11-16' },
 };
