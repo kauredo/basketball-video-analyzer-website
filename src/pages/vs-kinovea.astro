@@ -1,0 +1,200 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { DownloadButton } from '@/components/features/DownloadButton';
+import RelatedGuides from '@/components/ui/RelatedGuides.astro';
+import ProductShot from '@/components/ui/ProductShot.astro';
+import cuttingImg from '@/assets/screenshots/video-cutting-interface.png';
+import { getCachedLatestRelease } from '@/utils/cache';
+import { fallbackReleaseData } from '@/utils/fallback';
+
+const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
+---
+
+<BaseLayout
+  title="Basketball Video Analyzer vs Kinovea"
+  fullTitle="Basketball Video Analyzer vs Kinovea | Two Free Tools, Two Jobs"
+  description="Kinovea and Basketball Video Analyzer are both free and open source. Kinovea measures movement on Windows; this one cuts and tags game film on Windows, Mac and Linux."
+  type="article"
+>
+  <article class="py-20 sm:py-28">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-xl">
+      <h1 class="font-display text-4xl sm:text-5xl font-bold text-warm-900 leading-[1.1] mb-6">
+        Basketball Video Analyzer vs Kinovea
+      </h1>
+      <p class="text-lg sm:text-xl text-warm-700 mb-12">
+        Both are free, both are open source, and coaches find both when they
+        search for free video analysis. They answer different questions.
+        Kinovea is for looking closely at one movement: a jump shot, a defensive
+        slide, a landing. This app is for working through a whole game and
+        coming out the other side with clips sorted by what happened.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        What Kinovea is
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Kinovea is a free, open-source program under the GPL v2 license. Its
+        own description is a set of tools to capture, slow down, compare,
+        annotate, track and measure motion in videos. You can play two videos
+        side by side and sync them on a common moment, measure angles,
+        distances and times by hand or with semi-automatic tracking, draw lines,
+        arrows and shapes on the frame, and export the measurements as CSV. The
+        current version is 2025.2. It runs on Windows 7 to 11, and its download
+        page says it does not run on Apple Silicon Macs, even through Parallels.
+      </p>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Kinovea's feature list does not mention tagging clips into categories
+        or cutting a game into files. A shooting coach fixing a release point
+        will not miss either: side-by-side comparison and an angle tool are
+        what that job needs.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        What this tool is
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Basketball Video Analyzer is built around the game, not the single
+        rep. Load the film, press Z and M to mark the start and end of each
+        play, tag it with categories and players, and export the clips as video
+        files in one folder per category. Each clip can carry a spot on the
+        court, so the stats tab draws a shot chart, and you can draw on paused
+        video and have the drawing burned into the exported clip. It runs on
+        Windows, macOS and Linux and is open source under the AGPL.
+      </p>
+
+      <ProductShot
+        src={cuttingImg}
+        alt={"The app with the side panel and the bottom panel both hidden, leaving the video, the scrub bar, the transport row reading 36:20 of 1:25:39, and the Mark In (Z) and Mark Out (M) row."}
+        caption={"Z marks the start of a play and M the end, so a game turns into a list of clips as you watch it."}
+      />
+
+      <div class="overflow-x-auto my-8 relative left-1/2 -translate-x-1/2 w-[min(100vw-2rem,44rem)]">
+        <table class="w-full text-left border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-warm-300">
+              <th class="py-3 pr-4 font-display font-semibold text-warm-900"></th>
+              <th class="py-3 px-4 font-display font-semibold text-warm-900">Basketball Video Analyzer</th>
+              <th class="py-3 px-4 font-display font-semibold text-warm-900">Kinovea</th>
+            </tr>
+          </thead>
+          <tbody class="text-warm-700">
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Price</td>
+              <td class="py-3 px-4">Free</td>
+              <td class="py-3 px-4">Free</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">License</td>
+              <td class="py-3 px-4">AGPL</td>
+              <td class="py-3 px-4">GPL v2</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Platforms</td>
+              <td class="py-3 px-4">Windows, macOS, Linux</td>
+              <td class="py-3 px-4">Windows</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Cut a game into tagged clips</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Not in its feature list</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Drawing on video</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Yes</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Angle and distance measurement</td>
+              <td class="py-3 px-4">No</td>
+              <td class="py-3 px-4">Yes</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Side-by-side comparison</td>
+              <td class="py-3 px-4">No</td>
+              <td class="py-3 px-4">Yes</td>
+            </tr>
+            <tr class="border-b border-warm-200">
+              <td class="py-3 pr-4 font-medium">Shot chart and clip stats</td>
+              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">No</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-sm text-warm-700 mb-8">
+        Kinovea details from
+        <a class="underline underline-offset-2" href="https://www.kinovea.org/" rel="noopener">kinovea.org</a>,
+        its <a class="underline underline-offset-2" href="https://www.kinovea.org/features.html" rel="noopener">feature list</a>
+        and its <a class="underline underline-offset-2" href="https://www.kinovea.org/download.html" rel="noopener">download page</a>,
+        checked 16 November 2026.
+      </p>
+
+      <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
+        Which one fits you
+      </h2>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        If you coach technique and want to slow a movement down, measure it
+        and compare it with last month's, use Kinovea. If you break down games
+        and scout opponents, and want a folder of pick-and-roll clips by Monday,
+        use this one. They cost nothing, so plenty of coaches keep both.
+      </p>
+
+      <div class="mt-12 pt-8 border-t border-warm-300">
+        <h2 class="font-display text-2xl font-bold text-warm-900 mb-4">Try it free</h2>
+        <p class="text-warm-700 mb-6 max-w-lg">
+          Free and open source, on Windows, macOS and Linux.
+        </p>
+        <DownloadButton release={release} client:idle />
+      </div>
+      </div>
+    </div>
+  </article>
+
+  <RelatedGuides containerClass="max-w-6xl" current="/vs-kinovea/" />
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "FAQPage",
+          "url": "https://basketballvideoanalyzer.com/vs-kinovea/",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is Kinovea good for basketball film breakdown?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Kinovea is built for studying one movement: slow motion, side-by-side comparison, and angle and distance measurement. Its feature list does not mention tagging a game into clips. For breaking down whole games, Basketball Video Analyzer cuts and tags clips by category and player."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does Kinovea run on a Mac?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Kinovea's download page lists Windows 7 to 11 and says it does not run on Apple Silicon Macs, even through Parallels (checked 16 November 2026). Basketball Video Analyzer runs on Windows, macOS and Linux."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are both free?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Kinovea is free and open source under the GPL v2. Basketball Video Analyzer is free and open source under the AGPL."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://basketballvideoanalyzer.com/" },
+            { "@type": "ListItem", "position": 2, "name": "vs Kinovea", "item": "https://basketballvideoanalyzer.com/vs-kinovea/" }
+          ]
+        }
+      ]
+    }
+  </script>
+</BaseLayout>

@@ -30,6 +30,7 @@ The interface ships in 11 languages: English, Portuguese, Spanish, French, Itali
 - [A free alternative to Hudl](https://basketballvideoanalyzer.com/free-alternative/): What Hudl does that this doesn't, and what this does.
 - [Compared with Inbound Studio](https://basketballvideoanalyzer.com/vs-inbound-studio/): The closest comparison here. Both run locally; one is €14.99 a month.
 - [Hudl alternatives for basketball](https://basketballvideoanalyzer.com/hudl-alternatives/): Five tools compared, including doing it by hand in VLC.
+- [Compared with Kinovea](https://basketballvideoanalyzer.com/vs-kinovea/): Both free. Kinovea measures one movement on Windows; this cuts and tags whole games.
 
 ## Links
 
