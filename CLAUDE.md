@@ -9,3 +9,4 @@ Astro 5 static site for the free desktop app. The app lives in `../app` (its own
 - `docs/design-system.md` says who the site is for; `docs/DESIGN.md` holds the tokens (Scorebook: warm paper, teal accent, 1px rules). Match them.
 - Copy is read by coaches and by answer engines. Plain sentences, no em dashes, no invented numbers or competitor prices without a source and a date.
 - Conventional commits, squash-merged PRs. Screenshots for PRs go on the `pr-assets` branch; never delete it.
+- Audit, Nov 2026: `docs/audit-2026-11.md` lists open work, won't-do decisions and competitors; open work has plans in `plans/` (most live in the app repo).
