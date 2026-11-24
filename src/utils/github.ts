@@ -9,17 +9,6 @@ const octokit = new Octokit({
 const REPO_OWNER = "kauredo";
 const REPO_NAME = "basketball-video-analyzer";
 
-export class GitHubAPIError extends Error {
-  constructor(
-    message: string,
-    public status?: number,
-    public rateLimitReset?: Date
-  ) {
-    super(message);
-    this.name = "GitHubAPIError";
-  }
-}
-
 export async function getLatestRelease(): Promise<ReleaseInfo | null> {
   try {
     const { data: release } = await octokit.rest.repos.getLatestRelease({
@@ -38,23 +27,8 @@ export async function getLatestRelease(): Promise<ReleaseInfo | null> {
         0
       ),
     };
-  } catch (error: any) {
+  } catch (error) {
     console.error("Failed to fetch latest release:", error);
-
-    if (
-      error.status === 403 &&
-      error.response?.headers?.["x-ratelimit-remaining"] === "0"
-    ) {
-      const resetTime = new Date(
-        parseInt(error.response.headers["x-ratelimit-reset"]) * 1000
-      );
-      throw new GitHubAPIError(
-        "GitHub API rate limit exceeded",
-        403,
-        resetTime
-      );
-    }
-
     return null;
   }
 }
