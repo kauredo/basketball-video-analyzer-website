@@ -1,0 +1,74 @@
+Basketball Video Analyzer website
+Copyright (c) 2026 Vasco Kaufmann
+
+This repository holds code and content under different terms. Part 1 covers
+the code, part 2 covers everything else, and part 3 lists material that
+belongs to other people.
+
+
+1. Code: MIT License
+
+The code in this repository is licensed under the MIT License below. "Code"
+means:
+
+  - the files in src/components/, src/layouts/, src/pages/, src/styles/,
+    src/types/, src/utils/ and src/data/, as program logic, markup and styles;
+  - the files in scripts/;
+  - the configuration files at the top of the repository (astro.config.mjs,
+    tailwind.config.cjs, tsconfig.json, vercel.json, package.json,
+    package-lock.json, .gitignore) and in .vscode/.
+
+The written text of the site inside those files (page copy, headings,
+captions, FAQ answers, meta descriptions and JSON-LD text) is not code and is
+covered by part 2.
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+
+
+2. Content and brand: all rights reserved
+
+Everything in this repository that is not code under part 1 and not listed in
+part 3 is Copyright (c) 2026 Vasco Kaufmann, all rights reserved. This
+includes:
+
+  - the written text of the site, in the page files and in public/llms.txt;
+  - the documents in docs/ and plans/, README.md and the other Markdown files;
+  - the product screenshots in src/assets/screenshots/ and the images in
+    public/images/;
+  - the name "Basketball Video Analyzer", the logo and mark in
+    src/assets/brand/, and the icons and favicons in public/.
+
+You may link to the site and quote short passages with attribution. Any other
+copying, republishing or reuse needs written permission.
+
+
+3. Third-party material
+
+  - Fonts. The site uses DM Sans and Space Grotesk through the
+    @fontsource-variable npm packages. Both fonts are licensed under the SIL
+    Open Font License 1.1, which stays with them. Their licence texts ship in
+    those packages.
+  - npm packages. Every dependency in package.json keeps its own licence.
+  - Game footage. The screenshots show the app playing film of real games.
+    That footage belongs to whoever recorded it and is not licensed by this
+    file.
+  - Third-party photos. The repository contains none at the time of writing.
+    Any added later keeps its own licence, recorded next to it.
+
+Questions: contact@basketballvideoanalyzer.com

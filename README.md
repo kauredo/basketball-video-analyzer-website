@@ -33,3 +33,7 @@ At build time `src/utils/github.ts` reads the latest release of the app repo fro
 - `public/llms.txt`: the summary answer engines read.
 - `docs/DESIGN.md` and `docs/design-system.md`: the visual system the site shares with the app.
 - `plans/`: SEO plans for this repo. Most plans for the product live in the app repo's `plans/`.
+
+## License
+
+Copyright (c) 2026 Vasco Kaufmann. The code (`src/` logic and markup, `scripts/`, the config files) is under the MIT License. The site's text, screenshots, images, name, logo and icons are all rights reserved. The fonts (DM Sans, Space Grotesk) keep their SIL Open Font License, and the game footage in the screenshots belongs to whoever recorded it. [LICENSE](LICENSE) has the exact terms. The app itself is a separate repo under the AGPL-3.0-or-later licence.
