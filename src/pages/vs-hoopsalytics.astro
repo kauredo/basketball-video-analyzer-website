@@ -56,8 +56,8 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
         Basketball Video Analyzer is free and open source, and runs on
         Windows, macOS and Linux. You load a game file, mark each play with the
         keyboard, and tag it by category, player and quarter. Each clip can
-        carry a spot on the court for the shot chart, and the stats tab counts
-        clips by category, quarter and player. Clips export as ordinary video
+        carry a spot on the court, which puts it on the court map in Stats,
+        and Stats also counts clips by category, quarter and player. Clips export as ordinary video
         files, the clip list as CSV, JSON or Sportscode XML. Nothing uploads,
         so there is no account and no storage to pay for. There is also no
         sharing platform: you send files the way you already do.
@@ -96,7 +96,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
             </tr>
             <tr class="border-b border-warm-200">
               <td class="py-3 pr-4 font-medium">Shot chart</td>
-              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Yes, and clicking a dot plays the clip</td>
               <td class="py-3 px-4">Yes</td>
             </tr>
             <tr class="border-b border-warm-200">

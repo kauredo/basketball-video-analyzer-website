@@ -48,12 +48,17 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
         Read the chart
       </h2>
       <p class="text-warm-700 leading-relaxed mb-5">
-        Open Stats and switch to the Shot chart tab. Every clip with a location
-        is a dot on the court, coloured by its first category, and hovering a
-        dot shows the clip's title. Three filters narrow it down: player,
+        Open Stats and switch to the Court map tab. That is the shot chart.
+        Every clip with a location is a dot on the court, coloured by its first
+        category, and hovering a dot shows the clip's title. Three filters narrow it down: player,
         quarter and category. One player in the fourth quarter, or only the
         pick and roll, is one change in a dropdown. Clips without a location
         are counted under the chart, so you know what it leaves out.
+      </p>
+      <p class="text-warm-700 leading-relaxed mb-5">
+        Click a dot and its clip plays right there in Stats, on a loop. You can
+        slow it to half speed, step to the previous or next clip in the same
+        category, or open it in the main video to see what happened around it.
       </p>
 
       <h2 class="font-display text-2xl sm:text-3xl font-bold text-warm-900 mt-12 mb-4">
@@ -93,7 +98,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
               "name": "How do I make a shot chart from game video?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "In Basketball Video Analyzer, cut each shot as a clip and click where it came from on the half court in the clip form. The Stats window's Shot chart tab then draws every located clip as a dot, coloured by category."
+                "text": "In Basketball Video Analyzer, cut each shot as a clip and click where it came from on the half court in the clip form. The Court map tab in Stats then draws every located clip as a dot, coloured by category."
               }
             },
             {
@@ -102,6 +107,14 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "Yes. The shot chart has player, quarter and category filters."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I watch the clip behind a dot?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Click a dot on the court map and that clip plays in the Stats window, on a loop. Prev and next step through the other clips in its category, and Open in main video jumps the film to it."
               }
             },
             {
