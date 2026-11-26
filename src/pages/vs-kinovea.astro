@@ -58,7 +58,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
         rep. Load the film, press Z and M to mark the start and end of each
         play, tag it with categories and players, and export the clips as video
         files in one folder per category. Each clip can carry a spot on the
-        court, so the stats tab draws a shot chart, and you can draw on paused
+        court, so Stats draws a court map you can click to play each clip, and you can draw on paused
         video and have the drawing burned into the exported clip. It runs on
         Windows, macOS and Linux and is open source under the AGPL.
       </p>
@@ -116,7 +116,7 @@ const release = (await getCachedLatestRelease()) ?? fallbackReleaseData;
             </tr>
             <tr class="border-b border-warm-200">
               <td class="py-3 pr-4 font-medium">Shot chart and clip stats</td>
-              <td class="py-3 px-4">Yes</td>
+              <td class="py-3 px-4">Yes, and clicking a dot plays the clip</td>
               <td class="py-3 px-4">No</td>
             </tr>
           </tbody>

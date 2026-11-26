@@ -8,10 +8,12 @@ Basketball Video Analyzer is a desktop application for cutting, tagging, organiz
 
 - **Video Cutting**: Mark the start and end of a clip with a keypress (Z and M by default, both rebindable), with frame-by-frame stepping and HH:MM:SS time search
 - **Hierarchical Categories**: Build category trees for offense, defense, transitions, or any coaching system, and save them as presets to reuse across projects
-- **Clip Library**: Browse clips as a thumbnail grid or as an editable table, with inline editing of title, categories and notes, multi-select for bulk actions, and a keep/cut/review status per clip
+- **Clip Library**: Browse clips as a thumbnail grid or as an editable table, with inline editing of title, categories and notes in both, one Filter button for category, player and status (each active filter shows as a removable chip), multi-select for bulk actions, and a keep/cut/review status per clip
 - **Player Tagging**: Tag clips with the players involved and filter the library by player
 - **Court Positions**: Mark where on the floor a play happened
 - **Stats Dashboard**: Clip counts and durations broken down by category, player, and quarter
+- **Court Map**: Stats shows every located clip as a dot on a half court (a shot chart when the clips are shots); click a dot to play that clip on a loop, step through its category, or open it in the main video
+- **Layout Presets**: Switch the workspace from the header between Tag (cutting clips), Study (reviewing clips) and Scout (watching an opponent)
 - **Present Mode**: Play a filtered set of clips back to back for a team film session
 - **Telestration**: Draw over paused video (arrows, circles, freehand) and replay the annotations
 - **YouTube Import**: Pull game footage in from a YouTube URL
