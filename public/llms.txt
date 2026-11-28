@@ -17,6 +17,7 @@ Basketball Video Analyzer is a desktop application for cutting, tagging, organiz
 - **Present Mode**: Play a filtered set of clips back to back for a team film session
 - **Telestration**: Draw over paused video (arrows, circles, freehand) and replay the annotations
 - **YouTube Import**: Pull game footage in from a YouTube URL
+- **Video formats**: MP4, MOV, MKV, WebM and M4V open as they are. Camera files (.mts, .m2ts), AVI, WMV, FLV, MPEG and ProRes get an MP4 copy first, after the app asks. The original file is never changed.
 - **Export**: Cut clips out as MP4 organized into category folders, or export the clip list as CSV, JSON, or Sportscode-compatible timeline XML
 - **Project Organization**: Keep footage separated by game, opponent, or practice session
 
